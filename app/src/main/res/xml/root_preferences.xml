@@ -1,0 +1,6 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreferenceCompat
+        app:icon="@drawable/ic_play_pause"
+        app:key="play_pause"
+        app:title="@string/play_pause" />
+</PreferenceScreen>

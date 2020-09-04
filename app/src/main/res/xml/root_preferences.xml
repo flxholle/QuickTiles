@@ -25,12 +25,12 @@
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
-            android:summary="@string/grayscale_credit"
+            android:summary="@string/fei_ke_credit"
             android:title="@string/grayscale" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_brightness_auto"
             android:key="adaptive_brightness"
-            android:summary="@string/adaptive_brightness_credit"
+            android:summary="@string/rascarlo_credit"
             android:title="@string/adaptive_brightness" />
     </PreferenceCategory>
 
@@ -38,34 +38,39 @@
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_qs_usb_debugging_enabled"
             android:key="usb_debugging"
-            android:summary="@string/development_credit"
+            android:summary="@string/adrian_garcia_credit"
             android:title="@string/usb_debugging" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_qs_finish_activities_enabled"
             android:key="finish_activities"
-            android:summary="@string/development_credit"
+            android:summary="@string/adrian_garcia_credit"
             android:title="@string/finish_activities" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_qs_keep_screen_on_enabled"
             android:key="keep_screen_on"
-            android:summary="@string/development_credit"
+            android:summary="@string/adrian_garcia_credit"
             android:title="@string/keep_screen_on" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_qs_demo_mode_enabled"
             android:key="demo_mode"
-            android:summary="@string/development_credit"
+            android:summary="@string/adrian_garcia_credit"
             android:title="@string/demo_mode" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_qs_animator_duration_enabled"
             android:key="animator_duration"
-            android:summary="@string/development_credit"
+            android:summary="@string/adrian_garcia_credit"
             android:title="@string/animator_duration" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_qs_show_taps_enabled"
             android:key="show_taps"
-            android:summary="@string/development_credit"
+            android:summary="@string/adrian_garcia_credit"
             android:title="@string/show_taps"
             app:isPreferenceVisible="false" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_animation_on"
+            android:key="disable_all_animations"
+            android:summary="@string/mustafa_ali_credit"
+            android:title="@string/disable_all_animations" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits">

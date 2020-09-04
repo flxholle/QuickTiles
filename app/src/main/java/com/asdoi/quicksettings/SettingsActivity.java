@@ -16,6 +16,7 @@ import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsService;
+import com.asdoi.quicksettings.tiles.ToggleAnimationService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingService;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResultListener;
@@ -39,6 +40,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("demo_mode", DemoModeService.class);
         servicePreferences.put("animator_duration", AnimatorDurationService.class);
         servicePreferences.put("show_taps", ShowTapsService.class);
+        servicePreferences.put("disable_all_animations", ToggleAnimationService.class);
         return servicePreferences;
     }
 
@@ -48,9 +50,9 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(UsbDebuggingService.class);
         services.add(FinishActivitiesService.class);
         services.add(KeepScreenOnService.class);
-//        services.add(DemoMode.class);
         services.add(AnimatorDurationService.class);
         services.add(ShowTapsService.class);
+        services.add(ToggleAnimationService.class);
         return services;
     }
 

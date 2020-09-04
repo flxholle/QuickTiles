@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.bytehamster.lib.preferencesearch.SearchPreference android:key="searchPreference" />
 
     <PreferenceCategory android:title="@string/media_control">
@@ -63,7 +64,8 @@
             android:icon="@drawable/ic_qs_show_taps_enabled"
             android:key="show_taps"
             android:summary="@string/development_credit"
-            android:title="@string/show_taps" />
+            android:title="@string/show_taps"
+            app:isPreferenceVisible="false" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits">

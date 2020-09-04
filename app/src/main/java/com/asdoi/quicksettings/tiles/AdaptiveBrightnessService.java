@@ -9,7 +9,7 @@ import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-import androidx.appcompat.app.AlertDialog.Builder;
+import androidx.appcompat.app.AlertDialog;
 
 import com.asdoi.quicksettings.R;
 import com.asdoi.quicksettings.Utils.AdaptiveBrightnessTileJobService;
@@ -84,11 +84,12 @@ public class AdaptiveBrightnessService extends TileService {
         Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
     }
 
-    public static void showDialog(Context context, int whichDialog) {
-        Builder builder = new Builder(context);
+    public static void showDialog(final Context context, int whichDialog) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true)
+                .setIcon(R.drawable.ic_brightness_auto)
                 .setTitle(R.string.require_permission)
-                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.cancel());
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
         switch (whichDialog) {
             case PERMISSION_DIALOG:
                 builder.setMessage(R.string.permission_alert_dialog_message);
@@ -100,7 +101,7 @@ public class AdaptiveBrightnessService extends TileService {
                 break;
             case SETTING_NOT_FOUND_DIALOG:
                 builder.setMessage(R.string.setting_not_found_alert_dialog_message);
-                builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.cancel());
+                builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss());
                 break;
         }
         builder.show();

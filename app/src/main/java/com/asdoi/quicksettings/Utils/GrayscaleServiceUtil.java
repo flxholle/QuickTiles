@@ -31,6 +31,7 @@ public class GrayscaleServiceUtil {
     public static Dialog createTipsDialog(final Context context) {
         return new AlertDialog.Builder(context)
                 .setTitle(R.string.require_permission)
+                .setIcon(R.drawable.ic_grayscale)
                 .setMessage(context.getString(R.string.require_permission_description, COMMAND))
                 .setNegativeButton(R.string.ok, null)
                 .setPositiveButton(R.string.copy_text, (dialog, which) -> {

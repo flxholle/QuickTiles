@@ -23,6 +23,11 @@
 
     <PreferenceCategory android:title="@string/system_utilities">
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_mobile_screen_share"
+            android:key="screen_share"
+            android:summary="@string/yu_chen_lin_credit"
+            android:title="@string/screen_share" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

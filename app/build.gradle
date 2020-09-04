@@ -40,4 +40,5 @@ dependencies {
 
     implementation 'com.github.ByteHamster:SearchPreference:4532977546'
     implementation "com.mikepenz:aboutlibraries:${latestAboutLibsRelease}"
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 }

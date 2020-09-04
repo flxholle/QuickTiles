@@ -13,6 +13,7 @@
         android:name="android.permission.DUMP"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -37,6 +38,12 @@
         <activity
             android:name="com.mikepenz.aboutlibraries.ui.LibsActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
+        <activity
+            android:name=".tilesUtils.ScreenShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" />
 
         <service
             android:name=".tiles.PlayPauseTileService"
@@ -178,6 +185,21 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".tiles.ScreenShareTileService"
+            android:icon="@drawable/ic_mobile_screen_share"
+            android:enabled="false"
+            android:label="@string/screen_share"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tilesUtils.ScreenshotService"
+            android:enabled="true"
+            android:foregroundServiceType="mediaProjection" />
+
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
@@ -186,6 +208,16 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

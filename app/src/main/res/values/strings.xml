@@ -51,4 +51,11 @@
     <string name="disable_all_animations">Disable All Animations</string>
     <string name="enable_all_animations">Enable All Animations</string>
     <string name="mustafa_ali_credit">Made by Mustafa Ali under Apache License 2.0</string>
+
+    <string name="share">Share</string>
+    <string name="screen_share_running">Screen Share Running</string>
+    <string name="yu_chen_lin_credit">Made by Yu-Chen Lin under MIT License</string>
+    <string name="screen_captured_permission_missing">Permission required in order to capture screenshots.</string>
+    <string name="screen_share">Screen Share</string>
+
 </resources>

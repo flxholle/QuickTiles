@@ -15,6 +15,7 @@ import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
+import com.asdoi.quicksettings.tiles.ScreenShareTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingService;
@@ -41,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("animator_duration", AnimatorDurationService.class);
         servicePreferences.put("show_taps", ShowTapsService.class);
         servicePreferences.put("disable_all_animations", ToggleAnimationService.class);
+        servicePreferences.put("screen_share", ScreenShareTileService.class);
         return servicePreferences;
     }
 

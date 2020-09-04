@@ -3,7 +3,9 @@
     <string name="credits" translatable="false"><![CDATA[
         App icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
     ]]></string>
+    <string name="open_source_libraries">Open source libraries</string>
 
+    <string name="media_control">Media Control</string>
     <string name="play_pause">Play/Pause</string>
     <string name="next_song">Next</string>
     <string name="previous_song">Previous</string>

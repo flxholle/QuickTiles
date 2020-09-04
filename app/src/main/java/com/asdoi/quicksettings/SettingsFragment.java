@@ -9,12 +9,16 @@ import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.TypedValue;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
+
+import com.bytehamster.lib.preferencesearch.SearchConfiguration;
+import com.bytehamster.lib.preferencesearch.SearchPreference;
 
 import java.util.Map;
 
@@ -36,6 +40,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 });
             }
         }
+
+        SearchPreference searchPreference = (SearchPreference) findPreference("searchPreference");
+        SearchConfiguration config = searchPreference.getSearchConfiguration();
+        config.setActivity((AppCompatActivity) getActivity());
+        config.index(R.xml.root_preferences);
     }
 
     private void setComponentState(Object newValue, Class<?> serviceClass) {

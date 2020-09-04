@@ -1,18 +1,22 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-    <SwitchPreferenceCompat
-        app:icon="@drawable/ic_play_pause"
-        app:key="play_pause"
-        app:title="@string/play_pause" />
-    <SwitchPreferenceCompat
-        app:icon="@drawable/ic_skip_next"
-        app:key="next_song"
-        app:title="@string/next_song" />
-    <SwitchPreferenceCompat
-        app:icon="@drawable/ic_skip_previous"
-        app:key="previous_song"
-        app:title="@string/previous_song" />
-    <SwitchPreferenceCompat
-        app:icon="@drawable/ic_music_video"
-        app:key="media_volume"
-        app:title="@string/media_volume" />
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.bytehamster.lib.preferencesearch.SearchPreference android:key="searchPreference" />
+
+    <PreferenceCategory android:title="@string/media_control">
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_play_pause"
+            android:key="play_pause"
+            android:title="@string/play_pause" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_skip_next"
+            android:key="next_song"
+            android:title="@string/next_song" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_skip_previous"
+            android:key="previous_song"
+            android:title="@string/previous_song" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_music_video"
+            android:key="media_volume"
+            android:title="@string/media_volume" />
+    </PreferenceCategory>
 </PreferenceScreen>

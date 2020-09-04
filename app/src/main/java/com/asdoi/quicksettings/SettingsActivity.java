@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
@@ -33,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
         servicePreferences.put("play_pause", PlayPauseTileService.class);
         servicePreferences.put("next_song", NextSongTileService.class);
         servicePreferences.put("previous_song", PreviousSongTileService.class);
+        servicePreferences.put("media_volume", MediaVolumeTileService.class);
         return servicePreferences;
     }
 }

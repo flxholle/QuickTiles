@@ -11,4 +11,8 @@
         app:icon="@drawable/ic_skip_previous"
         app:key="previous_song"
         app:title="@string/previous_song" />
+    <SwitchPreferenceCompat
+        app:icon="@drawable/ic_music_video"
+        app:key="media_volume"
+        app:title="@string/media_volume" />
 </PreferenceScreen>

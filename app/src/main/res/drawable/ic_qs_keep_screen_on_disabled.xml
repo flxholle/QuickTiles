@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (C) 2017 Adrián García
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+    <path
+        android:pathData="M5,4.369L6.75,6.119L17.25,16.62L17.25,16.62L19,18.37L21.36,20.73L20.09,22L18.892,20.803C18.542,22.071 17.382,23 16,23L8,23C6.34,23 5,21.66 5,20L5,6.918L1.65,3.57L2.92,2.29L5,4.37ZM16.088,18L6.75,8.667L6.75,18L16.088,18ZM7.197,4L5.515,2.316C6.054,1.521 6.965,1 8,1L16,1C17.66,1 19,2.34 19,4L19,15.817L17.25,14.065L17.25,4L7.197,4ZM14,21L14,20L10,20L10,21L14,21Z"
+        android:fillColor="#FFFFFF" />
+</vector>

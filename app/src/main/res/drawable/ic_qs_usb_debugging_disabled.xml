@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (C) 2017 Adrián García
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~    http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="24dp"
+    android:viewportHeight="24.0"
+    android:viewportWidth="24.0"
+    android:width="24dp">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M6.424,5.793L11.63,11L12.63,12L18.692,18.062C18.692,18.062 18.692,18.062 18.692,18.062L21.36,20.73L20.09,22L17.885,19.796C16.639,21.725 14.47,23 12,23C8.825,23 6.148,20.893 5.289,17.999L3.012,18L3,16L5,16.004C5,16.003 5,16.001 5,16L5,13.999L3.012,14L3,12L5,12.004L5,12L10.085,12L9.084,11L5,11L5,10L3.012,10L3,8L5.292,8.005C5.352,7.805 5.421,7.608 5.499,7.416L1.65,3.57L2.92,2.29L6.424,5.794C6.424,5.794 6.424,5.794 6.424,5.793ZM7.701,4.505C7.76,4.459 7.82,4.414 7.88,4.37L5.78,2.27L6.6,1.44L8.91,3.75C9.84,3.28 10.88,3 12,3C13.12,3 14.16,3.28 15.1,3.75L17.4,1.44L18.22,2.27L16.12,4.37C17.346,5.265 18.275,6.543 18.716,8.032L21,8.036L20.974,9.994L19,9.995C19,9.997 19,9.998 19,10L19,11L14.189,11L7.701,4.505ZM15.188,12L19,12L19,12.032L21,12.036L20.974,13.994L19,13.995L19,15.817L15.188,12ZM19.216,16.033L21,16.036L20.977,17.796L19.216,16.033ZM15,9C15.55,9 16,8.55 16,8C16,7.45 15.55,7 15,7C14.45,7 14,7.45 14,8C14,8.55 14.45,9 15,9Z" />
+</vector>

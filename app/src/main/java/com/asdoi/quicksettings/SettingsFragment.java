@@ -21,13 +21,14 @@ import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
-import com.asdoi.quicksettings.tiles.GrayscaleService;
+import com.asdoi.quicksettings.tiles.DemoModeService;
+import com.asdoi.quicksettings.utils.DemoMode;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
-import com.asdoi.quicksettings.utils.SettingsUtils;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
@@ -52,21 +53,44 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         tintIcons(getPreferenceScreen(), getThemeColor(android.R.attr.textColorPrimary));
 
         ArrayMap<String, Class<?>> preferencesServices = SettingsActivity.getPreferenceService();
+        ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
             if (switchPreference != null) {
                 final Class<?> serviceClass = entry.getValue();
 
-                if (serviceClass.equals(GrayscaleService.class)) {
+                if (secureSettingsServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
                         if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())) {
                             setComponentState(newValue, serviceClass);
-                            if (newValue.equals(Boolean.FALSE)) {
-                                SettingsUtils.toggleGreyscale(requireContext(), false);
-                            }
+//                            if (newValue.equals(Boolean.FALSE)) {
+//                                SettingsUtils.toggleGreyscale(requireContext(), false);
+//                            }
                         } else if (newValue.equals(Boolean.TRUE)) {
                             setComponentState(Boolean.FALSE, serviceClass);
                             GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                            return false;
+                        }
+                        return true;
+                    });
+                } else if (serviceClass.equals(DemoModeService.class)) {
+                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                        if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())
+                                && GrantPermissionDialogs.hasDumpPermission(requireContext())) {
+                            setComponentState(newValue, serviceClass);
+                            if (newValue.equals(Boolean.FALSE)) {
+                                DemoMode.Companion.sendCommand(requireContext(), DemoMode.Companion.getCOMMAND_EXIT());
+                            }
+                        } else if (newValue.equals(Boolean.TRUE)) {
+                            setComponentState(Boolean.FALSE, serviceClass);
+                            if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext()))
+                                GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                            else if (!GrantPermissionDialogs.hasDumpPermission(requireContext()))
+                                GrantPermissionDialogs.getDumpDialog(requireContext()).show();
+                            else {
+                                GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                                GrantPermissionDialogs.getDumpDialog(requireContext()).show();
+                            }
                             return false;
                         }
                         return true;

@@ -1,5 +1,6 @@
 package com.asdoi.quicksettings.utils;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.Service;
 import android.content.ClipData;
@@ -20,9 +21,8 @@ import com.asdoi.quicksettings.R;
 import java.io.DataOutputStream;
 
 public class GrantPermissionDialogs {
-    public static final String ANDROID_PERMISSION_WRITE_SECURE_SETTINGS = "android.permission.WRITE_SECURE_SETTINGS";
-    private static final String WRITE_SECURE_SETTINGS_COMMAND = "adb shell pm grant " + BuildConfig.APPLICATION_ID + " " + ANDROID_PERMISSION_WRITE_SECURE_SETTINGS;
-    private static final String WRITE_SECURE_SETTINGS_SU_COMMAND = "pm grant " + BuildConfig.APPLICATION_ID + " " + ANDROID_PERMISSION_WRITE_SECURE_SETTINGS;
+    private static final String WRITE_SECURE_SETTINGS = Manifest.permission.WRITE_SECURE_SETTINGS;
+    private static final String DUMP = Manifest.permission.DUMP;
 
     public static Dialog getModifySystemSettingsDialog(final Context context) {
         return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
@@ -72,11 +72,30 @@ public class GrantPermissionDialogs {
                 .create();
     }
 
-    public static Dialog getWriteSecureSettingsDialog(final Context context) {
-        return getSystemPermissionDialog(context, WRITE_SECURE_SETTINGS_COMMAND, WRITE_SECURE_SETTINGS_SU_COMMAND);
+    private static Dialog getSystemPermissionDialog(final Context context, final String permission) {
+        String adbCommand = "adb shell pm grant " + BuildConfig.APPLICATION_ID + " " + permission;
+        String rootCommand = "pm grant " + BuildConfig.APPLICATION_ID + " " + permission;
+        return getSystemPermissionDialog(context, adbCommand, rootCommand);
+    }
+
+    private static boolean hasPermission(Context context, String permission) {
+        return context.checkCallingOrSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     public static boolean hasWriteSecureSettingsPermission(Context context) {
-        return context.checkCallingOrSelfPermission(GrantPermissionDialogs.ANDROID_PERMISSION_WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
+        return hasPermission(context, WRITE_SECURE_SETTINGS);
     }
+
+    public static Dialog getWriteSecureSettingsDialog(final Context context) {
+        return getSystemPermissionDialog(context, WRITE_SECURE_SETTINGS);
+    }
+
+    public static boolean hasDumpPermission(Context context) {
+        return hasPermission(context, DUMP);
+    }
+
+    public static Dialog getDumpDialog(final Context context) {
+        return getSystemPermissionDialog(context, DUMP);
+    }
+
 }

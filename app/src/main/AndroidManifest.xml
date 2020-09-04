@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.asdoi.quicksettings">
 
-    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SECURE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.DUMP"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -94,11 +102,65 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".Utils.AdaptiveBrightnessTileJobService"
+            android:name=".utils.AdaptiveBrightnessTileJobService"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name=".tiles.UsbDebuggingService"
+            android:icon="@drawable/ic_qs_usb_debugging_enabled"
+            android:label="@string/qs_usb_debugging"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.FinishActivitiesService"
+            android:icon="@drawable/ic_qs_finish_activities_enabled"
+            android:label="@string/qs_finish_activities"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.KeepScreenOnService"
+            android:icon="@drawable/ic_qs_keep_screen_on_enabled"
+            android:label="@string/qs_keep_screen_on"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.DemoModeService"
+            android:icon="@drawable/ic_qs_demo_mode_enabled"
+            android:label="@string/qs_demo_mode"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.AnimatorDurationService"
+            android:icon="@drawable/ic_qs_animator_duration_enabled"
+            android:label="@string/qs_animator_duration"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.ShowTapsService"
+            android:icon="@drawable/ic_qs_show_taps_enabled"
+            android:label="@string/qs_show_taps"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
-        <receiver android:name=".Utils.BootCompletedBroadcastReceiver">
+        <receiver android:name=".utils.BootCompletedBroadcastReceiver">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 

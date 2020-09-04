@@ -20,6 +20,8 @@ import com.asdoi.quicksettings.tiles.UsbDebuggingService;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResultListener;
 
+import java.util.ArrayList;
+
 public class SettingsActivity extends AppCompatActivity implements SearchPreferenceResultListener {
     private SettingsFragment prefsFragment;
 
@@ -38,6 +40,18 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("animator_duration", AnimatorDurationService.class);
         servicePreferences.put("show_taps", ShowTapsService.class);
         return servicePreferences;
+    }
+
+    public static ArrayList<Class<?>> getSecureSettingsServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(GrayscaleService.class);
+        services.add(UsbDebuggingService.class);
+        services.add(FinishActivitiesService.class);
+        services.add(KeepScreenOnService.class);
+//        services.add(DemoMode.class);
+        services.add(AnimatorDurationService.class);
+        services.add(ShowTapsService.class);
+        return services;
     }
 
     @Override

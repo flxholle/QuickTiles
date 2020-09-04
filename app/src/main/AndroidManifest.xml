@@ -91,6 +91,7 @@
         </service>
         <service
             android:name=".tiles.AdaptiveBrightnessService"
+            android:enabled="false"
             android:icon="@drawable/ic_brightness_auto"
             android:label="@string/adaptive_brightness"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -102,13 +103,15 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".utils.AdaptiveBrightnessTileJobService"
+            android:name=".tilesUtils.AdaptiveBrightnessTileJobService"
+            android:enabled="false"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".tiles.UsbDebuggingService"
+            android:enabled="false"
             android:icon="@drawable/ic_qs_usb_debugging_enabled"
-            android:label="@string/qs_usb_debugging"
+            android:label="@string/usb_debugging"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
@@ -116,8 +119,9 @@
         </service>
         <service
             android:name=".tiles.FinishActivitiesService"
+            android:enabled="false"
             android:icon="@drawable/ic_qs_finish_activities_enabled"
-            android:label="@string/qs_finish_activities"
+            android:label="@string/finish_activities"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
@@ -125,8 +129,9 @@
         </service>
         <service
             android:name=".tiles.KeepScreenOnService"
+            android:enabled="false"
             android:icon="@drawable/ic_qs_keep_screen_on_enabled"
-            android:label="@string/qs_keep_screen_on"
+            android:label="@string/keep_screen_on"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
@@ -134,8 +139,9 @@
         </service>
         <service
             android:name=".tiles.DemoModeService"
+            android:enabled="false"
             android:icon="@drawable/ic_qs_demo_mode_enabled"
-            android:label="@string/qs_demo_mode"
+            android:label="@string/demo_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
@@ -143,8 +149,9 @@
         </service>
         <service
             android:name=".tiles.AnimatorDurationService"
+            android:enabled="false"
             android:icon="@drawable/ic_qs_animator_duration_enabled"
-            android:label="@string/qs_animator_duration"
+            android:label="@string/animator_duration"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
@@ -152,15 +159,16 @@
         </service>
         <service
             android:name=".tiles.ShowTapsService"
+            android:enabled="false"
             android:icon="@drawable/ic_qs_show_taps_enabled"
-            android:label="@string/qs_show_taps"
+            android:label="@string/show_taps"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
 
-        <receiver android:name=".utils.BootCompletedBroadcastReceiver">
+        <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 

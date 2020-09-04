@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.utils;
+package com.asdoi.quicksettings.tilesUtils;
 
 import android.app.job.JobInfo;
 import android.app.job.JobInfo.TriggerContentUri;

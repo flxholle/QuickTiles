@@ -35,6 +35,10 @@ class AnimatorDurationService : DevelopmentTileService<Float>() {
         return SettingsUtils.getFloatFromGlobalSettings(contentResolver, SETTING)
     }
 
+    override fun reset() {
+        saveValue(0f)
+    }
+
     override fun saveValue(value: Float): Boolean {
         return SettingsUtils.setFloatToGlobalSettings(contentResolver, SETTING, value)
     }
@@ -65,21 +69,21 @@ class AnimatorDurationService : DevelopmentTileService<Float>() {
     }
 
     override fun getLabel(value: Float): CharSequence? {
-        var stringResource = R.string.qs_animator_duration
+        var stringResource = R.string.animator_duration
         if (value <= 0f) {
-            stringResource = R.string.qs_animator_off
+            stringResource = R.string.animator_off
         } else if (value <= 0.5f) {
-            stringResource = R.string.qs_animator_scale_0_5x
+            stringResource = R.string.animator_scale_0_5x
         } else if (value <= 1f) {
-            stringResource = R.string.qs_animator_scale_1x
+            stringResource = R.string.animator_scale_1x
         } else if (value <= 1.5f) {
-            stringResource = R.string.qs_animator_scale_1_5x
+            stringResource = R.string.animator_scale_1_5x
         } else if (value <= 2f) {
-            stringResource = R.string.qs_animator_scale_2x
+            stringResource = R.string.animator_scale_2x
         } else if (value <= 5f) {
-            stringResource = R.string.qs_animator_scale_5x
+            stringResource = R.string.animator_scale_5x
         } else if (value <= 10f) {
-            stringResource = R.string.qs_animator_scale_10x
+            stringResource = R.string.animator_scale_10x
         }
 
         return getString(stringResource)

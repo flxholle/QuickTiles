@@ -22,7 +22,6 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
 import com.asdoi.quicksettings.tiles.DemoModeService;
-import com.asdoi.quicksettings.utils.DemoMode;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
@@ -52,71 +51,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         tintIcons(getPreferenceScreen(), getThemeColor(android.R.attr.textColorPrimary));
 
-        ArrayMap<String, Class<?>> preferencesServices = SettingsActivity.getPreferenceService();
-        ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
-        for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
-            SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
-            if (switchPreference != null) {
-                final Class<?> serviceClass = entry.getValue();
-
-                if (secureSettingsServices.contains(serviceClass)) {
-                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())) {
-                            setComponentState(newValue, serviceClass);
-//                            if (newValue.equals(Boolean.FALSE)) {
-//                                SettingsUtils.toggleGreyscale(requireContext(), false);
-//                            }
-                        } else if (newValue.equals(Boolean.TRUE)) {
-                            setComponentState(Boolean.FALSE, serviceClass);
-                            GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
-                            return false;
-                        }
-                        return true;
-                    });
-                } else if (serviceClass.equals(DemoModeService.class)) {
-                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())
-                                && GrantPermissionDialogs.hasDumpPermission(requireContext())) {
-                            setComponentState(newValue, serviceClass);
-                            if (newValue.equals(Boolean.FALSE)) {
-                                DemoMode.Companion.sendCommand(requireContext(), DemoMode.Companion.getCOMMAND_EXIT());
-                            }
-                        } else if (newValue.equals(Boolean.TRUE)) {
-                            setComponentState(Boolean.FALSE, serviceClass);
-                            if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext()))
-                                GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
-                            else if (!GrantPermissionDialogs.hasDumpPermission(requireContext()))
-                                GrantPermissionDialogs.getDumpDialog(requireContext()).show();
-                            else {
-                                GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
-                                GrantPermissionDialogs.getDumpDialog(requireContext()).show();
-                            }
-                            return false;
-                        }
-                        return true;
-                    });
-                } else if (serviceClass.equals(AdaptiveBrightnessService.class)) {
-                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        if (GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext())) {
-                            setComponentState(newValue, serviceClass);
-                            if (newValue.equals(Boolean.FALSE)) {
-                                AdaptiveBrightnessService.disableBrightnessMode(requireContext());
-                            }
-                        } else if (newValue.equals(Boolean.TRUE)) {
-                            setComponentState(Boolean.FALSE, serviceClass);
-                            GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
-                            return false;
-                        }
-                        return true;
-                    });
-                } else {
-                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        setComponentState(newValue, serviceClass);
-                        return true;
-                    });
-                }
-            }
-        }
+        setSwitchPreferences();
 
         SearchPreference searchPreference = findPreference("searchPreference");
         SearchConfiguration config = searchPreference.getSearchConfiguration();
@@ -141,6 +76,82 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     .start(requireContext());
             return true;
         });
+    }
+
+    private void setSwitchPreferences() {
+        ArrayMap<String, Class<?>> preferencesServices = SettingsActivity.getPreferenceService();
+        ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
+
+        for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
+            SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
+            if (switchPreference != null) {
+                final Class<?> serviceClass = entry.getValue();
+
+                if (secureSettingsServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getSecureSettingsListener(serviceClass));
+                } else if (serviceClass.equals(DemoModeService.class)) {
+                    switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
+                } else if (serviceClass.equals(AdaptiveBrightnessService.class)) {
+                    switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
+                } else {
+                    switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
+                }
+            }
+        }
+    }
+
+    private Preference.OnPreferenceChangeListener getDefaultChangeListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            setComponentState(newValue, serviceClass);
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getSecureSettingsListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getModifySystemSettingsListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getSecureSettingsDumpListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())
+                    && GrantPermissionDialogs.hasDumpPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext()))
+                    GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                else if (!GrantPermissionDialogs.hasDumpPermission(requireContext()))
+                    GrantPermissionDialogs.getDumpDialog(requireContext()).show();
+                else {
+                    GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                    GrantPermissionDialogs.getDumpDialog(requireContext()).show();
+                }
+                return false;
+            }
+            return true;
+        };
     }
 
     private void setComponentState(Object newValue, Class<?> serviceClass) {

@@ -5,15 +5,15 @@ import android.content.Context;
 import android.graphics.drawable.Icon;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.asdoi.quicksettings.R;
-import com.asdoi.quicksettings.utils.AdaptiveBrightnessTileJobService;
+import com.asdoi.quicksettings.tilesUtils.AdaptiveBrightnessTileJobService;
+import com.asdoi.quicksettings.utils.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 
-public class AdaptiveBrightnessService extends TileService {
+public class AdaptiveBrightnessService extends BaseTileService {
 
     public static void disableBrightnessMode(Context context) {
         Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
@@ -83,8 +83,13 @@ public class AdaptiveBrightnessService extends TileService {
         new AlertDialog.Builder(this).setCancelable(true)
                 .setTitle(R.string.require_permission)
                 .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
-                .setMessage(R.string.setting_not_found_alert_dialog_message)
+                .setMessage(R.string.modify_system_settings_not_found)
                 .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())
                 .show();
+    }
+
+    @Override
+    public void reset() {
+        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
     }
 }

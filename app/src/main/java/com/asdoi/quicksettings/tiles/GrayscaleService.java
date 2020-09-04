@@ -1,19 +1,19 @@
 package com.asdoi.quicksettings.tiles;
 
 import android.service.quicksettings.Tile;
-import android.service.quicksettings.TileService;
 
+import com.asdoi.quicksettings.utils.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.asdoi.quicksettings.utils.SettingsUtils;
 
-public class GrayscaleService extends TileService {
+public class GrayscaleService extends BaseTileService {
 
     @Override
     public void onClick() {
         super.onClick();
 
-        if (!GrantPermissionDialogs.hasModifySystemSettingsPermission(this)) {
-            showDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this));
+        if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this)) {
+            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this));
             return;
         }
 
@@ -38,5 +38,10 @@ public class GrayscaleService extends TileService {
         super.onStartListening();
         boolean greyscaleEnable = SettingsUtils.isGreyscaleEnable(this);
         setState(greyscaleEnable ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
+    }
+
+    @Override
+    public void reset() {
+        SettingsUtils.toggleGreyscale(this, false);
     }
 }

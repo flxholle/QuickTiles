@@ -18,9 +18,8 @@ package com.asdoi.quicksettings.utils
 
 import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
-import android.service.quicksettings.TileService
 
-abstract class DevelopmentTileService<T : Any> : TileService() {
+abstract class DevelopmentTileService<T : Any> : BaseTileService() {
 
     lateinit var value: T
 

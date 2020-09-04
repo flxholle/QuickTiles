@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.asdoi.quicksettings.utils
+package com.asdoi.quicksettings.tilesUtils
 
 import android.content.Context
 import android.content.Intent
@@ -60,14 +60,10 @@ class DemoMode {
                 "speakerphone",
                 "managed_profile")
 
-        fun sendCommand(context: Context, command: String) {
-            sendCommand(context, command, {})
-        }
-
         fun sendCommand(context: Context, command: String, intentBuilder: (Intent) -> Unit = {}) {
             // Prepare intent and command to send
-            val intent = Intent(DemoMode.ACTION_DEMO)
-            intent.putExtra(DemoMode.EXTRA_COMMAND, command)
+            val intent = Intent(ACTION_DEMO)
+            intent.putExtra(EXTRA_COMMAND, command)
             // Apply extras if they exist
             intent.apply(intentBuilder)
             // Send broadcast to system demo mode receiver

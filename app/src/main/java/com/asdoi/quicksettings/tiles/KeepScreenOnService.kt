@@ -36,6 +36,10 @@ class KeepScreenOnService : DevelopmentTileService<Int>() {
         return SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
     }
 
+    override fun reset() {
+        saveValue(0)
+    }
+
     override fun saveValue(value: Int): Boolean {
         return SettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
     }
@@ -51,7 +55,7 @@ class KeepScreenOnService : DevelopmentTileService<Int>() {
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.qs_keep_screen_on)
+        return getString(R.string.keep_screen_on)
     }
 
 }

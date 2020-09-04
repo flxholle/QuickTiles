@@ -37,6 +37,10 @@ class ShowTapsService : DevelopmentTileService<Int>() {
         return value
     }
 
+    override fun reset() {
+        saveValue(0)
+    }
+
     override fun saveValue(value: Int): Boolean {
         /*
          * The proper way to do this would be to check SettingsUtils.System.canWrite().
@@ -64,6 +68,6 @@ class ShowTapsService : DevelopmentTileService<Int>() {
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.qs_show_taps)
+        return getString(R.string.show_taps)
     }
 }

@@ -19,7 +19,7 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.os.Build
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.DemoMode
+import com.asdoi.quicksettings.tilesUtils.DemoMode
 import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs
 import com.asdoi.quicksettings.utils.SettingsUtils
@@ -43,6 +43,10 @@ class DemoModeService : DevelopmentTileService<Int>() {
     override fun queryValue(): Int {
         return listOf(DemoMode.DEMO_MODE_ALLOWED, DemoMode.DEMO_MODE_ON)
                 .fold(1, { current, key -> SettingsUtils.getIntFromGlobalSettings(contentResolver, key) and current })
+    }
+
+    override fun reset() {
+        stopDemoMode()
     }
 
     override fun onClick() {
@@ -76,7 +80,7 @@ class DemoModeService : DevelopmentTileService<Int>() {
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.qs_demo_mode)
+        return getString(R.string.demo_mode)
     }
 
     private fun startDemoMode() {

@@ -37,6 +37,10 @@ class UsbDebuggingService : DevelopmentTileService<Int>() {
         return value
     }
 
+    override fun reset() {
+        saveValue(0)
+    }
+
     override fun saveValue(value: Int): Boolean {
         return SettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
     }
@@ -51,6 +55,6 @@ class UsbDebuggingService : DevelopmentTileService<Int>() {
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.qs_usb_debugging)
+        return getString(R.string.usb_debugging)
     }
 }

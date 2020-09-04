@@ -1,5 +1,6 @@
-package com.asdoi.quicksettings.Utils;
+package com.asdoi.quicksettings.utils;
 
+import android.app.Dialog;
 import android.app.Service;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -11,6 +12,7 @@ import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.ContextThemeWrapper;
 
 import com.asdoi.quicksettings.BuildConfig;
 import com.asdoi.quicksettings.R;
@@ -22,40 +24,32 @@ public class GrantPermissionDialogs {
     private static final String WRITE_SECURE_SETTINGS_COMMAND = "adb shell pm grant " + BuildConfig.APPLICATION_ID + " " + ANDROID_PERMISSION_WRITE_SECURE_SETTINGS;
     private static final String WRITE_SECURE_SETTINGS_SU_COMMAND = "pm grant " + BuildConfig.APPLICATION_ID + " " + ANDROID_PERMISSION_WRITE_SECURE_SETTINGS;
 
-    private static void showModifySystemSettingsDialog(final Context context) {
-        new AlertDialog.Builder(context)
+    public static Dialog getModifySystemSettingsDialog(final Context context) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
                 .setCancelable(true)
                 .setTitle(R.string.require_permission)
-                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setMessage(R.string.permission_alert_dialog_message)
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setPositiveButton(R.string.settings, (dialog, which) -> {
                     context.startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             .setData(Uri.parse("package:" + context.getPackageName())));
                 })
-                .show();
+                .create();
     }
 
     public static boolean hasModifySystemSettingsPermission(Context context) {
         return Settings.System.canWrite(context);
     }
 
-    public static boolean checkModifySystemSettings(Context context) {
-        if (hasModifySystemSettingsPermission(context)) {
-            return true;
-        } else {
-            showModifySystemSettingsDialog(context);
-            return false;
-        }
-    }
-
-    private static void showWriteSecureSettingsDialog(final Context context) {
-        new android.app.AlertDialog.Builder(context)
+    private static Dialog getSystemPermissionDialog(final Context context, final String adbCommand, final String rootCommand) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+                .setCancelable(true)
                 .setTitle(R.string.require_permission)
-                .setMessage(context.getString(R.string.require_permission_description, WRITE_SECURE_SETTINGS_COMMAND))
+                .setMessage(context.getString(R.string.require_permission_description, adbCommand))
                 .setNegativeButton(R.string.ok, null)
                 .setPositiveButton(R.string.copy_text, (dialog, which) -> {
-                    ClipData clipData = ClipData.newPlainText(WRITE_SECURE_SETTINGS_COMMAND, WRITE_SECURE_SETTINGS_COMMAND);
+                    ClipData clipData = ClipData.newPlainText(adbCommand, adbCommand);
                     ClipboardManager manager = (ClipboardManager) context.getSystemService(Service.CLIPBOARD_SERVICE);
                     manager.setPrimaryClip(clipData);
                     Toast.makeText(context, R.string.copy_success, Toast.LENGTH_SHORT).show();
@@ -64,7 +58,7 @@ public class GrantPermissionDialogs {
                     try {
                         Process su = Runtime.getRuntime().exec("su");
                         DataOutputStream os = new DataOutputStream(su.getOutputStream());
-                        os.writeBytes(WRITE_SECURE_SETTINGS_SU_COMMAND + "\n");
+                        os.writeBytes(rootCommand + "\n");
                         os.writeBytes("exit\n");
                         os.close();
                         su.waitFor();
@@ -75,19 +69,14 @@ public class GrantPermissionDialogs {
                         e.printStackTrace();
                     }
                 })
-                .show();
+                .create();
+    }
+
+    public static Dialog getWriteSecureSettingsDialog(final Context context) {
+        return getSystemPermissionDialog(context, WRITE_SECURE_SETTINGS_COMMAND, WRITE_SECURE_SETTINGS_SU_COMMAND);
     }
 
     public static boolean hasWriteSecureSettingsPermission(Context context) {
         return context.checkCallingOrSelfPermission(GrantPermissionDialogs.ANDROID_PERMISSION_WRITE_SECURE_SETTINGS) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    public static boolean checkWriteSecureSettingsPermission(Context context) {
-        if (hasWriteSecureSettingsPermission(context)) {
-            return true;
-        } else {
-            showWriteSecureSettingsDialog(context);
-            return false;
-        }
     }
 }

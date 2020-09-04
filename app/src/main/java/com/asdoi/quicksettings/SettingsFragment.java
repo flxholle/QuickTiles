@@ -20,9 +20,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.Utils.GrantPermissionDialogs;
 import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
 import com.asdoi.quicksettings.tiles.GrayscaleService;
+import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
+import com.asdoi.quicksettings.utils.SettingsUtils;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -61,11 +62,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                         if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())) {
                             setComponentState(newValue, serviceClass);
                             if (newValue.equals(Boolean.FALSE)) {
-                                GrayscaleService.toggleGreyscale(requireContext(), false);
+                                SettingsUtils.toggleGreyscale(requireContext(), false);
                             }
                         } else if (newValue.equals(Boolean.TRUE)) {
                             setComponentState(Boolean.FALSE, serviceClass);
-                            GrantPermissionDialogs.checkWriteSecureSettingsPermission(requireContext());
+                            GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
                             return false;
                         }
                         return true;
@@ -79,7 +80,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             }
                         } else if (newValue.equals(Boolean.TRUE)) {
                             setComponentState(Boolean.FALSE, serviceClass);
-                            GrantPermissionDialogs.checkModifySystemSettings(requireContext());
+                            GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
                             return false;
                         }
                         return true;

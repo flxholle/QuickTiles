@@ -33,6 +33,39 @@
             android:title="@string/adaptive_brightness" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/development">
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_qs_usb_debugging_enabled"
+            android:key="usb_debugging"
+            android:summary="@string/development_credit"
+            android:title="@string/qs_usb_debugging" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_qs_finish_activities_enabled"
+            android:key="finish_activities"
+            android:summary="@string/development_credit"
+            android:title="@string/qs_finish_activities" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_qs_keep_screen_on_enabled"
+            android:key="keep_screen_on"
+            android:summary="@string/development_credit"
+            android:title="@string/qs_keep_screen_on" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_qs_demo_mode_enabled"
+            android:key="demo_mode"
+            android:summary="@string/development_credit"
+            android:title="@string/qs_demo_mode" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_qs_animator_duration_enabled"
+            android:key="animator_duration"
+            android:summary="@string/development_credit"
+            android:title="@string/qs_animator_duration" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_qs_show_taps_enabled"
+            android:key="show_taps"
+            android:summary="@string/development_credit"
+            android:title="@string/qs_show_taps" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/credits">
         <Preference
             android:icon="@drawable/ic_info"

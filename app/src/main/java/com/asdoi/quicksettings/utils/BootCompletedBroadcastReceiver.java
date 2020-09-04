@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.Utils;
+package com.asdoi.quicksettings.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;

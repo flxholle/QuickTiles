@@ -10,8 +10,8 @@ import android.service.quicksettings.TileService;
 import androidx.appcompat.app.AlertDialog;
 
 import com.asdoi.quicksettings.R;
-import com.asdoi.quicksettings.Utils.AdaptiveBrightnessTileJobService;
-import com.asdoi.quicksettings.Utils.GrantPermissionDialogs;
+import com.asdoi.quicksettings.utils.AdaptiveBrightnessTileJobService;
+import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 
 public class AdaptiveBrightnessService extends TileService {
 
@@ -40,9 +40,10 @@ public class AdaptiveBrightnessService extends TileService {
 
     @Override
     public void onClick() {
-        if (GrantPermissionDialogs.checkModifySystemSettings(this)) {
+        if (GrantPermissionDialogs.hasModifySystemSettingsPermission(this)) {
             changeBrightnessMode();
-        }
+        } else
+            showDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this));
         super.onClick();
     }
 

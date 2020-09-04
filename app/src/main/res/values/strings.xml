@@ -18,7 +18,7 @@
     <string name="grayscale">Grayscale</string>
     <string name="grayscale_credit">Made by fei-ke with Apache License 2.0</string>
     <string name="require_permission">Require Permission!</string>
-    <string name="require_permission_description">To use this feature, a permission has to be granted. Copy the command below and execute it on a PC or use Root:\n\n%1$s\n\n</string>
+    <string name="require_permission_description">To use this feature, a permission has to be granted. Copy the command below and execute it on a PC or use Root:\n\n%s\n</string>
     <string name="ok">OK</string>
     <string name="copy_text">Copy</string>
     <string name="copy_success">Copied Successful</string>
@@ -31,4 +31,27 @@
     <string name="setting_not_found_alert_dialog_message">The \"Adaptive brightness setting\" was not found on your device. It is possible, that your device does not support brightness modes.</string>
     <string name="settings">Settings</string>
     <string name="cancel">Cancel</string>
+
+    <string name="development">Development</string>
+    <string name="development_credit">Made by Adrián García with Apache License 2.0</string>
+    <string name="qs_permissions_not_granted">You need to grant secure settings permissions before using the tile: check the app\'s instructions to enable them</string>
+    <string name="qs_finish_activities">Always finish activities</string>
+    <string name="qs_finish_activities_description">Allows killing activities as soon as the user exits them.</string>
+    <string name="qs_usb_debugging">USB debugging</string>
+    <string name="qs_usb_debugging_description">Allows enabling USB debugging.</string>
+    <string name="qs_keep_screen_on">Keep screen on</string>
+    <string name="qs_keep_screen_on_description">Allows keeping screen on while plugged to an AC charger or USB charger.</string>
+    <string name="qs_demo_mode">Demo mode</string>
+    <string name="qs_demo_mode_description">Allows using the device\'s demo mode.</string>
+    <string name="qs_animator_duration">Animator duration scale</string>
+    <string name="qs_animator_duration_description">Allows switching between different animator duration scales, from 0.5x to 10x the standard scale.</string>
+    <string name="qs_animator_off">Animation off</string>
+    <string name="qs_animator_scale_0_5x">Animation scale .5x</string>
+    <string name="qs_animator_scale_1x">Animation scale 1x</string>
+    <string name="qs_animator_scale_1_5x">Animation scale 1.5x</string>
+    <string name="qs_animator_scale_2x">Animation scale 2x</string>
+    <string name="qs_animator_scale_5x">Animation scale 5x</string>
+    <string name="qs_animator_scale_10x">Animation scale 10x</string>
+    <string name="qs_show_taps">Show taps</string>
+    <string name="qs_show_taps_description">Allows showing tap locations on screen.</string>
 </resources>

@@ -32,6 +32,26 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.NextSongTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_skip_next"
+            android:label="@string/next_song"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.PreviousSongTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_skip_previous"
+            android:label="@string/previous_song"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

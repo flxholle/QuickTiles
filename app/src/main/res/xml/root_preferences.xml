@@ -3,4 +3,12 @@
         app:icon="@drawable/ic_play_pause"
         app:key="play_pause"
         app:title="@string/play_pause" />
+    <SwitchPreferenceCompat
+        app:icon="@drawable/ic_skip_next"
+        app:key="next_song"
+        app:title="@string/next_song" />
+    <SwitchPreferenceCompat
+        app:icon="@drawable/ic_skip_previous"
+        app:key="previous_song"
+        app:title="@string/previous_song" />
 </PreferenceScreen>

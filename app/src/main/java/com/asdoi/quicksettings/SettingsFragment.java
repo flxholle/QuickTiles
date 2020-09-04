@@ -29,8 +29,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
             if (switchPreference != null) {
+                final Class<?> serviceClass = entry.getValue();
                 switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    setComponentState(newValue, entry.getValue());
+                    setComponentState(newValue, serviceClass);
                     return true;
                 });
             }

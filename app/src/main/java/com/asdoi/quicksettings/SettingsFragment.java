@@ -1,11 +1,14 @@
 package com.asdoi.quicksettings;
 
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.ArrayMap;
 import android.util.TypedValue;
 
@@ -19,6 +22,7 @@ import androidx.preference.SwitchPreferenceCompat;
 
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import java.util.Map;
 
@@ -41,10 +45,29 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             }
         }
 
-        SearchPreference searchPreference = (SearchPreference) findPreference("searchPreference");
+        SearchPreference searchPreference = findPreference("searchPreference");
         SearchConfiguration config = searchPreference.getSearchConfiguration();
         config.setActivity((AppCompatActivity) getActivity());
         config.index(R.xml.root_preferences);
+
+        Preference credits = findPreference("credits");
+        credits.setTitle(Html.fromHtml(getString(R.string.app_icon_credit), Html.FROM_HTML_MODE_LEGACY));
+        credits.setOnPreferenceClickListener((view) -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_icon_credit_link))));
+            return true;
+        });
+
+        Preference libraries = findPreference("libraries");
+        libraries.setOnPreferenceClickListener((view) -> {
+            new LibsBuilder()
+                    .withActivityTitle(getString(R.string.open_source_libraries))
+                    .withAboutIconShown(true)
+                    .withFields(R.string.class.getFields())
+                    .withLicenseShown(true)
+                    .withAboutAppName(getString(R.string.app_name))
+                    .start(requireContext());
+            return true;
+        });
     }
 
     private void setComponentState(Object newValue, Class<?> serviceClass) {

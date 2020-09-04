@@ -19,4 +19,13 @@
             android:key="media_volume"
             android:title="@string/media_volume" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/credits">
+        <Preference
+            android:icon="@drawable/ic_info"
+            android:key="libraries"
+            android:title="@string/open_source_libraries" />
+        <Preference
+            android:icon="@drawable/ic_info"
+            android:key="credits" />
+    </PreferenceCategory>
 </PreferenceScreen>

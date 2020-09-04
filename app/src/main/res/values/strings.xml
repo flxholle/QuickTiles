@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">QuickSettings</string>
-    <string name="credits" translatable="false"><![CDATA[
-        App icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-    ]]></string>
+    <string name="app_icon_credit" translatable="false"><![CDATA[
+        App icon made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+    ]]>
+    </string>
+    <string name="app_icon_credit_link" translatable="false">https://www.flaticon.com/authors/nikita-golubev</string>
     <string name="open_source_libraries">Open source libraries</string>
+    <string name="credits">Credits</string>
 
     <string name="media_control">Media Control</string>
     <string name="play_pause">Play/Pause</string>

@@ -104,8 +104,8 @@
         </service>
         <service
             android:name=".tilesUtils.AdaptiveBrightnessTileJobService"
-            android:enabled="false"
-            android:exported="false"
+            android:enabled="true"
+            android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".tiles.UsbDebuggingService"

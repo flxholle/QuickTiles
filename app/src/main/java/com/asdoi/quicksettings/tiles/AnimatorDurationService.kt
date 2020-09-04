@@ -24,7 +24,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
 
 class AnimatorDurationService : DevelopmentTileService<Float>() {
     companion object {
-        val SETTING = Settings.Global.ANIMATOR_DURATION_SCALE
+        const val SETTING = Settings.Global.ANIMATOR_DURATION_SCALE
     }
 
     override fun isActive(value: Float): Boolean {
@@ -36,7 +36,7 @@ class AnimatorDurationService : DevelopmentTileService<Float>() {
     }
 
     override fun reset() {
-        saveValue(0f)
+        saveValue(1f)
     }
 
     override fun saveValue(value: Float): Boolean {

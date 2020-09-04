@@ -140,14 +140,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 setComponentState(newValue, serviceClass);
             } else if (newValue.equals(Boolean.TRUE)) {
                 setComponentState(Boolean.FALSE, serviceClass);
-                if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext()))
-                    GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext()) && !GrantPermissionDialogs.hasDumpPermission(requireContext()))
+                    GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(requireContext()).show();
                 else if (!GrantPermissionDialogs.hasDumpPermission(requireContext()))
                     GrantPermissionDialogs.getDumpDialog(requireContext()).show();
-                else {
+                else
                     GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
-                    GrantPermissionDialogs.getDumpDialog(requireContext()).show();
-                }
                 return false;
             }
             return true;

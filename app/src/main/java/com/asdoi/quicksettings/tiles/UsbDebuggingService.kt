@@ -24,7 +24,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
 
 class UsbDebuggingService : DevelopmentTileService<Int>() {
     companion object {
-        val SETTING = Settings.Global.ADB_ENABLED
+        const val SETTING = Settings.Global.ADB_ENABLED
     }
 
     override fun isActive(value: Int): Boolean {

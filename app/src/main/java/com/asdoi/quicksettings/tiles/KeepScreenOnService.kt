@@ -25,7 +25,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
 
 class KeepScreenOnService : DevelopmentTileService<Int>() {
     companion object {
-        val SETTING = Settings.Global.STAY_ON_WHILE_PLUGGED_IN
+        const val SETTING = Settings.Global.STAY_ON_WHILE_PLUGGED_IN
     }
 
     override fun isActive(value: Int): Boolean {

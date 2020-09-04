@@ -90,6 +90,6 @@ public class AdaptiveBrightnessService extends BaseTileService {
 
     @Override
     public void reset() {
-        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+        disableBrightnessMode(this);
     }
 }

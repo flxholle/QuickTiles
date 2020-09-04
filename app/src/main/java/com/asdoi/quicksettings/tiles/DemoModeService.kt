@@ -50,10 +50,15 @@ class DemoModeService : DevelopmentTileService<Int>() {
     }
 
     override fun onClick() {
-        if (GrantPermissionDialogs.hasDumpPermission(this)) {
+        if (GrantPermissionDialogs.hasDumpPermission(this)
+                && GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
             super.onClick()
-        } else
+        else if (!GrantPermissionDialogs.hasDumpPermission(this))
             showDialog(GrantPermissionDialogs.getDumpDialog(this))
+        else if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
+            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
+        else
+            showDialog(GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(this));
     }
 
     override fun saveValue(value: Int): Boolean {

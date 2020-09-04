@@ -24,7 +24,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
 
 class ShowTapsService : DevelopmentTileService<Int>() {
     companion object {
-        val SETTING = "show_touches" // This is hidden for developers, so we use the string resource
+        const val SETTING = "show_touches" // This is hidden for developers, so we use the string resource
     }
 
     override fun isActive(value: Int): Boolean {
@@ -43,9 +43,9 @@ class ShowTapsService : DevelopmentTileService<Int>() {
 
     override fun saveValue(value: Int): Boolean {
         /*
-         * The proper way to do this would be to check SettingsUtils.System.canWrite().
+         * The proper way to do this would be to check Settings.System.canWrite().
          * If we can write there then write the setting and if we can't, then launch an Intent to
-         * SettingsUtils.ACTION_MANAGE_WRITE_SETTINGS to enable the app to write system settings.
+         * Settings.ACTION_MANAGE_WRITE_SETTINGS to enable the app to write system settings.
          *
          * The problem is that from API 23+ we can't do that with the "show_touches" setting
          * (and others I suppose) as it throws an IllegalArgumentException:

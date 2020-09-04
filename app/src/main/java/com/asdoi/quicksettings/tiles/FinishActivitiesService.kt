@@ -24,7 +24,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
 
 class FinishActivitiesService : DevelopmentTileService<Int>() {
     companion object {
-        val SETTING = Settings.Global.ALWAYS_FINISH_ACTIVITIES
+        const val SETTING = Settings.Global.ALWAYS_FINISH_ACTIVITIES
     }
 
     override fun isActive(value: Int): Boolean {

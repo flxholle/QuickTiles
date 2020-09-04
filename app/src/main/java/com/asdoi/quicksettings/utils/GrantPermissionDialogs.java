@@ -72,10 +72,16 @@ public class GrantPermissionDialogs {
                 .create();
     }
 
-    private static Dialog getSystemPermissionDialog(final Context context, final String permission) {
-        String adbCommand = "adb shell pm grant " + BuildConfig.APPLICATION_ID + " " + permission;
-        String rootCommand = "pm grant " + BuildConfig.APPLICATION_ID + " " + permission;
-        return getSystemPermissionDialog(context, adbCommand, rootCommand);
+    private static Dialog getSystemPermissionDialog(final Context context, final String... permission) {
+        StringBuilder adbCommand = new StringBuilder("adb shell pm grant " + BuildConfig.APPLICATION_ID + " " + permission[0]);
+        StringBuilder rootCommand = new StringBuilder("pm grant " + BuildConfig.APPLICATION_ID + " " + permission[0]);
+        for (int i = 1; i < permission.length; i++) {
+            adbCommand.append("\n")
+                    .append("adb shell pm grant " + BuildConfig.APPLICATION_ID + " " + permission[1]);
+            rootCommand.append("\n")
+                    .append("pm grant " + BuildConfig.APPLICATION_ID + " " + permission[1]);
+        }
+        return getSystemPermissionDialog(context, adbCommand.toString(), rootCommand.toString());
     }
 
     private static boolean hasPermission(Context context, String permission) {
@@ -98,4 +104,7 @@ public class GrantPermissionDialogs {
         return getSystemPermissionDialog(context, DUMP);
     }
 
+    public static Dialog getWriteSecureSettingsAndDumpDialog(final Context context) {
+        return getSystemPermissionDialog(context, WRITE_SECURE_SETTINGS, DUMP);
+    }
 }

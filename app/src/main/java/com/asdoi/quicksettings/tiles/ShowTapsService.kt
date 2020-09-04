@@ -64,7 +64,7 @@ class ShowTapsService : DevelopmentTileService<Int>() {
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_qs_show_taps_enabled else R.drawable.ic_qs_show_taps_disabled)
+                if (value != 0) R.drawable.ic_show_taps_enabled else R.drawable.ic_show_taps_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {

@@ -42,7 +42,7 @@ public class GrantPermissionDialogs {
         return Settings.System.canWrite(context);
     }
 
-    private static Dialog getSystemPermissionDialog(final Context context, final String adbCommand, final String rootCommand) {
+    private static Dialog getSystemPermissionDialog(final String adbCommand, final String rootCommand, final Context context) {
         return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
                 .setCancelable(true)
                 .setTitle(R.string.require_permission)
@@ -81,7 +81,7 @@ public class GrantPermissionDialogs {
             rootCommand.append("\n")
                     .append("pm grant " + BuildConfig.APPLICATION_ID + " " + permission[1]);
         }
-        return getSystemPermissionDialog(context, adbCommand.toString(), rootCommand.toString());
+        return getSystemPermissionDialog(adbCommand.toString(), rootCommand.toString(), context);
     }
 
     private static boolean hasPermission(Context context, String permission) {

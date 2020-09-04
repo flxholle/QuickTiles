@@ -48,21 +48,21 @@ class AnimatorDurationService : DevelopmentTileService<Float>() {
     }
 
     override fun getIcon(value: Float): Icon? {
-        var iconResource = R.drawable.ic_qs_animator_duration_enabled
+        var iconResource = R.drawable.ic_animator_duration_enabled
         if (value <= 0f) {
-            iconResource = R.drawable.ic_qs_animator_duration_disabled
+            iconResource = R.drawable.ic_animator_duration_disabled
         } else if (value <= 0.5f) {
-            iconResource = R.drawable.ic_qs_animator_duration_half_x
+            iconResource = R.drawable.ic_animator_duration_half_x
         } else if (value <= 1f) {
-            iconResource = R.drawable.ic_qs_animator_duration_1x
+            iconResource = R.drawable.ic_animator_duration_1x
         } else if (value <= 1.5f) {
-            iconResource = R.drawable.ic_qs_animator_duration_1_5x
+            iconResource = R.drawable.ic_animator_duration_1_5x
         } else if (value <= 2f) {
-            iconResource = R.drawable.ic_qs_animator_duration_2x
+            iconResource = R.drawable.ic_animator_duration_2x
         } else if (value <= 5f) {
-            iconResource = R.drawable.ic_qs_animator_duration_5x
+            iconResource = R.drawable.ic_animator_duration_5x
         } else if (value <= 10f) {
-            iconResource = R.drawable.ic_qs_animator_duration_10x
+            iconResource = R.drawable.ic_animator_duration_10x
         }
 
         return Icon.createWithResource(applicationContext, iconResource)

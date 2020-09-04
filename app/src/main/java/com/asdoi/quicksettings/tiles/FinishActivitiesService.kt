@@ -51,8 +51,8 @@ class FinishActivitiesService : DevelopmentTileService<Int>() {
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_qs_finish_activities_enabled
-                else R.drawable.ic_qs_finish_activities_disabled)
+                if (value != 0) R.drawable.ic_finish_activities_enabled
+                else R.drawable.ic_finish_activities_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {

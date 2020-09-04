@@ -51,7 +51,7 @@ class KeepScreenOnService : DevelopmentTileService<Int>() {
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_qs_keep_screen_on_enabled else R.drawable.ic_qs_keep_screen_on_disabled)
+                if (value != 0) R.drawable.ic_keep_screen_on_enabled else R.drawable.ic_keep_screen_on_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {

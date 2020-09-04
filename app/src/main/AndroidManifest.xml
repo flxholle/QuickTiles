@@ -110,7 +110,7 @@
         <service
             android:name=".tiles.UsbDebuggingService"
             android:enabled="false"
-            android:icon="@drawable/ic_qs_usb_debugging_enabled"
+            android:icon="@drawable/ic_usb_debugging_enabled"
             android:label="@string/usb_debugging"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -120,7 +120,7 @@
         <service
             android:name=".tiles.FinishActivitiesService"
             android:enabled="false"
-            android:icon="@drawable/ic_qs_finish_activities_enabled"
+            android:icon="@drawable/ic_finish_activities_enabled"
             android:label="@string/finish_activities"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -130,7 +130,7 @@
         <service
             android:name=".tiles.KeepScreenOnService"
             android:enabled="false"
-            android:icon="@drawable/ic_qs_keep_screen_on_enabled"
+            android:icon="@drawable/ic_keep_screen_on_enabled"
             android:label="@string/keep_screen_on"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -140,7 +140,7 @@
         <service
             android:name=".tiles.DemoModeService"
             android:enabled="false"
-            android:icon="@drawable/ic_qs_demo_mode_enabled"
+            android:icon="@drawable/ic_demo_mode_enabled"
             android:label="@string/demo_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -150,7 +150,7 @@
         <service
             android:name=".tiles.AnimatorDurationService"
             android:enabled="false"
-            android:icon="@drawable/ic_qs_animator_duration_enabled"
+            android:icon="@drawable/ic_animator_duration_enabled"
             android:label="@string/animator_duration"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -160,7 +160,7 @@
         <service
             android:name=".tiles.ShowTapsService"
             android:enabled="false"
-            android:icon="@drawable/ic_qs_show_taps_enabled"
+            android:icon="@drawable/ic_show_taps_enabled"
             android:label="@string/show_taps"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

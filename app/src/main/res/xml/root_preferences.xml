@@ -36,36 +36,36 @@
 
     <PreferenceCategory android:title="@string/development">
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_qs_usb_debugging_enabled"
+            android:icon="@drawable/ic_usb_debugging_enabled"
             android:key="usb_debugging"
             android:summary="@string/adrian_garcia_credit"
             android:title="@string/usb_debugging" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_qs_finish_activities_enabled"
-            android:key="finish_activities"
-            android:summary="@string/adrian_garcia_credit"
-            android:title="@string/finish_activities" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_qs_keep_screen_on_enabled"
-            android:key="keep_screen_on"
-            android:summary="@string/adrian_garcia_credit"
-            android:title="@string/keep_screen_on" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_qs_demo_mode_enabled"
+            android:icon="@drawable/ic_demo_mode_enabled"
             android:key="demo_mode"
             android:summary="@string/adrian_garcia_credit"
             android:title="@string/demo_mode" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_qs_animator_duration_enabled"
-            android:key="animator_duration"
-            android:summary="@string/adrian_garcia_credit"
-            android:title="@string/animator_duration" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_qs_show_taps_enabled"
+            android:icon="@drawable/ic_show_taps_enabled"
             android:key="show_taps"
             android:summary="@string/adrian_garcia_credit"
             android:title="@string/show_taps"
             app:isPreferenceVisible="false" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_keep_screen_on_enabled"
+            android:key="keep_screen_on"
+            android:summary="@string/adrian_garcia_credit"
+            android:title="@string/keep_screen_on" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_finish_activities_enabled"
+            android:key="finish_activities"
+            android:summary="@string/adrian_garcia_credit"
+            android:title="@string/finish_activities" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_animator_duration_enabled"
+            android:key="animator_duration"
+            android:summary="@string/adrian_garcia_credit"
+            android:title="@string/animator_duration" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_animation_on"
             android:key="disable_all_animations"

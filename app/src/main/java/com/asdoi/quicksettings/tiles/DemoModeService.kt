@@ -81,7 +81,7 @@ class DemoModeService : DevelopmentTileService<Int>() {
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_qs_demo_mode_enabled else R.drawable.ic_qs_demo_mode_disabled)
+                if (value != 0) R.drawable.ic_demo_mode_enabled else R.drawable.ic_demo_mode_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {

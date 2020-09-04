@@ -3,6 +3,8 @@ package com.asdoi.quicksettings.tiles;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
+import com.asdoi.quicksettings.Utils.GrayscaleServiceUtil;
+
 public class GrayscaleService extends TileService {
 
     @Override

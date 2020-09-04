@@ -6,7 +6,6 @@ Android Quick Settings Tiles
 
 ### Projects that were used:
  - https://github.com/fei-ke/Greyscale
- - https://github.com/dtkav/grayscale
  - https://github.com/nickbutcher/AnimatorDurationTile
  - https://github.com/rascarlo/AdaptiveBrightnessTile
  - https://github.com/mustafa01ali/Dev-Tiles

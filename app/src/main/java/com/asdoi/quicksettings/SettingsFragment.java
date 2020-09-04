@@ -1,6 +1,5 @@
 package com.asdoi.quicksettings;
 
-import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Html;
 import android.util.ArrayMap;
 import android.util.TypedValue;
@@ -21,8 +21,9 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.asdoi.quicksettings.Utils.GrayscaleServiceUtil;
+import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
 import com.asdoi.quicksettings.tiles.GrayscaleService;
-import com.asdoi.quicksettings.tiles.GrayscaleServiceUtil;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -51,8 +52,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                             }
                         } else if (newValue.equals(Boolean.TRUE)) {
                             setComponentState(Boolean.FALSE, serviceClass);
-                            Dialog dialog = GrayscaleServiceUtil.createTipsDialog(requireContext());
-                            dialog.show();
+                            GrayscaleServiceUtil.createTipsDialog(requireContext()).show();
+                            return false;
+                        }
+                        return true;
+                    });
+                } else if (serviceClass.equals(AdaptiveBrightnessService.class)) {
+                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                        if (Settings.System.canWrite(requireContext())) {
+                            setComponentState(newValue, serviceClass);
+                            if (newValue.equals(Boolean.FALSE)) {
+                                AdaptiveBrightnessService.disableBrightnessMode(requireContext());
+                            }
+                        } else if (newValue.equals(Boolean.TRUE)) {
+                            setComponentState(Boolean.FALSE, serviceClass);
+                            AdaptiveBrightnessService.showDialog(requireContext(), AdaptiveBrightnessService.PERMISSION_DIALOG);
                             return false;
                         }
                         return true;

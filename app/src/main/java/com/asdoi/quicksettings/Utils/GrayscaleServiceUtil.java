@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.tiles;
+package com.asdoi.quicksettings.Utils;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

@@ -24,4 +24,11 @@
     <string name="copy_success">Copied Successful</string>
     <string name="root">Root</string>
     <string name="root_failure">Root permission not granted!</string>
+
+    <string name="adaptive_brightness">Adaptive Brightness</string>
+    <string name="adaptive_brightness_credit">Made by rascarlo with GNU GPLv3</string>
+    <string name="permission_alert_dialog_message">To use this feature, a permission has to be granted. Please open the settings and grant the \"Modifying system settings\" permission.</string>
+    <string name="setting_not_found_alert_dialog_message">The \"Adaptive brightness setting\" was not found on your device. It is possible, that your device does not support brightness modes.</string>
+    <string name="settings">Settings</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -26,6 +26,11 @@
             android:key="grayscale"
             android:summary="@string/grayscale_credit"
             android:title="@string/grayscale" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_brightness_auto"
+            android:key="adaptive_brightness"
+            android:summary="@string/adaptive_brightness_credit"
+            android:title="@string/adaptive_brightness" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits">

@@ -5,6 +5,7 @@ import android.util.ArrayMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
 import com.asdoi.quicksettings.tiles.GrayscaleService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
@@ -35,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("previous_song", PreviousSongTileService.class);
         servicePreferences.put("media_volume", MediaVolumeTileService.class);
         servicePreferences.put("grayscale", GrayscaleService.class);
+        servicePreferences.put("adaptive_brightness", AdaptiveBrightnessService.class);
         return servicePreferences;
     }
 

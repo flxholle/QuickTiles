@@ -5,6 +5,7 @@ import android.util.ArrayMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.asdoi.quicksettings.tiles.GrayscaleService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
@@ -33,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("next_song", NextSongTileService.class);
         servicePreferences.put("previous_song", PreviousSongTileService.class);
         servicePreferences.put("media_volume", MediaVolumeTileService.class);
+        servicePreferences.put("grayscale", GrayscaleService.class);
         return servicePreferences;
     }
 

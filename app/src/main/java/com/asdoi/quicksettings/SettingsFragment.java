@@ -1,5 +1,6 @@
 package com.asdoi.quicksettings;
 
+import android.app.Dialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,6 +21,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.asdoi.quicksettings.tiles.GrayscaleService;
+import com.asdoi.quicksettings.tiles.GrayscaleServiceUtil;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -38,10 +41,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
             if (switchPreference != null) {
                 final Class<?> serviceClass = entry.getValue();
-                switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    setComponentState(newValue, serviceClass);
-                    return true;
-                });
+
+                if (serviceClass.equals(GrayscaleService.class)) {
+                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                        if (GrayscaleServiceUtil.hasPermission(requireContext())) {
+                            setComponentState(newValue, serviceClass);
+                            if (newValue.equals(Boolean.FALSE)) {
+                                GrayscaleServiceUtil.toggleGreyscale(requireContext(), false);
+                            }
+                        } else if (newValue.equals(Boolean.TRUE)) {
+                            setComponentState(Boolean.FALSE, serviceClass);
+                            Dialog dialog = GrayscaleServiceUtil.createTipsDialog(requireContext());
+                            dialog.show();
+                            return false;
+                        }
+                        return true;
+                    });
+                } else {
+                    switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                        setComponentState(newValue, serviceClass);
+                        return true;
+                    });
+                }
             }
         }
 

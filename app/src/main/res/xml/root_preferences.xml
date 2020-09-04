@@ -19,6 +19,15 @@
             android:key="media_volume"
             android:title="@string/media_volume" />
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/system_utilities">
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_grayscale"
+            android:key="grayscale"
+            android:summary="@string/grayscale_credit"
+            android:title="@string/grayscale" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/credits">
         <Preference
             android:icon="@drawable/ic_info"

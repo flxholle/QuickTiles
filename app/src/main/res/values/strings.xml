@@ -13,4 +13,15 @@
     <string name="next_song">Next</string>
     <string name="previous_song">Previous</string>
     <string name="media_volume">Media Volume</string>
+
+    <string name="system_utilities">System Utilities</string>
+    <string name="grayscale">Grayscale</string>
+    <string name="grayscale_credit">Made by fei-ke with Apache License 2.0</string>
+    <string name="require_permission">Require Permission!</string>
+    <string name="require_permission_description">To use this feature, a permission has to be granted. Copy the command below and execute it on a PC or use Root:\n\n%1$s\n\n</string>
+    <string name="ok">OK</string>
+    <string name="copy_text">Copy</string>
+    <string name="copy_success">Copied Successful</string>
+    <string name="root">Root</string>
+    <string name="root_failure">Root permission not granted!</string>
 </resources>

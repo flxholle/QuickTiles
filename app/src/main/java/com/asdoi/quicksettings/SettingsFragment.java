@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.Html;
 import android.util.ArrayMap;
 import android.util.TypedValue;
@@ -21,7 +20,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.Utils.GrayscaleServiceUtil;
+import com.asdoi.quicksettings.Utils.GrantPermissionDialogs;
 import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
 import com.asdoi.quicksettings.tiles.GrayscaleService;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
@@ -31,6 +30,20 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import java.util.Map;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
+    private static void tintIcons(Preference preference, int color) {
+        if (preference instanceof PreferenceGroup) {
+            PreferenceGroup group = ((PreferenceGroup) preference);
+            for (int i = 0; i < group.getPreferenceCount(); i++) {
+                tintIcons(group.getPreference(i), color);
+            }
+        } else {
+            Drawable icon = preference.getIcon();
+            if (icon != null) {
+                DrawableCompat.setTint(icon, color);
+            }
+        }
+    }
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey);
@@ -45,28 +58,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
                 if (serviceClass.equals(GrayscaleService.class)) {
                     switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        if (GrayscaleServiceUtil.hasPermission(requireContext())) {
+                        if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())) {
                             setComponentState(newValue, serviceClass);
                             if (newValue.equals(Boolean.FALSE)) {
-                                GrayscaleServiceUtil.toggleGreyscale(requireContext(), false);
+                                GrayscaleService.toggleGreyscale(requireContext(), false);
                             }
                         } else if (newValue.equals(Boolean.TRUE)) {
                             setComponentState(Boolean.FALSE, serviceClass);
-                            GrayscaleServiceUtil.createTipsDialog(requireContext()).show();
+                            GrantPermissionDialogs.checkWriteSecureSettingsPermission(requireContext());
                             return false;
                         }
                         return true;
                     });
                 } else if (serviceClass.equals(AdaptiveBrightnessService.class)) {
                     switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                        if (Settings.System.canWrite(requireContext())) {
+                        if (GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext())) {
                             setComponentState(newValue, serviceClass);
                             if (newValue.equals(Boolean.FALSE)) {
                                 AdaptiveBrightnessService.disableBrightnessMode(requireContext());
                             }
                         } else if (newValue.equals(Boolean.TRUE)) {
                             setComponentState(Boolean.FALSE, serviceClass);
-                            AdaptiveBrightnessService.showDialog(requireContext(), AdaptiveBrightnessService.PERMISSION_DIALOG);
+                            GrantPermissionDialogs.checkModifySystemSettings(requireContext());
                             return false;
                         }
                         return true;
@@ -112,7 +125,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             disableComponent(serviceClass);
     }
 
-
     private void disableComponent(Class<?> serviceClass) {
         PackageManager pm = requireActivity().getPackageManager();
         pm.setComponentEnabledSetting(new ComponentName(requireActivity(), serviceClass),
@@ -123,20 +135,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         PackageManager pm = requireActivity().getPackageManager();
         pm.setComponentEnabledSetting(new ComponentName(requireActivity(), serviceClass),
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-    }
-
-    private static void tintIcons(Preference preference, int color) {
-        if (preference instanceof PreferenceGroup) {
-            PreferenceGroup group = ((PreferenceGroup) preference);
-            for (int i = 0; i < group.getPreferenceCount(); i++) {
-                tintIcons(group.getPreference(i), color);
-            }
-        } else {
-            Drawable icon = preference.getIcon();
-            if (icon != null) {
-                DrawableCompat.setTint(icon, color);
-            }
-        }
     }
 
     private int getThemeColor(int themeAttributeId) {

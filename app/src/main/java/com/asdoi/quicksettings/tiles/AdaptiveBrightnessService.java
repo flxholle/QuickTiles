@@ -2,9 +2,7 @@ package com.asdoi.quicksettings.tiles;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Icon;
-import android.net.Uri;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
@@ -13,11 +11,13 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.asdoi.quicksettings.R;
 import com.asdoi.quicksettings.Utils.AdaptiveBrightnessTileJobService;
+import com.asdoi.quicksettings.Utils.GrantPermissionDialogs;
 
 public class AdaptiveBrightnessService extends TileService {
 
-    public static final int PERMISSION_DIALOG = 42;
-    private static final int SETTING_NOT_FOUND_DIALOG = 24;
+    public static void disableBrightnessMode(Context context) {
+        Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+    }
 
     @Override
     public void onCreate() {
@@ -40,10 +40,8 @@ public class AdaptiveBrightnessService extends TileService {
 
     @Override
     public void onClick() {
-        if (Settings.System.canWrite(this)) {
+        if (GrantPermissionDialogs.checkModifySystemSettings(this)) {
             changeBrightnessMode();
-        } else {
-            showDialog(this, PERMISSION_DIALOG);
         }
         super.onClick();
     }
@@ -76,34 +74,16 @@ public class AdaptiveBrightnessService extends TileService {
                             Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL :
                             Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC);
         } catch (Settings.SettingNotFoundException e) {
-            showDialog(this, SETTING_NOT_FOUND_DIALOG);
+            showSettingNotFoundDialog();
         }
     }
 
-    public static void disableBrightnessMode(Context context) {
-        Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-    }
-
-    public static void showDialog(final Context context, int whichDialog) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setCancelable(true)
-                .setIcon(R.drawable.ic_brightness_auto)
+    private void showSettingNotFoundDialog() {
+        new AlertDialog.Builder(this).setCancelable(true)
                 .setTitle(R.string.require_permission)
-                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
-        switch (whichDialog) {
-            case PERMISSION_DIALOG:
-                builder.setMessage(R.string.permission_alert_dialog_message);
-                builder.setPositiveButton(R.string.settings, (dialog, which) -> {
-                    context.startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
-                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            .setData(Uri.parse("package:" + context.getPackageName())));
-                });
-                break;
-            case SETTING_NOT_FOUND_DIALOG:
-                builder.setMessage(R.string.setting_not_found_alert_dialog_message);
-                builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss());
-                break;
-        }
-        builder.show();
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setMessage(R.string.setting_not_found_alert_dialog_message)
+                .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())
+                .show();
     }
 }

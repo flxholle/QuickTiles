@@ -1,18 +1,35 @@
 package com.asdoi.quicksettings.tiles;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.provider.Settings;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
-import com.asdoi.quicksettings.Utils.GrayscaleServiceUtil;
+import com.asdoi.quicksettings.Utils.GrantPermissionDialogs;
 
 public class GrayscaleService extends TileService {
+
+    private static final String DISPLAY_DALTONIZER_ENABLED = "accessibility_display_daltonizer_enabled";
+    private static final String DISPLAY_DALTONIZER = "accessibility_display_daltonizer";
+
+    public static boolean isGreyscaleEnable(Context context) {
+        ContentResolver contentResolver = context.getContentResolver();
+        return Settings.Secure.getInt(contentResolver, DISPLAY_DALTONIZER_ENABLED, 0) == 1
+                && Settings.Secure.getInt(contentResolver, DISPLAY_DALTONIZER, 0) == 0;
+    }
+
+    public static void toggleGreyscale(Context context, boolean greyscale) {
+        ContentResolver contentResolver = context.getContentResolver();
+        Settings.Secure.putInt(contentResolver, DISPLAY_DALTONIZER_ENABLED, greyscale ? 1 : 0);
+        Settings.Secure.putInt(contentResolver, DISPLAY_DALTONIZER, greyscale ? 0 : -1);
+    }
 
     @Override
     public void onClick() {
         super.onClick();
 
-        if (!GrayscaleServiceUtil.hasPermission(this)) {
-            showDialog(GrayscaleServiceUtil.createTipsDialog(this));
+        if (!GrantPermissionDialogs.checkWriteSecureSettingsPermission(this)) {
             return;
         }
 
@@ -23,9 +40,8 @@ public class GrayscaleService extends TileService {
             setState(Tile.STATE_ACTIVE);
         }
 
-        GrayscaleServiceUtil.toggleGreyscale(this, oldState == Tile.STATE_INACTIVE);
+        toggleGreyscale(this, oldState == Tile.STATE_INACTIVE);
     }
-
 
     private void setState(int state) {
         Tile tile = getQsTile();
@@ -36,7 +52,7 @@ public class GrayscaleService extends TileService {
     @Override
     public void onStartListening() {
         super.onStartListening();
-        boolean greyscaleEnable = GrayscaleServiceUtil.isGreyscaleEnable(this);
+        boolean greyscaleEnable = isGreyscaleEnable(this);
         setState(greyscaleEnable ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
     }
 }

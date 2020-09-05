@@ -3,9 +3,9 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.DevelopmentTileService
+import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
 
-class ToggleAnimationTileService : DevelopmentTileService<Float>() {
+class ToggleAnimationTileService : WriteSystemSettingsTileService<Float>() {
     override fun isActive(value: Float): Boolean {
         return value != 1f
     }

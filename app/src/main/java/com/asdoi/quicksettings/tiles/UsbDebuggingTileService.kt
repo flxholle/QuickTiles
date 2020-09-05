@@ -19,10 +19,10 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.SettingsUtils
+import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
 
-class UsbDebuggingTileService : DevelopmentTileService<Int>() {
+class UsbDebuggingTileService : WriteSystemSettingsTileService<Int>() {
     companion object {
         const val SETTING = Settings.Global.ADB_ENABLED
     }

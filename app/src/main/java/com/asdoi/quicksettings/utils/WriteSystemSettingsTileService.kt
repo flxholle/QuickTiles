@@ -19,7 +19,7 @@ package com.asdoi.quicksettings.utils
 import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
 
-abstract class DevelopmentTileService<T : Any> : BaseTileService() {
+abstract class WriteSystemSettingsTileService<T : Any> : BaseTileService() {
 
     lateinit var value: T
 

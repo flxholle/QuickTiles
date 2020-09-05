@@ -20,9 +20,9 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.tilesUtils.DemoMode
-import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs
 import com.asdoi.quicksettings.utils.SettingsUtils
+import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
 
 /**
  * Code adapted from AOSP:
@@ -30,7 +30,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
  *
  * Check protocol here: https://github.com/android/platform_frameworks_base/blob/master/packages/SystemUI/docs/demo_mode.md
  */
-class DemoModeTileService : DevelopmentTileService<Int>() {
+class DemoModeTileService : WriteSystemSettingsTileService<Int>() {
 
     override fun isActive(value: Int): Boolean {
         return value != 0

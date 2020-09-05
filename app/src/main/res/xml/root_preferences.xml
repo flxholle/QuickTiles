@@ -63,6 +63,10 @@
             android:key="data_usage"
             android:title="@string/data_usage" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_perm_device_information"
+            android:key="about_phone"
+            android:title="@string/about_phone" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

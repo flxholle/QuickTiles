@@ -63,4 +63,5 @@
     <string name="battery">Battery Level</string>
     <string name="vpn">Open VPN</string>
     <string name="data_usage">Data Usage</string>
+    <string name="about_phone">About Phone</string>
 </resources>

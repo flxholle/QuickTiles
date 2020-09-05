@@ -17,6 +17,7 @@ import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NewAlarmTileService;
 import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
+import com.asdoi.quicksettings.tiles.OpenAboutPhoneTileService;
 import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
 import com.asdoi.quicksettings.tiles.OpenCameraTileService;
 import com.asdoi.quicksettings.tiles.OpenDataUsageTileService;
@@ -61,6 +62,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("battery", BatteryTileService.class);
         servicePreferences.put("vpn", OpenVpnTileService.class);
         servicePreferences.put("data_usage", OpenDataUsageTileService.class);
+        servicePreferences.put("about_phone", OpenAboutPhoneTileService.class);
         return servicePreferences;
     }
 

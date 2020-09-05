@@ -54,7 +54,8 @@
 
     <string name="new_alarm">New Alarm</string>
     <string name="new_timer">New Timer</string>
-    <string name="open_camera">Open Camera</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="record_video">Record Video</string>
     <string name="open_calculator">Open Calculator</string>
     <string name="open_volume_panel">Volume Panel</string>
     <string name="adjust_brightness">Adjust Brightness</string>

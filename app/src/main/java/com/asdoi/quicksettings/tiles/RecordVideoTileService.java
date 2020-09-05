@@ -5,10 +5,10 @@ import android.provider.MediaStore;
 
 import com.asdoi.quicksettings.utils.IntentTileService;
 
-public class OpenCameraTileService extends IntentTileService {
+public class RecordVideoTileService extends IntentTileService {
 
     @Override
     public Intent createIntent() {
-        return new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        return new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
     }
 }

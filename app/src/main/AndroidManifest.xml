@@ -199,10 +199,20 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.OpenCameraTileService"
+            android:name=".tiles.TakePhotoTileService"
             android:enabled="false"
             android:icon="@drawable/ic_photo_camera"
-            android:label="@string/open_camera"
+            android:label="@string/take_photo"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.RecordVideoTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_videocam"
+            android:label="@string/record_video"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />

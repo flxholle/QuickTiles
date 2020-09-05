@@ -32,8 +32,12 @@
             android:title="@string/new_timer" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_photo_camera"
-            android:key="open_camera"
-            android:title="@string/open_camera" />
+            android:key="take_photo"
+            android:title="@string/take_photo" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_videocam"
+            android:key="record_video"
+            android:title="@string/record_video" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_grid_on"
             android:key="open_calculator"

@@ -298,6 +298,16 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.OpenNotificationLogTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_history"
+            android:label="@string/notification_history"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
 
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">

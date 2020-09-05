@@ -71,6 +71,10 @@
             android:key="connected_devices"
             android:title="@string/connected_devices" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_history"
+            android:key="notification_history"
+            android:title="@string/notification_history" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

@@ -98,6 +98,10 @@
             android:key="reset_counter"
             android:title="@string/reset_counter" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_screen_infinity"
+            android:key="screen_timeout"
+            android:title="@string/screen_timeout" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

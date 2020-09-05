@@ -32,6 +32,7 @@ import com.asdoi.quicksettings.tiles.OpenVpnTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
 import com.asdoi.quicksettings.tiles.RecordVideoTileService;
+import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;
 import com.asdoi.quicksettings.tiles.TakePhotoTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
@@ -77,6 +78,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("new_event", NewCalendarEventTileService.class);
         servicePreferences.put("make_call", MakeCallTileService.class);
         servicePreferences.put("counter", CounterTileService.class);
+        servicePreferences.put("screen_timeout", ScreenTimeoutTileService.class);
         return servicePreferences;
     }
 
@@ -96,6 +98,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         ArrayList<Class<?>> services = new ArrayList<>();
         services.add(AdaptiveBrightnessTileService.class);
         services.add(BrightnessTileService.class);
+        services.add(ScreenTimeoutTileService.class);
         return services;
     }
 

@@ -18,16 +18,18 @@ package com.asdoi.quicksettings.utils
 
 import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
+import androidx.annotation.CallSuper
 
 abstract class WriteSystemSettingsTileService<T : Any> : BaseTileService() {
 
     lateinit var value: T
 
-    override fun onStartListening() {
+    final override fun onStartListening() {
         value = queryValue()
         updateState()
     }
 
+    @CallSuper
     override fun onClick() {
         setNextValue()
     }

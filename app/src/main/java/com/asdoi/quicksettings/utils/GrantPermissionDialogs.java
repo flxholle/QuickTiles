@@ -27,8 +27,8 @@ public class GrantPermissionDialogs {
     public static Dialog getModifySystemSettingsDialog(final Context context) {
         return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
                 .setCancelable(true)
-                .setTitle(R.string.require_permission)
-                .setMessage(R.string.permission_alert_dialog_message)
+                .setTitle(R.string.permission_required)
+                .setMessage(R.string.permission_modify_system_settings_description)
                 .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setPositiveButton(R.string.settings, (dialog, which) -> {
                     context.startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
@@ -45,8 +45,8 @@ public class GrantPermissionDialogs {
     private static Dialog getSystemPermissionDialog(final String adbCommand, final String rootCommand, final Context context) {
         return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
                 .setCancelable(true)
-                .setTitle(R.string.require_permission)
-                .setMessage(context.getString(R.string.require_permission_description, adbCommand))
+                .setTitle(R.string.permission_required)
+                .setMessage(context.getString(R.string.permission_required_description, adbCommand))
                 .setNegativeButton(R.string.ok, null)
                 .setPositiveButton(R.string.copy_text, (dialog, which) -> {
                     ClipData clipData = ClipData.newPlainText(adbCommand, adbCommand);

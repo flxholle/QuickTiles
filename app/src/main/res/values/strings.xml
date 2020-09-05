@@ -17,8 +17,8 @@
     <string name="system_utilities">System Utilities</string>
     <string name="grayscale">Grayscale</string>
     <string name="fei_ke_credit">Made by fei-ke under Apache License 2.0</string>
-    <string name="require_permission">Require Permission!</string>
-    <string name="require_permission_description">To use this feature, a permission has to be granted. Copy the command below and execute it on a PC or use Root:\n\n%s\n</string>
+    <string name="permission_required">Permission Required!</string>
+    <string name="permission_required_description">To use this feature, a permission has to be granted. Copy the command below and execute it on a PC or use Root:\n\n%s\n</string>
     <string name="ok">OK</string>
     <string name="copy_text">Copy</string>
     <string name="copy_success">Copied Successful</string>
@@ -27,7 +27,7 @@
 
     <string name="adaptive_brightness">Adaptive Brightness</string>
     <string name="rascarlo_credit">Made by rascarlo under GNU GPLv3</string>
-    <string name="permission_alert_dialog_message">To use this feature, a permission has to be granted. Please open the settings and grant the \"Modifying system settings\" permission.</string>
+    <string name="permission_modify_system_settings_description">To use this feature, a permission has to be granted. Please open the settings and grant the \"Modifying system settings\" permission.</string>
     <string name="modify_system_settings_not_found">The \"Adaptive brightness setting\" was not found on your device. It is possible, that your device does not support brightness modes.</string>
     <string name="settings">Settings</string>
     <string name="cancel">Cancel</string>
@@ -56,7 +56,7 @@
     <string name="new_timer">New Timer</string>
     <string name="open_camera">Open Camera</string>
     <string name="open_calculator">Open Calculator</string>
-    <string name="open_volume_panel">Open Volume Panel</string>
+    <string name="open_volume_panel">Volume Panel</string>
     <string name="adjust_brightness">Adjust Brightness</string>
     <string name="open_files">Open File Manager</string>
     <string name="free_space">Free Space</string>

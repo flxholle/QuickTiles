@@ -81,7 +81,7 @@ public class AdaptiveBrightnessTileService extends BaseTileService {
 
     private void showSettingNotFoundDialog() {
         new AlertDialog.Builder(this).setCancelable(true)
-                .setTitle(R.string.require_permission)
+                .setTitle(R.string.permission_required)
                 .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setMessage(R.string.modify_system_settings_not_found)
                 .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())

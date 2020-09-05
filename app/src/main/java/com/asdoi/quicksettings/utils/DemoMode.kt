@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.asdoi.quicksettings.tilesUtils
+package com.asdoi.quicksettings.utils
 
 import android.content.Context
 import android.content.Intent

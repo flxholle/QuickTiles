@@ -20,7 +20,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.tilesUtils.CounterSharedPref;
+import com.asdoi.quicksettings.utils.CounterSharedPref;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;

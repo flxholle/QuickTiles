@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.utils;
+package com.asdoi.quicksettings.abstract_tiles;
 
 import android.service.quicksettings.TileService;
 

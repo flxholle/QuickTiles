@@ -2,8 +2,8 @@ package com.asdoi.quicksettings.tiles;
 
 import android.service.quicksettings.Tile;
 
-import com.asdoi.quicksettings.tilesUtils.CounterSharedPref;
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.abstract_tiles.BaseTileService;
+import com.asdoi.quicksettings.utils.CounterSharedPref;
 
 public class CounterTileService extends BaseTileService {
 

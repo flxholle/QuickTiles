@@ -3,7 +3,7 @@ package com.asdoi.quicksettings.tiles;
 import android.content.Intent;
 import android.provider.AlarmClock;
 
-import com.asdoi.quicksettings.utils.IntentTileService;
+import com.asdoi.quicksettings.abstract_tiles.IntentTileService;
 
 public class NewTimerTileService extends IntentTileService {
 

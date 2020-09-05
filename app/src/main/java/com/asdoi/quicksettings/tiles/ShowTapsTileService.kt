@@ -18,7 +18,7 @@ package com.asdoi.quicksettings.tiles
 
 import android.graphics.drawable.Icon
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.WriteSecureSettingsTileService
+import com.asdoi.quicksettings.abstract_tiles.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 //Not working on Newer API

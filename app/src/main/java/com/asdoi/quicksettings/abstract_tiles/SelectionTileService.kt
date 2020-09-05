@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.asdoi.quicksettings.utils
+package com.asdoi.quicksettings.abstract_tiles
 
 import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
 import androidx.annotation.CallSuper
 
-abstract class WriteSecureSettingsTileService<T : Any> : BaseTileService() {
+abstract class SelectionTileService<T : Any> : BaseTileService() {
 
     lateinit var value: T
 
@@ -42,14 +42,17 @@ abstract class WriteSecureSettingsTileService<T : Any> : BaseTileService() {
         qsTile.state = Tile.STATE_UNAVAILABLE
         qsTile.updateTile()
 
-        if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(this)) {
+        if (checkPermission()) {
             if (saveValue(newValue)) {
                 value = newValue
             }
-        } else
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
+        }
 
         updateState()
+    }
+
+    open fun checkPermission(): Boolean {
+        return true
     }
 
     private fun updateState() {

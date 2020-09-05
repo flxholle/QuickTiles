@@ -2,6 +2,7 @@ package com.asdoi.quicksettings.utils;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -32,7 +33,7 @@ public class GrantPermissionDialogs {
                 .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
                 .setPositiveButton(R.string.settings, (dialog, which) -> {
                     context.startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
-                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
                             .setData(Uri.parse("package:" + context.getPackageName())));
                 })
                 .create();
@@ -106,5 +107,23 @@ public class GrantPermissionDialogs {
 
     public static Dialog getWriteSecureSettingsAndDumpDialog(final Context context) {
         return getSystemPermissionDialog(context, WRITE_SECURE_SETTINGS, DUMP);
+    }
+
+    public static boolean hasNotificationPolicyPermission(Context context) {
+        return ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE)).isNotificationPolicyAccessGranted();
+    }
+
+    public static Dialog getNotificationPolicyDialog(final Context context) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+                .setCancelable(true)
+                .setTitle(R.string.permission_required)
+                .setMessage(R.string.permission_notification_policy_description)
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.settings, (dialog, which) -> {
+                    context.startActivity(new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
+                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK)
+                            .setData(Uri.parse("package:" + context.getPackageName())));
+                })
+                .create();
     }
 }

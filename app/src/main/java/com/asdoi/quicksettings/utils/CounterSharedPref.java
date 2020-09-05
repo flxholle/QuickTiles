@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.tilesUtils;
+package com.asdoi.quicksettings.utils;
 
 import android.content.Context;
 

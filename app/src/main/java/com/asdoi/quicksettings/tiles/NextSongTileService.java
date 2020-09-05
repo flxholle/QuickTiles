@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.view.KeyEvent;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.abstract_tiles.BaseTileService;
 
 public class NextSongTileService extends BaseTileService {
 

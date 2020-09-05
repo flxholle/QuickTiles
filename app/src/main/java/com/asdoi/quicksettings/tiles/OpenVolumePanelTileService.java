@@ -3,7 +3,7 @@ package com.asdoi.quicksettings.tiles;
 import android.content.Context;
 import android.media.AudioManager;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.abstract_tiles.BaseTileService;
 
 public class OpenVolumePanelTileService extends BaseTileService {
 

@@ -19,9 +19,9 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.os.Build
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.tilesUtils.DemoMode
+import com.asdoi.quicksettings.abstract_tiles.WriteSecureSettingsTileService
+import com.asdoi.quicksettings.utils.DemoMode
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs
-import com.asdoi.quicksettings.utils.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 /**

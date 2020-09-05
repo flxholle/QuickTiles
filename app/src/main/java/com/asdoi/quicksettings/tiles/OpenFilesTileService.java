@@ -5,7 +5,7 @@ import android.provider.DocumentsContract;
 import android.service.quicksettings.Tile;
 
 import com.asdoi.quicksettings.R;
-import com.asdoi.quicksettings.utils.IntentTileService;
+import com.asdoi.quicksettings.abstract_tiles.IntentTileService;
 
 import java.io.File;
 

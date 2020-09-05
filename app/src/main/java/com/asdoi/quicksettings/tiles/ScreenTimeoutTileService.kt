@@ -19,7 +19,7 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.ModifySystemSettingsTileService
+import com.asdoi.quicksettings.abstract_tiles.ModifySystemSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class ScreenTimeoutTileService : ModifySystemSettingsTileService<Int>() {

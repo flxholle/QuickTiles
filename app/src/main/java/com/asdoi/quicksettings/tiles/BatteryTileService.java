@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.service.quicksettings.Tile;
 
-import com.asdoi.quicksettings.utils.IntentTileService;
+import com.asdoi.quicksettings.abstract_tiles.IntentTileService;
 
 public class BatteryTileService extends IntentTileService {
 

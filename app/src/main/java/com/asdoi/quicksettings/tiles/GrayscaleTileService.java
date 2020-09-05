@@ -5,7 +5,7 @@ import android.content.Context;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.abstract_tiles.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 
 public class GrayscaleTileService extends BaseTileService {

@@ -20,6 +20,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.asdoi.quicksettings.tiles.DataUsageTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
@@ -93,6 +94,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (serviceClass.equals(DemoModeTileService.class)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
+                } else if (serviceClass.equals(DataUsageTileService.class)) {
+                    switchPreference.setOnPreferenceChangeListener(getUsageStatsListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
                 }
@@ -146,6 +149,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     GrantPermissionDialogs.getDumpDialog(requireContext()).show();
                 else
                     GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getUsageStatsListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasUsageStatsPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getUsageStatsDialog(requireContext()).show();
                 return false;
             }
             return true;

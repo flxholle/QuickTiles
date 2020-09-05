@@ -1,6 +1,7 @@
 package com.asdoi.quicksettings.utils;
 
 import android.Manifest;
+import android.app.AppOpsManager;
 import android.app.Dialog;
 import android.app.Service;
 import android.content.ClipData;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -25,7 +27,7 @@ public class GrantPermissionDialogs {
     private static final String DUMP = Manifest.permission.DUMP;
 
     public static Dialog getModifySystemSettingsDialog(final Context context) {
-        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.Dialogs))
                 .setCancelable(true)
                 .setTitle(R.string.require_permission)
                 .setMessage(R.string.permission_alert_dialog_message)
@@ -43,7 +45,7 @@ public class GrantPermissionDialogs {
     }
 
     private static Dialog getSystemPermissionDialog(final String adbCommand, final String rootCommand, final Context context) {
-        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.Dialogs))
                 .setCancelable(true)
                 .setTitle(R.string.require_permission)
                 .setMessage(context.getString(R.string.require_permission_description, adbCommand))
@@ -106,5 +108,28 @@ public class GrantPermissionDialogs {
 
     public static Dialog getWriteSecureSettingsAndDumpDialog(final Context context) {
         return getSystemPermissionDialog(context, WRITE_SECURE_SETTINGS, DUMP);
+    }
+
+    public static boolean hasUsageStatsPermission(Context context) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q)
+            return true;
+        AppOpsManager appOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                android.os.Process.myUid(), context.getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
+    }
+
+    public static Dialog getUsageStatsDialog(final Context context) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.Dialogs))
+                .setCancelable(true)
+                .setTitle(R.string.require_permission)
+                .setMessage(R.string.permission_usage_stats_description)
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.settings, (dialog, which) -> {
+                    context.startActivity(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            .setData(Uri.parse("package:" + context.getPackageName())));
+                })
+                .create();
     }
 }

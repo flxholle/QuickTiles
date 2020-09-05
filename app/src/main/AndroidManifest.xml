@@ -341,7 +341,7 @@
         <service
             android:name=".tiles.CounterTileService"
             android:enabled="false"
-            android:icon="@drawable/ic_filter_9_plus"
+            android:icon="@drawable/ic_exposure_plus_1"
             android:label="@string/counter"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

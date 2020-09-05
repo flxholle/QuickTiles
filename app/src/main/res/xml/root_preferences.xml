@@ -87,7 +87,7 @@
             android:key="make_call"
             android:title="@string/make_call" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_filter_9_plus"
+            android:icon="@drawable/ic_exposure_plus_1"
             android:key="counter"
             android:title="@string/counter" />
         <Preference

@@ -97,6 +97,12 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         return services;
     }
 
+    public static ArrayList<Class<?>> getSecureSettingsAndDumpServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(DemoModeTileService.class);
+        return services;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

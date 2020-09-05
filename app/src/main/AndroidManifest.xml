@@ -288,6 +288,16 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.OpenConnectedDevicesTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_devices_other"
+            android:label="@string/connected_devices"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
 
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">

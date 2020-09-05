@@ -67,6 +67,10 @@
             android:key="about_phone"
             android:title="@string/about_phone" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_devices_other"
+            android:key="connected_devices"
+            android:title="@string/connected_devices" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

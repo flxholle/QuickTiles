@@ -21,7 +21,7 @@ import android.os.Build
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.tilesUtils.DemoMode
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs
-import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 /**
@@ -30,7 +30,7 @@ import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
  *
  * Check protocol here: https://github.com/android/platform_frameworks_base/blob/master/packages/SystemUI/docs/demo_mode.md
  */
-class DemoModeTileService : WriteSystemSettingsTileService<Int>() {
+class DemoModeTileService : WriteSecureSettingsTileService<Int>() {
 
     override fun isActive(value: Int): Boolean {
         return value != 0

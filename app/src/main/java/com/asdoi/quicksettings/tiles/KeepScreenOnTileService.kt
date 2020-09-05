@@ -20,10 +20,10 @@ import android.graphics.drawable.Icon
 import android.os.BatteryManager
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
-class KeepScreenOnTileService : WriteSystemSettingsTileService<Int>() {
+class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
     companion object {
         const val SETTING = Settings.Global.STAY_ON_WHILE_PLUGGED_IN
     }

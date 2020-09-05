@@ -19,10 +19,10 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
-class AnimatorDurationTileService : WriteSystemSettingsTileService<Float>() {
+class AnimatorDurationTileService : WriteSecureSettingsTileService<Float>() {
     companion object {
         const val SETTING = Settings.Global.ANIMATOR_DURATION_SCALE
     }

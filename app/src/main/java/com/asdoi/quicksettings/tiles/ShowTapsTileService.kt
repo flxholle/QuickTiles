@@ -18,11 +18,11 @@ package com.asdoi.quicksettings.tiles
 
 import android.graphics.drawable.Icon
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 //Not working on Newer API
-class ShowTapsTileService : WriteSystemSettingsTileService<Int>() {
+class ShowTapsTileService : WriteSecureSettingsTileService<Int>() {
     companion object {
         const val SETTING = "show_touches" // This is hidden for developers, so we use the string resource
     }

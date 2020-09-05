@@ -37,6 +37,7 @@ import com.asdoi.quicksettings.tiles.ShowTapsTileService;
 import com.asdoi.quicksettings.tiles.TakePhotoTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
+import com.asdoi.quicksettings.tiles.VibrateCallsTileService;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResultListener;
 
@@ -79,6 +80,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("make_call", MakeCallTileService.class);
         servicePreferences.put("counter", CounterTileService.class);
         servicePreferences.put("screen_timeout", ScreenTimeoutTileService.class);
+        servicePreferences.put("vibrate_calls", VibrateCallsTileService.class);
         return servicePreferences;
     }
 
@@ -99,6 +101,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(AdaptiveBrightnessTileService.class);
         services.add(BrightnessTileService.class);
         services.add(ScreenTimeoutTileService.class);
+        services.add(VibrateCallsTileService.class);
         return services;
     }
 

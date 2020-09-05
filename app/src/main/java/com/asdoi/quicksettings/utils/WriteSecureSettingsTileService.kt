@@ -20,7 +20,7 @@ import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
 import androidx.annotation.CallSuper
 
-abstract class WriteSystemSettingsTileService<T : Any> : BaseTileService() {
+abstract class WriteSecureSettingsTileService<T : Any> : BaseTileService() {
 
     lateinit var value: T
 

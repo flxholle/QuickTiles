@@ -19,10 +19,10 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.ModifySystemSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
-class BrightnessTileService : WriteSystemSettingsTileService<Int>() {
+class BrightnessTileService : ModifySystemSettingsTileService<Int>() {
     companion object {
         const val SETTING = Settings.System.SCREEN_BRIGHTNESS
     }

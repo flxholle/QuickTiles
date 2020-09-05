@@ -1,24 +1,9 @@
 package com.asdoi.quicksettings.utils;
 
 import android.content.ContentResolver;
-import android.content.Context;
 import android.provider.Settings;
 
 public class WriteSystemSettingsUtils {
-    private static final String DISPLAY_DALTONIZER_ENABLED = "accessibility_display_daltonizer_enabled";
-    private static final String DISPLAY_DALTONIZER = "accessibility_display_daltonizer";
-
-    public static boolean isGreyscaleEnable(Context context) {
-        ContentResolver contentResolver = context.getContentResolver();
-        return Settings.Secure.getInt(contentResolver, DISPLAY_DALTONIZER_ENABLED, 0) == 1
-                && Settings.Secure.getInt(contentResolver, DISPLAY_DALTONIZER, 0) == 0;
-    }
-
-    public static void toggleGreyscale(Context context, boolean greyscale) {
-        ContentResolver contentResolver = context.getContentResolver();
-        Settings.Secure.putInt(contentResolver, DISPLAY_DALTONIZER_ENABLED, greyscale ? 1 : 0);
-        Settings.Secure.putInt(contentResolver, DISPLAY_DALTONIZER, greyscale ? 0 : -1);
-    }
 
     public static int getIntFromGlobalSettings(ContentResolver contentResolver, String key) {
         return Settings.Global.getInt(contentResolver, key, 0);

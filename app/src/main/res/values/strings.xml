@@ -78,4 +78,5 @@
     <string name="seconds">Seconds</string>
     <string name="minute">Minute</string>
     <string name="minutes">Minutes</string>
+    <string name="vibrate_on_calls">Vibrate On Calls</string>
 </resources>

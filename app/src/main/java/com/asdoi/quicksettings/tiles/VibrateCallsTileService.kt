@@ -22,15 +22,13 @@ import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.utils.ModifySystemSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
-class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
+class VibrateCallsTileService : ModifySystemSettingsTileService<Int>() {
     companion object {
-        const val SETTING = Settings.System.SCREEN_BRIGHTNESS_MODE
-        const val AUTO = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
-        const val MANUAL = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+        const val SETTING = Settings.System.VIBRATE_WHEN_RINGING
     }
 
     override fun isActive(value: Int): Boolean {
-        return value == AUTO
+        return value != 0
     }
 
     override fun queryValue(): Int {
@@ -38,7 +36,7 @@ class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
     }
 
     override fun reset() {
-        saveValue(MANUAL)
+        saveValue(0)
     }
 
     override fun saveValue(value: Int): Boolean {
@@ -46,20 +44,15 @@ class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
     }
 
     override fun getValueList(): List<Int> {
-        return listOf(AUTO, MANUAL)
+        return listOf(0, 1)
     }
 
     override fun getIcon(value: Int): Icon? {
-        val iconResource =
-                if (value == AUTO)
-                    R.drawable.ic_brightness_auto
-                else
-                    R.drawable.ic_brightness_auto_off
-
-        return Icon.createWithResource(applicationContext, iconResource)
+        return Icon.createWithResource(applicationContext, R.drawable.ic_vibration)
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.adaptive_brightness)
+        return getString(R.string.vibrate_on_calls)
     }
+
 }

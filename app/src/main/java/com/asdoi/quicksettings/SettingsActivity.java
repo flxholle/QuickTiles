@@ -24,6 +24,7 @@ import com.asdoi.quicksettings.tiles.OpenConnectedDevicesTileService;
 import com.asdoi.quicksettings.tiles.OpenDataUsageTileService;
 import com.asdoi.quicksettings.tiles.OpenFilesTileService;
 import com.asdoi.quicksettings.tiles.OpenNotificationLogTileService;
+import com.asdoi.quicksettings.tiles.OpenSettingsSearchTileService;
 import com.asdoi.quicksettings.tiles.OpenVolumePanelTileService;
 import com.asdoi.quicksettings.tiles.OpenVpnTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
@@ -67,6 +68,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("about_phone", OpenAboutPhoneTileService.class);
         servicePreferences.put("connected_devices", OpenConnectedDevicesTileService.class);
         servicePreferences.put("notification_history", OpenNotificationLogTileService.class);
+        servicePreferences.put("search_settings", OpenSettingsSearchTileService.class);
         return servicePreferences;
     }
 

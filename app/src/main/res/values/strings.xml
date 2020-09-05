@@ -66,4 +66,5 @@
     <string name="about_phone">About Phone</string>
     <string name="connected_devices">Connected Devices</string>
     <string name="notification_history">Notification History</string>
+    <string name="search_settings">Search Settings</string>
 </resources>

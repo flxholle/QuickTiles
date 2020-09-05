@@ -75,6 +75,10 @@
             android:key="notification_history"
             android:title="@string/notification_history" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_search"
+            android:key="search_settings"
+            android:title="@string/search_settings" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

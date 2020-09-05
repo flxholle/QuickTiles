@@ -39,6 +39,10 @@
             android:key="open_calculator"
             android:title="@string/open_calculator" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_volume_up"
+            android:key="open_volume_panel"
+            android:title="@string/open_volume_panel" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

@@ -56,4 +56,5 @@
     <string name="new_timer">New Timer</string>
     <string name="open_camera">Open Camera</string>
     <string name="open_calculator">Open Calculator</string>
+    <string name="open_volume_panel">Open Volume Panel</string>
 </resources>

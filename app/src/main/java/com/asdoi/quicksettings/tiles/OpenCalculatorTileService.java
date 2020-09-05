@@ -2,21 +2,14 @@ package com.asdoi.quicksettings.tiles;
 
 import android.content.Intent;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.utils.IntentTileService;
 
-public class OpenCalculatorTileService extends BaseTileService {
+public class OpenCalculatorTileService extends IntentTileService {
 
     @Override
-    public void onClick() {
+    public Intent createIntent() {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_APP_CALCULATOR);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        sendBroadcast(close_notification_bar);
-    }
-
-    @Override
-    public void reset() {
+        return intent;
     }
 }

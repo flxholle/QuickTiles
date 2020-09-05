@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.service.quicksettings.Tile;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.utils.IntentTileService;
 
-public class BatteryTileService extends BaseTileService {
+public class BatteryTileService extends IntentTileService {
 
     @Override
-    public void onClick() {
-        Intent intent = new Intent(Intent.ACTION_POWER_USAGE_SUMMARY);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        sendBroadcast(close_notification_bar);
+    public Intent createIntent() {
+        return new Intent(Intent.ACTION_POWER_USAGE_SUMMARY);
     }
 
     @Override
@@ -24,9 +20,5 @@ public class BatteryTileService extends BaseTileService {
         Tile tile = getQsTile();
         tile.setLabel(batLevel + " %");
         tile.updateTile();
-    }
-
-    @Override
-    public void reset() {
     }
 }

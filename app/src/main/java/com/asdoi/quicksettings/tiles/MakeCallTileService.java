@@ -2,21 +2,12 @@ package com.asdoi.quicksettings.tiles;
 
 import android.content.Intent;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.utils.IntentTileService;
 
-public class MakeCallTileService extends BaseTileService {
-
-    @Override
-    public void onClick() {
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-
-        Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        sendBroadcast(close_notification_bar);
-    }
+public class MakeCallTileService extends IntentTileService {
 
     @Override
-    public void reset() {
+    public Intent createIntent() {
+        return new Intent(Intent.ACTION_DIAL);
     }
 }

@@ -5,11 +5,11 @@ import android.provider.DocumentsContract;
 import android.service.quicksettings.Tile;
 
 import com.asdoi.quicksettings.R;
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.utils.IntentTileService;
 
 import java.io.File;
 
-public class OpenFilesTileService extends BaseTileService {
+public class OpenFilesTileService extends IntentTileService {
 
     public String getAvailableInternalMemorySize() {
         double availableSize = new File(getFilesDir().getAbsoluteFile().toString()).getFreeSpace();
@@ -19,13 +19,10 @@ public class OpenFilesTileService extends BaseTileService {
     }
 
     @Override
-    public void onClick() {
+    public Intent createIntent() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setType(DocumentsContract.Document.MIME_TYPE_DIR);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        sendBroadcast(close_notification_bar);
+        return intent;
     }
 
     @Override
@@ -33,9 +30,5 @@ public class OpenFilesTileService extends BaseTileService {
         Tile tile = getQsTile();
         tile.setLabel(getString(R.string.free_space) + ": " + getAvailableInternalMemorySize());
         tile.updateTile();
-    }
-
-    @Override
-    public void reset() {
     }
 }

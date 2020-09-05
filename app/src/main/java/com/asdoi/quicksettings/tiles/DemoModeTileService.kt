@@ -58,7 +58,7 @@ class DemoModeTileService : DevelopmentTileService<Int>() {
         else if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
             showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
         else
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(this));
+            showDialog(GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(this))
     }
 
     override fun saveValue(value: Int): Boolean {

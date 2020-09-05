@@ -3,21 +3,14 @@ package com.asdoi.quicksettings.tiles;
 import android.content.ComponentName;
 import android.content.Intent;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.utils.IntentTileService;
 
-public class OpenSettingsSearchTileService extends BaseTileService {
+public class OpenSettingsSearchTileService extends IntentTileService {
 
     @Override
-    public void onClick() {
+    public Intent createIntent() {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.android.settings.intelligence", "com.android.settings.intelligence.search.SearchActivity"));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        sendBroadcast(close_notification_bar);
-    }
-
-    @Override
-    public void reset() {
+        return intent;
     }
 }

@@ -2,20 +2,12 @@ package com.asdoi.quicksettings.tiles;
 
 import android.content.Intent;
 
-import com.asdoi.quicksettings.utils.BaseTileService;
+import com.asdoi.quicksettings.utils.IntentTileService;
 
-public class OpenVpnTileService extends BaseTileService {
-
-    @Override
-    public void onClick() {
-        Intent intent = new Intent("android.net.vpn.SETTINGS");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-        sendBroadcast(close_notification_bar);
-    }
+public class OpenVpnTileService extends IntentTileService {
 
     @Override
-    public void reset() {
+    public Intent createIntent() {
+        return new Intent("android.net.vpn.SETTINGS");
     }
 }

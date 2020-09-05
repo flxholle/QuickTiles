@@ -69,4 +69,5 @@
     <string name="search_settings">Search Settings</string>
     <string name="new_event">New Event</string>
     <string name="make_call">Make Call</string>
+    <string name="no_app_found">No matching app installed!</string>
 </resources>

@@ -20,8 +20,8 @@ import android.graphics.drawable.Icon
 import android.os.BatteryManager
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.SettingsUtils
 import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class KeepScreenOnTileService : WriteSystemSettingsTileService<Int>() {
     companion object {
@@ -33,7 +33,7 @@ class KeepScreenOnTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        return SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
+        return WriteSystemSettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
     }
 
     override fun reset() {
@@ -41,7 +41,7 @@ class KeepScreenOnTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun saveValue(value: Int): Boolean {
-        return SettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
+        return WriteSystemSettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
     }
 
     override fun getValueList(): List<Int> {

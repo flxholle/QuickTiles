@@ -87,6 +87,13 @@
             android:key="make_call"
             android:title="@string/make_call" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_filter_9_plus"
+            android:key="counter"
+            android:title="@string/counter" />
+        <Preference
+            android:key="reset_counter"
+            android:title="@string/reset_counter" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

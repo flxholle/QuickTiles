@@ -18,8 +18,8 @@ package com.asdoi.quicksettings.tiles
 
 import android.graphics.drawable.Icon
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.SettingsUtils
 import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 //Not working on Newer API
 class ShowTapsTileService : WriteSystemSettingsTileService<Int>() {
@@ -32,7 +32,7 @@ class ShowTapsTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        var value = SettingsUtils.getIntFromSystemSettings(contentResolver, SETTING)
+        var value = WriteSystemSettingsUtils.getIntFromSystemSettings(contentResolver, SETTING)
         if (value > 1) value = 1
         return value
     }
@@ -55,7 +55,7 @@ class ShowTapsTileService : WriteSystemSettingsTileService<Int>() {
          * Kinda hacky, but it works ¯\_(ツ)_/¯.
          */
 
-        return SettingsUtils.setIntToSystemSettings(contentResolver, SETTING, value)
+        return WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING, value)
     }
 
     override fun getValueList(): List<Int> {

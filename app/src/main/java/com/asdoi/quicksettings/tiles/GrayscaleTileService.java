@@ -4,7 +4,7 @@ import android.service.quicksettings.Tile;
 
 import com.asdoi.quicksettings.utils.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
-import com.asdoi.quicksettings.utils.SettingsUtils;
+import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils;
 
 public class GrayscaleTileService extends BaseTileService {
 
@@ -24,7 +24,7 @@ public class GrayscaleTileService extends BaseTileService {
             setState(Tile.STATE_ACTIVE);
         }
 
-        SettingsUtils.toggleGreyscale(this, oldState == Tile.STATE_INACTIVE);
+        WriteSystemSettingsUtils.toggleGreyscale(this, oldState == Tile.STATE_INACTIVE);
     }
 
     private void setState(int state) {
@@ -36,12 +36,12 @@ public class GrayscaleTileService extends BaseTileService {
     @Override
     public void onStartListening() {
         super.onStartListening();
-        boolean greyscaleEnable = SettingsUtils.isGreyscaleEnable(this);
+        boolean greyscaleEnable = WriteSystemSettingsUtils.isGreyscaleEnable(this);
         setState(greyscaleEnable ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
     }
 
     @Override
     public void reset() {
-        SettingsUtils.toggleGreyscale(this, false);
+        WriteSystemSettingsUtils.toggleGreyscale(this, false);
     }
 }

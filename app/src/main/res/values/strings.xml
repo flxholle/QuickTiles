@@ -70,4 +70,6 @@
     <string name="new_event">New Event</string>
     <string name="make_call">Make Call</string>
     <string name="no_app_found">No matching app installed!</string>
+    <string name="counter">Counter</string>
+    <string name="reset_counter">Reset Counter</string>
 </resources>

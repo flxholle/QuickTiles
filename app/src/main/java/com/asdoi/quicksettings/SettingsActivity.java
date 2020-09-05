@@ -9,6 +9,7 @@ import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
 import com.asdoi.quicksettings.tiles.AnimatorDurationTileService;
 import com.asdoi.quicksettings.tiles.BatteryTileService;
 import com.asdoi.quicksettings.tiles.BrightnessTileService;
+import com.asdoi.quicksettings.tiles.CounterTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
@@ -73,6 +74,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("search_settings", OpenSettingsSearchTileService.class);
         servicePreferences.put("new_event", NewCalendarEventTileService.class);
         servicePreferences.put("make_call", MakeCallTileService.class);
+        servicePreferences.put("counter", CounterTileService.class);
         return servicePreferences;
     }
 

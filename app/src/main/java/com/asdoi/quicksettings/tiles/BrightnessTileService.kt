@@ -19,8 +19,8 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.SettingsUtils
 import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class BrightnessTileService : WriteSystemSettingsTileService<Int>() {
     companion object {
@@ -32,7 +32,7 @@ class BrightnessTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        return SettingsUtils.getIntFromSystemSettings(contentResolver, SETTING)
+        return WriteSystemSettingsUtils.getIntFromSystemSettings(contentResolver, SETTING)
     }
 
     override fun reset() {
@@ -40,7 +40,7 @@ class BrightnessTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun saveValue(value: Int): Boolean {
-        return SettingsUtils.setIntToSystemSettings(contentResolver, SETTING, value)
+        return WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING, value)
     }
 
     override fun getValueList(): List<Int> {

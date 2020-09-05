@@ -21,6 +21,7 @@ import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
+import com.asdoi.quicksettings.tilesUtils.CounterSharedPref;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
@@ -75,6 +76,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     .start(requireContext());
             return true;
         });
+
+        Preference resetCounter = findPreference("reset_counter");
+        resetCounter.setOnPreferenceClickListener((preference -> {
+            CounterSharedPref.resetCounter(requireContext());
+            return true;
+        }));
     }
 
     private void setSwitchPreferences() {

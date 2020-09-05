@@ -19,8 +19,8 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.SettingsUtils
 import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class FinishActivitiesTileService : WriteSystemSettingsTileService<Int>() {
     companion object {
@@ -32,7 +32,7 @@ class FinishActivitiesTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        var value = SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
+        var value = WriteSystemSettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
         if (value > 1) value = 1
         return value
     }
@@ -42,7 +42,7 @@ class FinishActivitiesTileService : WriteSystemSettingsTileService<Int>() {
     }
 
     override fun saveValue(value: Int): Boolean {
-        return SettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
+        return WriteSystemSettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
     }
 
     override fun getValueList(): List<Int> {

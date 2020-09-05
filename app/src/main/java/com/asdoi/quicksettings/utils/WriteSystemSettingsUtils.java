@@ -4,7 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.provider.Settings;
 
-public class SettingsUtils {
+public class WriteSystemSettingsUtils {
     private static final String DISPLAY_DALTONIZER_ENABLED = "accessibility_display_daltonizer_enabled";
     private static final String DISPLAY_DALTONIZER = "accessibility_display_daltonizer";
 

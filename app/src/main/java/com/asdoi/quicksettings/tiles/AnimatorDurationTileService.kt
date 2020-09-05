@@ -19,8 +19,8 @@ package com.asdoi.quicksettings.tiles
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
-import com.asdoi.quicksettings.utils.SettingsUtils
 import com.asdoi.quicksettings.utils.WriteSystemSettingsTileService
+import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class AnimatorDurationTileService : WriteSystemSettingsTileService<Float>() {
     companion object {
@@ -32,7 +32,7 @@ class AnimatorDurationTileService : WriteSystemSettingsTileService<Float>() {
     }
 
     override fun queryValue(): Float {
-        return SettingsUtils.getFloatFromGlobalSettings(contentResolver, SETTING)
+        return WriteSystemSettingsUtils.getFloatFromGlobalSettings(contentResolver, SETTING)
     }
 
     override fun reset() {
@@ -40,7 +40,7 @@ class AnimatorDurationTileService : WriteSystemSettingsTileService<Float>() {
     }
 
     override fun saveValue(value: Float): Boolean {
-        return SettingsUtils.setFloatToGlobalSettings(contentResolver, SETTING, value)
+        return WriteSystemSettingsUtils.setFloatToGlobalSettings(contentResolver, SETTING, value)
     }
 
     override fun getValueList(): List<Float> {

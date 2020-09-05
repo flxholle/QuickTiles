@@ -18,6 +18,7 @@ import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
 import com.asdoi.quicksettings.tiles.OpenCameraTileService;
+import com.asdoi.quicksettings.tiles.OpenFilesTileService;
 import com.asdoi.quicksettings.tiles.OpenVolumePanelTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
@@ -53,6 +54,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("open_calculator", OpenCalculatorTileService.class);
         servicePreferences.put("open_volume_panel", OpenVolumePanelTileService.class);
         servicePreferences.put("adjust_brightness", BrightnessTileService.class);
+        servicePreferences.put("open_files", OpenFilesTileService.class);
         return servicePreferences;
     }
 

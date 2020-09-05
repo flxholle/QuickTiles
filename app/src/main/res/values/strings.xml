@@ -58,4 +58,6 @@
     <string name="open_calculator">Open Calculator</string>
     <string name="open_volume_panel">Open Volume Panel</string>
     <string name="adjust_brightness">Adjust Brightness</string>
+    <string name="open_files">Open File Manager</string>
+    <string name="free_space">Free Space</string>
 </resources>

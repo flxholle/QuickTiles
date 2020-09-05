@@ -47,6 +47,10 @@
             android:key="adjust_brightness"
             android:title="@string/adjust_brightness" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_folder"
+            android:key="open_files"
+            android:title="@string/open_files" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

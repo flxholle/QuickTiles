@@ -13,7 +13,7 @@ import com.asdoi.quicksettings.tilesUtils.AdaptiveBrightnessTileJobService;
 import com.asdoi.quicksettings.utils.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 
-public class AdaptiveBrightnessService extends BaseTileService {
+public class AdaptiveBrightnessTileService extends BaseTileService {
 
     public static void disableBrightnessMode(Context context) {
         Settings.System.putInt(context.getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);

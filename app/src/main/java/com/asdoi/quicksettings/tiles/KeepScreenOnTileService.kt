@@ -17,14 +17,15 @@
 package com.asdoi.quicksettings.tiles
 
 import android.graphics.drawable.Icon
+import android.os.BatteryManager
 import android.provider.Settings
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.SettingsUtils
 
-class UsbDebuggingService : DevelopmentTileService<Int>() {
+class KeepScreenOnTileService : DevelopmentTileService<Int>() {
     companion object {
-        const val SETTING = Settings.Global.ADB_ENABLED
+        const val SETTING = Settings.Global.STAY_ON_WHILE_PLUGGED_IN
     }
 
     override fun isActive(value: Int): Boolean {
@@ -32,9 +33,7 @@ class UsbDebuggingService : DevelopmentTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        var value = SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
-        if (value > 1) value = 1
-        return value
+        return SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
     }
 
     override fun reset() {
@@ -46,15 +45,17 @@ class UsbDebuggingService : DevelopmentTileService<Int>() {
     }
 
     override fun getValueList(): List<Int> {
-        return listOf(0, 1)
+        //TODO: Get the proper value from settings so the user can change its value
+        return listOf(0, BatteryManager.BATTERY_PLUGGED_AC or BatteryManager.BATTERY_PLUGGED_USB)
     }
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_usb_debugging_enabled else R.drawable.ic_usb_debugging_disabled)
+                if (value != 0) R.drawable.ic_keep_screen_on_enabled else R.drawable.ic_keep_screen_on_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.usb_debugging)
+        return getString(R.string.keep_screen_on)
     }
+
 }

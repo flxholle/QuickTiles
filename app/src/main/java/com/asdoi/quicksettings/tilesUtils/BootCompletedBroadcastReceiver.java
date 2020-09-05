@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
-import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
+import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
 
 public class BootCompletedBroadcastReceiver extends BroadcastReceiver {
 
@@ -14,7 +14,7 @@ public class BootCompletedBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent != null && !TextUtils.isEmpty(intent.getAction())) {
             if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-                AdaptiveBrightnessService.requestListeningState(context, new ComponentName(context, AdaptiveBrightnessService.class));
+                AdaptiveBrightnessTileService.requestListeningState(context, new ComponentName(context, AdaptiveBrightnessTileService.class));
             }
         }
     }

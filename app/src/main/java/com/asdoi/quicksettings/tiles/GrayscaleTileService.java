@@ -6,7 +6,7 @@ import com.asdoi.quicksettings.utils.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.asdoi.quicksettings.utils.SettingsUtils;
 
-public class GrayscaleService extends BaseTileService {
+public class GrayscaleTileService extends BaseTileService {
 
     @Override
     public void onClick() {

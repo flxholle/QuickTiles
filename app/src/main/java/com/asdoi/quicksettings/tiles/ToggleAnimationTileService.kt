@@ -5,7 +5,7 @@ import android.provider.Settings
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.utils.DevelopmentTileService
 
-class ToggleAnimationService : DevelopmentTileService<Float>() {
+class ToggleAnimationTileService : DevelopmentTileService<Float>() {
     override fun isActive(value: Float): Boolean {
         return value != 1f
     }

@@ -30,7 +30,7 @@ import com.asdoi.quicksettings.utils.SettingsUtils
  *
  * Check protocol here: https://github.com/android/platform_frameworks_base/blob/master/packages/SystemUI/docs/demo_mode.md
  */
-class DemoModeService : DevelopmentTileService<Int>() {
+class DemoModeTileService : DevelopmentTileService<Int>() {
 
     override fun isActive(value: Int): Boolean {
         return value != 0

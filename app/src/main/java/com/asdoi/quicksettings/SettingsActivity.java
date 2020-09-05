@@ -5,20 +5,20 @@ import android.util.ArrayMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
-import com.asdoi.quicksettings.tiles.AnimatorDurationService;
-import com.asdoi.quicksettings.tiles.DemoModeService;
-import com.asdoi.quicksettings.tiles.FinishActivitiesService;
-import com.asdoi.quicksettings.tiles.GrayscaleService;
-import com.asdoi.quicksettings.tiles.KeepScreenOnService;
+import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
+import com.asdoi.quicksettings.tiles.AnimatorDurationTileService;
+import com.asdoi.quicksettings.tiles.DemoModeTileService;
+import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
+import com.asdoi.quicksettings.tiles.GrayscaleTileService;
+import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NewAlarmTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
-import com.asdoi.quicksettings.tiles.ShowTapsService;
-import com.asdoi.quicksettings.tiles.ToggleAnimationService;
-import com.asdoi.quicksettings.tiles.UsbDebuggingService;
+import com.asdoi.quicksettings.tiles.ShowTapsTileService;
+import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
+import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResultListener;
 
@@ -33,28 +33,28 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("next_song", NextSongTileService.class);
         servicePreferences.put("previous_song", PreviousSongTileService.class);
         servicePreferences.put("media_volume", MediaVolumeTileService.class);
-        servicePreferences.put("grayscale", GrayscaleService.class);
-        servicePreferences.put("adaptive_brightness", AdaptiveBrightnessService.class);
-        servicePreferences.put("usb_debugging", UsbDebuggingService.class);
-        servicePreferences.put("finish_activities", FinishActivitiesService.class);
-        servicePreferences.put("keep_screen_on", KeepScreenOnService.class);
-        servicePreferences.put("demo_mode", DemoModeService.class);
-        servicePreferences.put("animator_duration", AnimatorDurationService.class);
-        servicePreferences.put("show_taps", ShowTapsService.class);
-        servicePreferences.put("disable_all_animations", ToggleAnimationService.class);
+        servicePreferences.put("grayscale", GrayscaleTileService.class);
+        servicePreferences.put("adaptive_brightness", AdaptiveBrightnessTileService.class);
+        servicePreferences.put("usb_debugging", UsbDebuggingTileService.class);
+        servicePreferences.put("finish_activities", FinishActivitiesTileService.class);
+        servicePreferences.put("keep_screen_on", KeepScreenOnTileService.class);
+        servicePreferences.put("demo_mode", DemoModeTileService.class);
+        servicePreferences.put("animator_duration", AnimatorDurationTileService.class);
+        servicePreferences.put("show_taps", ShowTapsTileService.class);
+        servicePreferences.put("disable_all_animations", ToggleAnimationTileService.class);
         servicePreferences.put("new_alarm", NewAlarmTileService.class);
         return servicePreferences;
     }
 
     public static ArrayList<Class<?>> getSecureSettingsServices() {
         ArrayList<Class<?>> services = new ArrayList<>();
-        services.add(GrayscaleService.class);
-        services.add(UsbDebuggingService.class);
-        services.add(FinishActivitiesService.class);
-        services.add(KeepScreenOnService.class);
-        services.add(AnimatorDurationService.class);
-        services.add(ShowTapsService.class);
-        services.add(ToggleAnimationService.class);
+        services.add(GrayscaleTileService.class);
+        services.add(UsbDebuggingTileService.class);
+        services.add(FinishActivitiesTileService.class);
+        services.add(KeepScreenOnTileService.class);
+        services.add(AnimatorDurationTileService.class);
+        services.add(ShowTapsTileService.class);
+        services.add(ToggleAnimationTileService.class);
         return services;
     }
 

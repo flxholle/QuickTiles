@@ -22,9 +22,9 @@ import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.SettingsUtils
 
-class FinishActivitiesService : DevelopmentTileService<Int>() {
+class UsbDebuggingTileService : DevelopmentTileService<Int>() {
     companion object {
-        const val SETTING = Settings.Global.ALWAYS_FINISH_ACTIVITIES
+        const val SETTING = Settings.Global.ADB_ENABLED
     }
 
     override fun isActive(value: Int): Boolean {
@@ -51,11 +51,10 @@ class FinishActivitiesService : DevelopmentTileService<Int>() {
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_finish_activities_enabled
-                else R.drawable.ic_finish_activities_disabled)
+                if (value != 0) R.drawable.ic_usb_debugging_enabled else R.drawable.ic_usb_debugging_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.finish_activities)
+        return getString(R.string.usb_debugging)
     }
 }

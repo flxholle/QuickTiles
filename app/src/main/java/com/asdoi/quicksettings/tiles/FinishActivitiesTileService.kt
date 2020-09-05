@@ -17,15 +17,14 @@
 package com.asdoi.quicksettings.tiles
 
 import android.graphics.drawable.Icon
-import android.os.BatteryManager
 import android.provider.Settings
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.SettingsUtils
 
-class KeepScreenOnService : DevelopmentTileService<Int>() {
+class FinishActivitiesTileService : DevelopmentTileService<Int>() {
     companion object {
-        const val SETTING = Settings.Global.STAY_ON_WHILE_PLUGGED_IN
+        const val SETTING = Settings.Global.ALWAYS_FINISH_ACTIVITIES
     }
 
     override fun isActive(value: Int): Boolean {
@@ -33,7 +32,9 @@ class KeepScreenOnService : DevelopmentTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        return SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
+        var value = SettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
+        if (value > 1) value = 1
+        return value
     }
 
     override fun reset() {
@@ -45,17 +46,16 @@ class KeepScreenOnService : DevelopmentTileService<Int>() {
     }
 
     override fun getValueList(): List<Int> {
-        //TODO: Get the proper value from settings so the user can change its value
-        return listOf(0, BatteryManager.BATTERY_PLUGGED_AC or BatteryManager.BATTERY_PLUGGED_USB)
+        return listOf(0, 1)
     }
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_keep_screen_on_enabled else R.drawable.ic_keep_screen_on_disabled)
+                if (value != 0) R.drawable.ic_finish_activities_enabled
+                else R.drawable.ic_finish_activities_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {
-        return getString(R.string.keep_screen_on)
+        return getString(R.string.finish_activities)
     }
-
 }

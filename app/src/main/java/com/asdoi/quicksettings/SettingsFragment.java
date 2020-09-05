@@ -20,8 +20,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
-import com.asdoi.quicksettings.tiles.DemoModeService;
+import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
+import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
@@ -89,9 +89,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
                 if (secureSettingsServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsListener(serviceClass));
-                } else if (serviceClass.equals(DemoModeService.class)) {
+                } else if (serviceClass.equals(DemoModeTileService.class)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
-                } else if (serviceClass.equals(AdaptiveBrightnessService.class)) {
+                } else if (serviceClass.equals(AdaptiveBrightnessTileService.class)) {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));

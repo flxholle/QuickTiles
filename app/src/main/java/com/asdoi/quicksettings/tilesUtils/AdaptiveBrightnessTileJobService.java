@@ -9,7 +9,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.provider.Settings;
 
-import com.asdoi.quicksettings.tiles.AdaptiveBrightnessService;
+import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
 
 public class AdaptiveBrightnessTileJobService extends JobService {
 
@@ -40,7 +40,7 @@ public class AdaptiveBrightnessTileJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
-        AdaptiveBrightnessService.requestListeningState(this, new ComponentName(this, AdaptiveBrightnessService.class));
+        AdaptiveBrightnessTileService.requestListeningState(this, new ComponentName(this, AdaptiveBrightnessTileService.class));
         scheduleUpdateJob(this);
         return false;
     }

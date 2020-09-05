@@ -22,7 +22,7 @@ import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.utils.DevelopmentTileService
 import com.asdoi.quicksettings.utils.SettingsUtils
 
-class AnimatorDurationService : DevelopmentTileService<Float>() {
+class AnimatorDurationTileService : DevelopmentTileService<Float>() {
     companion object {
         const val SETTING = Settings.Global.ANIMATOR_DURATION_SCALE
     }

@@ -81,7 +81,7 @@
         </service>
 
         <service
-            android:name=".tiles.GrayscaleService"
+            android:name=".tiles.GrayscaleTileService"
             android:enabled="false"
             android:icon="@drawable/ic_grayscale"
             android:label="@string/grayscale"
@@ -91,7 +91,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.AdaptiveBrightnessService"
+            android:name=".tiles.AdaptiveBrightnessTileService"
             android:enabled="false"
             android:icon="@drawable/ic_brightness_auto"
             android:label="@string/adaptive_brightness"
@@ -109,7 +109,7 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".tiles.UsbDebuggingService"
+            android:name=".tiles.UsbDebuggingTileService"
             android:enabled="false"
             android:icon="@drawable/ic_usb_debugging_enabled"
             android:label="@string/usb_debugging"
@@ -119,7 +119,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.FinishActivitiesService"
+            android:name=".tiles.FinishActivitiesTileService"
             android:enabled="false"
             android:icon="@drawable/ic_finish_activities_enabled"
             android:label="@string/finish_activities"
@@ -129,7 +129,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.KeepScreenOnService"
+            android:name=".tiles.KeepScreenOnTileService"
             android:enabled="false"
             android:icon="@drawable/ic_keep_screen_on_enabled"
             android:label="@string/keep_screen_on"
@@ -139,7 +139,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.DemoModeService"
+            android:name=".tiles.DemoModeTileService"
             android:enabled="false"
             android:icon="@drawable/ic_demo_mode_enabled"
             android:label="@string/demo_mode"
@@ -149,7 +149,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.AnimatorDurationService"
+            android:name=".tiles.AnimatorDurationTileService"
             android:enabled="false"
             android:icon="@drawable/ic_animator_duration_enabled"
             android:label="@string/animator_duration"
@@ -159,7 +159,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.ShowTapsService"
+            android:name=".tiles.ShowTapsTileService"
             android:enabled="false"
             android:icon="@drawable/ic_show_taps_enabled"
             android:label="@string/show_taps"
@@ -169,7 +169,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.ToggleAnimationService"
+            android:name=".tiles.ToggleAnimationTileService"
             android:enabled="false"
             android:icon="@drawable/ic_animation_on"
             android:label="@string/disable_all_animations"

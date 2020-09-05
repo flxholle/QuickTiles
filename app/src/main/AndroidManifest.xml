@@ -328,6 +328,16 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.MakeCallTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_call"
+            android:label="@string/make_call"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
 
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">

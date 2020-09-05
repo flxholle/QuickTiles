@@ -83,6 +83,10 @@
             android:key="new_event"
             android:title="@string/new_event" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_call"
+            android:key="make_call"
+            android:title="@string/make_call" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

@@ -13,6 +13,7 @@ import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
+import com.asdoi.quicksettings.tiles.MakeCallTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NewAlarmTileService;
 import com.asdoi.quicksettings.tiles.NewCalendarEventTileService;
@@ -71,6 +72,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("notification_history", OpenNotificationLogTileService.class);
         servicePreferences.put("search_settings", OpenSettingsSearchTileService.class);
         servicePreferences.put("new_event", NewCalendarEventTileService.class);
+        servicePreferences.put("make_call", MakeCallTileService.class);
         return servicePreferences;
     }
 

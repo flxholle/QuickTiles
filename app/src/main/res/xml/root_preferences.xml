@@ -35,6 +35,10 @@
             android:key="open_camera"
             android:title="@string/open_camera" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_grid_on"
+            android:key="open_calculator"
+            android:title="@string/open_calculator" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

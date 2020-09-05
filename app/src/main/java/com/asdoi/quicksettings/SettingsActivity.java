@@ -15,6 +15,7 @@ import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NewAlarmTileService;
 import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
+import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
 import com.asdoi.quicksettings.tiles.OpenCameraTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
@@ -47,6 +48,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("new_alarm", NewAlarmTileService.class);
         servicePreferences.put("new_timer", NewTimerTileService.class);
         servicePreferences.put("open_camera", OpenCameraTileService.class);
+        servicePreferences.put("open_calculator", OpenCalculatorTileService.class);
         return servicePreferences;
     }
 

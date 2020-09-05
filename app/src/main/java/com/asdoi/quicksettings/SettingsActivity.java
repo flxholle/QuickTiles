@@ -13,6 +13,7 @@ import com.asdoi.quicksettings.tiles.GrayscaleTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NewAlarmTileService;
+import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
@@ -43,6 +44,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("show_taps", ShowTapsTileService.class);
         servicePreferences.put("disable_all_animations", ToggleAnimationTileService.class);
         servicePreferences.put("new_alarm", NewAlarmTileService.class);
+        servicePreferences.put("new_timer", NewTimerTileService.class);
         return servicePreferences;
     }
 

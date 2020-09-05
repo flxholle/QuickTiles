@@ -27,6 +27,10 @@
             android:key="new_alarm"
             android:title="@string/new_alarm" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_timer"
+            android:key="new_timer"
+            android:title="@string/new_timer" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

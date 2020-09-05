@@ -188,6 +188,17 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.NewTimerTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_timer"
+            android:label="@string/new_timer"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
 
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">
             <intent-filter>

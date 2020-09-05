@@ -53,4 +53,5 @@
     <string name="mustafa_ali_credit">Made by Mustafa Ali under Apache License 2.0</string>
 
     <string name="new_alarm">New Alarm</string>
+    <string name="new_timer">New Timer</string>
 </resources>

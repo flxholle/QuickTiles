@@ -59,6 +59,10 @@
             android:key="vpn"
             android:title="@string/vpn" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_data_usage"
+            android:key="data_usage"
+            android:title="@string/data_usage" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

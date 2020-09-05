@@ -6,10 +6,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.RemoteException;
 import android.service.quicksettings.Tile;
-import android.telephony.TelephonyManager;
 
 import com.asdoi.quicksettings.utils.BaseTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
@@ -50,25 +48,13 @@ public class DataUsageTileService extends BaseTileService {
         NetworkStats.Bucket bucket;
         try {
             bucket = networkStatsManager.querySummaryForDevice(ConnectivityManager.TYPE_MOBILE,
-                    getSubscriberId(this, ConnectivityManager.TYPE_MOBILE),
+                    null,
                     0,
                     System.currentTimeMillis());
         } catch (RemoteException e) {
             return -1;
         }
         return bucket.getTxBytes();
-    }
-
-    //Here Manifest.permission.READ_PHONE_STATS is needed
-    private String getSubscriberId(Context context, int networkType) {
-        if (ConnectivityManager.TYPE_MOBILE == networkType) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-                TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                return tm.getSubscriberId();
-            } else
-                return null;
-        }
-        return "";
     }
 
 

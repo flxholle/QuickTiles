@@ -31,6 +31,10 @@
             android:key="new_timer"
             android:title="@string/new_timer" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_photo_camera"
+            android:key="open_camera"
+            android:title="@string/open_camera" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

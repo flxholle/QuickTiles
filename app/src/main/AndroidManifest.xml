@@ -12,7 +12,6 @@
     <uses-permission
         android:name="android.permission.DUMP"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
@@ -103,11 +102,6 @@
                 android:name="android.service.quicksettings.ACTIVE_TILE"
                 android:value="true" />
         </service>
-        <service
-            android:name=".tilesUtils.AdaptiveBrightnessTileJobService"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".tiles.UsbDebuggingTileService"
             android:enabled="false"
@@ -368,16 +362,6 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-
-
-        <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

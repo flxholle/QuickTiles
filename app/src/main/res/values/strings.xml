@@ -61,4 +61,5 @@
     <string name="open_files">Open File Manager</string>
     <string name="free_space">Free Space</string>
     <string name="battery">Battery Level</string>
+    <string name="vpn">Open VPN</string>
 </resources>

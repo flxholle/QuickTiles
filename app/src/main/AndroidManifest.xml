@@ -258,6 +258,16 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.OpenVpnTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_vpn_key"
+            android:label="@string/vpn"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
 
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">

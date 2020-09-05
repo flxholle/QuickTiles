@@ -55,6 +55,10 @@
             android:key="battery"
             android:title="@string/battery" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_vpn_key"
+            android:key="vpn"
+            android:title="@string/vpn" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

@@ -15,6 +15,7 @@ import com.asdoi.quicksettings.tiles.GrayscaleTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.NewAlarmTileService;
+import com.asdoi.quicksettings.tiles.NewCalendarEventTileService;
 import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.OpenAboutPhoneTileService;
@@ -69,6 +70,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("connected_devices", OpenConnectedDevicesTileService.class);
         servicePreferences.put("notification_history", OpenNotificationLogTileService.class);
         servicePreferences.put("search_settings", OpenSettingsSearchTileService.class);
+        servicePreferences.put("new_event", NewCalendarEventTileService.class);
         return servicePreferences;
     }
 

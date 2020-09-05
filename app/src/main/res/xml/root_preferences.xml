@@ -79,6 +79,10 @@
             android:key="search_settings"
             android:title="@string/search_settings" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_event"
+            android:key="new_event"
+            android:title="@string/new_event" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

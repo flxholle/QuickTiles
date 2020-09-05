@@ -20,7 +20,6 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
@@ -81,6 +80,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private void setSwitchPreferences() {
         ArrayMap<String, Class<?>> preferencesServices = SettingsActivity.getPreferenceService();
         ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
+        ArrayList<Class<?>> modifySystemSettingsServices = SettingsActivity.getModifySystemSettingsServices();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -89,10 +89,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
                 if (secureSettingsServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsListener(serviceClass));
+                } else if (modifySystemSettingsServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (serviceClass.equals(DemoModeTileService.class)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
-                } else if (serviceClass.equals(AdaptiveBrightnessTileService.class)) {
-                    switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
                 }

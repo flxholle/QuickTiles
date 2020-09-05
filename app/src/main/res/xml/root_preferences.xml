@@ -43,6 +43,10 @@
             android:key="open_volume_panel"
             android:title="@string/open_volume_panel" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_brightness_high"
+            android:key="adjust_brightness"
+            android:title="@string/adjust_brightness" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

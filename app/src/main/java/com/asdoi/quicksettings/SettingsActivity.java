@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
 import com.asdoi.quicksettings.tiles.AnimatorDurationTileService;
+import com.asdoi.quicksettings.tiles.BrightnessTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
@@ -51,6 +52,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("open_camera", OpenCameraTileService.class);
         servicePreferences.put("open_calculator", OpenCalculatorTileService.class);
         servicePreferences.put("open_volume_panel", OpenVolumePanelTileService.class);
+        servicePreferences.put("adjust_brightness", BrightnessTileService.class);
         return servicePreferences;
     }
 
@@ -63,6 +65,13 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(AnimatorDurationTileService.class);
         services.add(ShowTapsTileService.class);
         services.add(ToggleAnimationTileService.class);
+        return services;
+    }
+
+    public static ArrayList<Class<?>> getModifySystemSettingsServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(AdaptiveBrightnessTileService.class);
+        services.add(BrightnessTileService.class);
         return services;
     }
 

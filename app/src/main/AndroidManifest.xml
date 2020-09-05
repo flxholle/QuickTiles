@@ -13,6 +13,7 @@
         android:name="android.permission.DUMP"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -172,6 +173,16 @@
             android:enabled="false"
             android:icon="@drawable/ic_animation_on"
             android:label="@string/disable_all_animations"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.NewAlarmTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_alarm_add"
+            android:label="@string/new_alarm"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />

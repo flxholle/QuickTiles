@@ -9,9 +9,10 @@ Android Quick Settings Tiles
  - https://github.com/rascarlo/AdaptiveBrightnessTile
  - https://github.com/adriangl/Dev-QuickSettings
  - https://github.com/mustafa01ali/Dev-Tiles
- - https://github.com/npes87184/ScreenShareTile
+ - https://github.com/pizzakinggod/Screen-Off-Timeout-Tile
  - https://github.com/banasiak/OpenVPNTile
  - https://github.com/ataulm/talkback-toggle-tile
+ - https://github.com/npes87184/ScreenShareTile
 
 ### Todo:
  - Add Customization to "Keep Screen On" & "Demo Mode" from https://github.com/adriangl/Dev-QuickSettings/tree/feature/settings

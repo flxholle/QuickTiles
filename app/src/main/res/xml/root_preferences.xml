@@ -23,6 +23,10 @@
 
     <PreferenceCategory android:title="@string/system_utilities">
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_alarm_add"
+            android:key="new_alarm"
+            android:title="@string/new_alarm" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

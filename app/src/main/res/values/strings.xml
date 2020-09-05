@@ -51,4 +51,6 @@
     <string name="disable_all_animations">Disable All Animations</string>
     <string name="enable_all_animations">Enable All Animations</string>
     <string name="mustafa_ali_credit">Made by Mustafa Ali under Apache License 2.0</string>
+
+    <string name="new_alarm">New Alarm</string>
 </resources>

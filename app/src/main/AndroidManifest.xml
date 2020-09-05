@@ -248,6 +248,16 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.BatteryTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_battery_full"
+            android:label="@string/battery"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
 
         <receiver android:name=".tilesUtils.BootCompletedBroadcastReceiver">

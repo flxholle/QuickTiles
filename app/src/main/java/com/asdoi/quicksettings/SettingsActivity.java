@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.asdoi.quicksettings.tiles.AdaptiveBrightnessTileService;
 import com.asdoi.quicksettings.tiles.AnimatorDurationTileService;
+import com.asdoi.quicksettings.tiles.BatteryTileService;
 import com.asdoi.quicksettings.tiles.BrightnessTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
@@ -55,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("open_volume_panel", OpenVolumePanelTileService.class);
         servicePreferences.put("adjust_brightness", BrightnessTileService.class);
         servicePreferences.put("open_files", OpenFilesTileService.class);
+        servicePreferences.put("battery", BatteryTileService.class);
         return servicePreferences;
     }
 

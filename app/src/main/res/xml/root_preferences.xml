@@ -75,6 +75,10 @@
             android:key="connected_devices"
             android:title="@string/connected_devices" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_language"
+            android:key="open_language"
+            android:title="@string/languages" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_cast"
             android:key="screen_cast"
             android:title="@string/screen_cast" />

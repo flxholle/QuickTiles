@@ -1,6 +1,9 @@
 # Quick Settings
 Android Quick Settings Tiles
 
+<img src="https://gitlab.com/asdoi/quick-settings/-/raw/master/fastlane/metadata/android/en/images/phoneScreenshots/1.png?inline=false" width=270>
+<img src="https://gitlab.com/asdoi/quick-settings/-/raw/master/fastlane/metadata/android/en/images/phoneScreenshots/2.png?inline=false" width=270>
+
 ### Current Features:
  - Media control (play/pause, next, previous, media volume)
  - Show volume panel

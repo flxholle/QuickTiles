@@ -19,6 +19,10 @@
             android:icon="@drawable/ic_music_video"
             android:key="media_volume"
             android:title="@string/media_volume" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_volume_up"
+            android:key="open_volume_panel"
+            android:title="@string/open_volume_panel" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/open_apps">
@@ -101,6 +105,10 @@
             android:key="switch_states"
             android:title="@string/switch_volume_modes" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_brightness_high"
+            android:key="adjust_brightness"
+            android:title="@string/adjust_brightness" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_brightness_auto"
             android:key="adaptive_brightness"
             android:title="@string/adaptive_brightness" />
@@ -109,10 +117,6 @@
             android:key="grayscale"
             android:title="@string/grayscale" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_brightness_high"
-            android:key="adjust_brightness"
-            android:title="@string/adjust_brightness" />
-        <SwitchPreferenceCompat
             android:icon="@drawable/ic_screen_lock_rotation"
             android:key="force_rotation"
             android:title="@string/force_rotation" />
@@ -120,10 +124,6 @@
             android:icon="@drawable/ic_vibration"
             android:key="vibrate_calls"
             android:title="@string/vibrate_on_calls" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_volume_up"
-            android:key="open_volume_panel"
-            android:title="@string/open_volume_panel" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_battery_full"
             android:key="battery"

@@ -21,15 +21,21 @@ import android.os.BatteryManager
 import android.provider.Settings
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.abstract_tiles.WriteSecureSettingsTileService
+import com.asdoi.quicksettings.utils.SharedPreferencesUtil
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
     companion object {
         const val SETTING = Settings.Global.STAY_ON_WHILE_PLUGGED_IN
+        const val OFF = 0
+        const val PLUGGED_AC = BatteryManager.BATTERY_PLUGGED_AC
+        const val PLUGGED_USB = BatteryManager.BATTERY_PLUGGED_USB
+        const val PLUGGED_WIRELESS = BatteryManager.BATTERY_PLUGGED_WIRELESS
+        const val ANY = 7
     }
 
     override fun isActive(value: Int): Boolean {
-        return value != 0
+        return value != OFF
     }
 
     override fun queryValue(): Int {
@@ -37,7 +43,7 @@ class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
     }
 
     override fun reset() {
-        saveValue(0)
+        saveValue(OFF)
     }
 
     override fun saveValue(value: Int): Boolean {
@@ -45,13 +51,19 @@ class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
     }
 
     override fun getValueList(): List<Int> {
-        //TODO: Get the proper value from settings so the user can change its value
-        return listOf(0, BatteryManager.BATTERY_PLUGGED_AC or BatteryManager.BATTERY_PLUGGED_USB)
+        val value = when (SharedPreferencesUtil.getCustomizeKeepScreenOn(this)) {
+            0 -> PLUGGED_AC
+            1 -> PLUGGED_USB
+            2 -> PLUGGED_WIRELESS
+            3 -> ANY
+            else -> ANY
+        }
+        return listOf(OFF, value)
     }
 
     override fun getIcon(value: Int): Icon? {
         return Icon.createWithResource(applicationContext,
-                if (value != 0) R.drawable.ic_keep_screen_on_enabled else R.drawable.ic_keep_screen_on_disabled)
+                if (value != OFF) R.drawable.ic_keep_screen_on_enabled else R.drawable.ic_keep_screen_on_disabled)
     }
 
     override fun getLabel(value: Int): CharSequence? {

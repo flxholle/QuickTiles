@@ -22,8 +22,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.utils.CounterSharedPref;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
+import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -85,7 +85,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Preference resetCounter = findPreference("reset_counter");
         resetCounter.setOnPreferenceClickListener((preference -> {
-            CounterSharedPref.resetCounter(requireContext());
+            SharedPreferencesUtil.resetCounter(requireContext());
             return true;
         }));
     }

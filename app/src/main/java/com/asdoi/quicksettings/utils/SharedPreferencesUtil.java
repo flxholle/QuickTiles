@@ -4,8 +4,9 @@ import android.content.Context;
 
 import androidx.preference.PreferenceManager;
 
-public class CounterSharedPref {
+public class SharedPreferencesUtil {
     public static String COUNTER = "counter_value";
+    public static String CUSTOMIZE_KEEP_SCREEN_ON = "keep_screen_on_customize";
 
     public static int getCounter(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
@@ -22,5 +23,10 @@ public class CounterSharedPref {
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putInt(COUNTER, 0)
                 .apply();
+    }
+
+    public static int getCustomizeKeepScreenOn(Context context) {
+        return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(CUSTOMIZE_KEEP_SCREEN_ON, "3"));
     }
 }

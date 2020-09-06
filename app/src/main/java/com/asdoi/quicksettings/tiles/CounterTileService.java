@@ -3,7 +3,7 @@ package com.asdoi.quicksettings.tiles;
 import android.service.quicksettings.Tile;
 
 import com.asdoi.quicksettings.abstract_tiles.BaseTileService;
-import com.asdoi.quicksettings.utils.CounterSharedPref;
+import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 
 public class CounterTileService extends BaseTileService {
 
@@ -14,18 +14,18 @@ public class CounterTileService extends BaseTileService {
 
     @Override
     public void onClick() {
-        CounterSharedPref.triggerCounter(this);
+        SharedPreferencesUtil.triggerCounter(this);
         updateTileResources();
     }
 
     private void updateTileResources() {
         Tile tile = getQsTile();
-        tile.setLabel("" + CounterSharedPref.getCounter(this));
+        tile.setLabel("" + SharedPreferencesUtil.getCounter(this));
         tile.updateTile();
     }
 
     @Override
     public void reset() {
-        CounterSharedPref.resetCounter(this);
+        SharedPreferencesUtil.resetCounter(this);
     }
 }

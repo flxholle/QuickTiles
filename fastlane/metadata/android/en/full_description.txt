@@ -1,0 +1,37 @@
+<b>Current Features:</b>
+ - Media control (play/pause, next, previous, media volume)
+ - Show volume panel
+ - New event/alarm/timer
+ - Make call
+ - Take photo/record video
+ - Open calculator/file manager
+ - Search settings
+ - Open languages
+ - Open VPN/data usage/screen cast/connected devices/about
+ - Set screen timeout
+ - Switch volume modes (normal, vibrate, priority only, alarms only, total silence)
+ - Adjust brightness
+ - Adaptive brightness toggle
+ - Grayscale
+ - Force rotation (0°, 90°, 180°, 270°)
+ - Set vibration on calls
+ - Show battery level
+ - Counter
+ - Enable/disable USB debugging
+ - Enable/Disable demo mode
+ - Open developer options
+ - Enable/Disable keep screen on
+ - Set animator duration scale
+ - Disable all animations
+ - Always finish activities
+
+ <b>Credits:</b>
+ App icon made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>
+ <br>
+ Following projects were used:
+ <ul>
+     <li><a href="https://github.com/mustafa01ali/Dev-Tiles">Dev-Tiles</a> by Mustafa Ali under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
+     <li><a href="https://github.com/adriangl/Dev-QuickSettings">Dev-QuickSettings</a> by Adrián García under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
+     <li><a href="https://github.com/rascarlo/AdaptiveBrightnessTile">Adaptive Brightness Tile</a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
+     <li><a href="https://github.com/fei-ke/Greyscale">Greyscale</a> by fei-ke under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
+ </ul>

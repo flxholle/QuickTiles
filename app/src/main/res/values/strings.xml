@@ -98,6 +98,7 @@
     <string name="languages">Languages</string>
     <string name="open_settings">Open Settings</string>
     <string name="on_which_connection">On which Connection</string>
+    <string name="custom_app">Custom App</string>
 
     <string name="pref_keep_screen_on_mode_ac_adapter">When connected to an AC adapter</string>
     <string name="pref_keep_screen_on_mode_usb_port">When connected to an USB port</string>

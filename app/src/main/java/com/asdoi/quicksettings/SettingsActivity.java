@@ -22,6 +22,7 @@ import com.asdoi.quicksettings.tiles.NewCalendarEventTileService;
 import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.OpenAboutPhoneTileService;
+import com.asdoi.quicksettings.tiles.OpenAppOneTileService;
 import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
 import com.asdoi.quicksettings.tiles.OpenCastTileService;
 import com.asdoi.quicksettings.tiles.OpenConnectedDevicesTileService;
@@ -43,6 +44,7 @@ import com.asdoi.quicksettings.tiles.TakePhotoTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
 import com.asdoi.quicksettings.tiles.VibrateCallsTileService;
+import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResultListener;
 
@@ -91,6 +93,19 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("screen_cast", OpenCastTileService.class);
         servicePreferences.put("developer_options", OpenDeveloperOptionsTileService.class);
         servicePreferences.put("open_language", OpenLocaleTileService.class);
+        servicePreferences.put("custom_app_one", OpenAppOneTileService.class);
+        return servicePreferences;
+    }
+
+    public static ArrayList<Class<?>> getCustomAppServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(OpenAppOneTileService.class);
+        return services;
+    }
+
+    public static ArrayMap<Class<?>, String> getCustomAppKeys() {
+        ArrayMap<Class<?>, String> servicePreferences = new ArrayMap<>();
+        servicePreferences.put(OpenAppOneTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_ONE);
         return servicePreferences;
     }
 

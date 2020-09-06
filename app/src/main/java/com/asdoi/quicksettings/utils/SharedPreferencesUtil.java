@@ -8,6 +8,7 @@ public class SharedPreferencesUtil {
     public static String COUNTER = "counter_value";
     public static String CUSTOMIZE_KEEP_SCREEN_ON = "keep_screen_on_customize";
     public static String SCREEN_TIMEOUT = "screen_timeout_save";
+    public static String CUSTOM_PACKAGE_ONE = "custom_package_one";
 
     public static int getCounter(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
@@ -39,6 +40,17 @@ public class SharedPreferencesUtil {
     public static void setScreenTimeout(Context context, int value) {
         PreferenceManager.getDefaultSharedPreferences(context).edit()
                 .putInt(SCREEN_TIMEOUT, value)
+                .apply();
+    }
+
+    public static String getCustomPackage(Context context, String key) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(key, null);
+    }
+
+    public static void setCustomPackage(Context context, String key, String value) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString(key, value)
                 .apply();
     }
 }

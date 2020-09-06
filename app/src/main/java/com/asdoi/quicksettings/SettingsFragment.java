@@ -23,6 +23,7 @@ import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
+import com.asdoi.quicksettings.utils.SelectApp;
 import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
@@ -97,6 +98,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
         ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
+        ArrayList<Class<?>> selectApplicationServices = SettingsActivity.getCustomAppServices();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -109,6 +111,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (secureSettingsDumpServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
+                } else if (selectApplicationServices.contains(serviceClass)) {
+                    setSelectApplicationPreferences(switchPreference, serviceClass);
                 } else if (notificationPolicyServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getNotificationPolicyListener(serviceClass));
                 } else if (secureSettingsModifySystemServices.contains(serviceClass)) {
@@ -125,6 +129,34 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             setComponentState(newValue, serviceClass);
             return true;
         };
+    }
+
+    private void setSelectApplicationPreferences(SwitchPreferenceCompat switchPreference, Class<?> serviceClass) {
+        final String key = SettingsActivity.getCustomAppKeys().get(serviceClass);
+
+        String customPackageAtStart = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
+        if (customPackageAtStart != null)
+            switchPreference.setTitle(SelectApp.getApplicationInfo(requireContext(), customPackageAtStart).loadLabel(requireContext().getPackageManager()));
+
+        switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+            String customPackageNew = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
+            if (newValue.equals(Boolean.TRUE) && customPackageNew == null) {
+                SelectApp.selectApps(requireContext(), key, () -> {
+                    setComponentState(Boolean.TRUE, serviceClass);
+                    ((SwitchPreferenceCompat) preference).setChecked(true);
+
+                    String customPackageUpdated = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
+                    preference.setTitle(SelectApp.getApplicationInfo(requireContext(), customPackageUpdated).loadLabel(requireContext().getPackageManager()));
+
+                }).show();
+                return false;
+            } else {
+                SharedPreferencesUtil.setCustomPackage(requireContext(), key, null);
+                setComponentState(Boolean.FALSE, serviceClass);
+                switchPreference.setTitle(R.string.custom_app);
+                return true;
+            }
+        });
     }
 
     private Preference.OnPreferenceChangeListener getSecureSettingsListener(Class<?> serviceClass) {

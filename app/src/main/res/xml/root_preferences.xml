@@ -58,6 +58,10 @@
             android:icon="@drawable/ic_folder"
             android:key="open_files"
             android:title="@string/open_files" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_apps"
+            android:key="custom_app_one"
+            android:title="@string/custom_app" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/open_settings">

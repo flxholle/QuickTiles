@@ -21,7 +21,7 @@
             android:title="@string/media_volume" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/system_utilities">
+    <PreferenceCategory android:title="@string/open_apps">
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_alarm_add"
             android:key="new_alarm"
@@ -30,6 +30,14 @@
             android:icon="@drawable/ic_timer"
             android:key="new_timer"
             android:title="@string/new_timer" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_event"
+            android:key="new_event"
+            android:title="@string/new_event" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_call"
+            android:key="make_call"
+            android:title="@string/make_call" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_photo_camera"
             android:key="take_photo"
@@ -43,21 +51,17 @@
             android:key="open_calculator"
             android:title="@string/open_calculator" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_volume_up"
-            android:key="open_volume_panel"
-            android:title="@string/open_volume_panel" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_brightness_high"
-            android:key="adjust_brightness"
-            android:title="@string/adjust_brightness" />
-        <SwitchPreferenceCompat
             android:icon="@drawable/ic_folder"
             android:key="open_files"
             android:title="@string/open_files" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_battery_full"
-            android:key="battery"
-            android:title="@string/battery" />
+            android:icon="@drawable/ic_search"
+            android:key="search_settings"
+            android:title="@string/search_settings" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_history"
+            android:key="notification_history"
+            android:title="@string/notification_history" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_vpn_key"
             android:key="vpn"
@@ -67,29 +71,57 @@
             android:key="data_usage"
             android:title="@string/data_usage" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_perm_device_information"
-            android:key="about_phone"
-            android:title="@string/about_phone" />
-        <SwitchPreferenceCompat
             android:icon="@drawable/ic_devices_other"
             android:key="connected_devices"
             android:title="@string/connected_devices" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_history"
-            android:key="notification_history"
-            android:title="@string/notification_history" />
+            android:icon="@drawable/ic_perm_device_information"
+            android:key="about_phone"
+            android:title="@string/about_phone" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/system_utilities">
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_search"
-            android:key="search_settings"
-            android:title="@string/search_settings" />
+            android:icon="@drawable/ic_screen_infinity"
+            android:key="screen_timeout"
+            android:title="@string/screen_timeout" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_event"
-            android:key="new_event"
-            android:title="@string/new_event" />
+            android:icon="@drawable/ic_ring_volume"
+            android:key="switch_states"
+            android:title="@string/switch_volume_modes" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_call"
-            android:key="make_call"
-            android:title="@string/make_call" />
+            android:icon="@drawable/ic_brightness_auto"
+            android:key="adaptive_brightness"
+            android:summary="@string/rascarlo_credit"
+            android:title="@string/adaptive_brightness" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_grayscale"
+            android:key="grayscale"
+            android:summary="@string/fei_ke_credit"
+            android:title="@string/grayscale" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_brightness_high"
+            android:key="adjust_brightness"
+            android:title="@string/adjust_brightness" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_screen_lock_rotation"
+            android:key="force_rotation"
+            android:title="@string/force_rotation" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_vibration"
+            android:key="vibrate_calls"
+            android:title="@string/vibrate_on_calls" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_volume_up"
+            android:key="open_volume_panel"
+            android:title="@string/open_volume_panel" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_battery_full"
+            android:key="battery"
+            android:title="@string/battery" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/miscellaneous">
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_exposure_plus_1"
             android:key="counter"
@@ -97,32 +129,6 @@
         <Preference
             android:key="reset_counter"
             android:title="@string/reset_counter" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_screen_infinity"
-            android:key="screen_timeout"
-            android:title="@string/screen_timeout" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_vibration"
-            android:key="vibrate_calls"
-            android:title="@string/vibrate_on_calls" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_ring_volume"
-            android:key="switch_states"
-            android:title="@string/switch_volume_modes" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_screen_lock_rotation"
-            android:key="force_rotation"
-            android:title="@string/force_rotation" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_grayscale"
-            android:key="grayscale"
-            android:summary="@string/fei_ke_credit"
-            android:title="@string/grayscale" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_brightness_auto"
-            android:key="adaptive_brightness"
-            android:summary="@string/rascarlo_credit"
-            android:title="@string/adaptive_brightness" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/development">
@@ -148,11 +154,6 @@
             android:summary="@string/adrian_garcia_credit"
             android:title="@string/keep_screen_on" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_finish_activities_enabled"
-            android:key="finish_activities"
-            android:summary="@string/adrian_garcia_credit"
-            android:title="@string/finish_activities" />
-        <SwitchPreferenceCompat
             android:icon="@drawable/ic_animator_duration_enabled"
             android:key="animator_duration"
             android:summary="@string/adrian_garcia_credit"
@@ -162,6 +163,11 @@
             android:key="disable_all_animations"
             android:summary="@string/mustafa_ali_credit"
             android:title="@string/disable_all_animations" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_finish_activities_enabled"
+            android:key="finish_activities"
+            android:summary="@string/adrian_garcia_credit"
+            android:title="@string/finish_activities" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits">

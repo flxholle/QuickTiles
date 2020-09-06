@@ -172,6 +172,10 @@
             android:key="finish_activities"
             android:summary="@string/adrian_garcia_credit"
             android:title="@string/finish_activities" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_developer_mode"
+            android:key="developer_options"
+            android:title="@string/developer_options" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits">

@@ -5,12 +5,10 @@ import android.provider.Settings;
 
 import com.asdoi.quicksettings.abstract_tiles.IntentTileService;
 
-public class OpenAboutPhoneTileService extends IntentTileService {
+public class OpenDeveloperOptionsTileService extends IntentTileService {
 
     @Override
     public Intent createIntent() {
-        return new Intent(Settings.ACTION_DEVICE_INFO_SETTINGS);
-//        Settings.ACTION_INPUT_METHOD_SETTINGS;
-//        Settings.ACTION_LOCALE_SETTINGS;
+        return new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
     }
 }

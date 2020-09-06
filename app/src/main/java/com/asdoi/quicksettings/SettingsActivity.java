@@ -26,6 +26,7 @@ import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
 import com.asdoi.quicksettings.tiles.OpenCastTileService;
 import com.asdoi.quicksettings.tiles.OpenConnectedDevicesTileService;
 import com.asdoi.quicksettings.tiles.OpenDataUsageTileService;
+import com.asdoi.quicksettings.tiles.OpenDeveloperOptionsTileService;
 import com.asdoi.quicksettings.tiles.OpenFilesTileService;
 import com.asdoi.quicksettings.tiles.OpenNotificationLogTileService;
 import com.asdoi.quicksettings.tiles.OpenSettingsSearchTileService;
@@ -87,6 +88,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("switch_states", DoNotDisturbSwitchTileService.class);
         servicePreferences.put("force_rotation", RotationSwitchTileService.class);
         servicePreferences.put("screen_cast", OpenCastTileService.class);
+        servicePreferences.put("developer_options", OpenDeveloperOptionsTileService.class);
         return servicePreferences;
     }
 

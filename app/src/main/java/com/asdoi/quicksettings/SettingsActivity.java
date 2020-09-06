@@ -23,6 +23,7 @@ import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.OpenAboutPhoneTileService;
 import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
+import com.asdoi.quicksettings.tiles.OpenCastTileService;
 import com.asdoi.quicksettings.tiles.OpenConnectedDevicesTileService;
 import com.asdoi.quicksettings.tiles.OpenDataUsageTileService;
 import com.asdoi.quicksettings.tiles.OpenFilesTileService;
@@ -85,6 +86,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("vibrate_calls", VibrateCallsTileService.class);
         servicePreferences.put("switch_states", DoNotDisturbSwitchTileService.class);
         servicePreferences.put("force_rotation", RotationSwitchTileService.class);
+        servicePreferences.put("screen_cast", OpenCastTileService.class);
         return servicePreferences;
     }
 

@@ -75,6 +75,10 @@
             android:key="connected_devices"
             android:title="@string/connected_devices" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_cast"
+            android:key="screen_cast"
+            android:title="@string/screen_cast" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_perm_device_information"
             android:key="about_phone"
             android:title="@string/about_phone" />

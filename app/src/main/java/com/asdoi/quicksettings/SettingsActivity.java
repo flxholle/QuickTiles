@@ -33,6 +33,7 @@ import com.asdoi.quicksettings.tiles.OpenVpnTileService;
 import com.asdoi.quicksettings.tiles.PlayPauseTileService;
 import com.asdoi.quicksettings.tiles.PreviousSongTileService;
 import com.asdoi.quicksettings.tiles.RecordVideoTileService;
+import com.asdoi.quicksettings.tiles.RotationSwitchTileService;
 import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;
 import com.asdoi.quicksettings.tiles.TakePhotoTileService;
@@ -83,6 +84,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("screen_timeout", ScreenTimeoutTileService.class);
         servicePreferences.put("vibrate_calls", VibrateCallsTileService.class);
         servicePreferences.put("switch_states", DoNotDisturbSwitchTileService.class);
+        servicePreferences.put("force_rotation", RotationSwitchTileService.class);
         return servicePreferences;
     }
 
@@ -95,6 +97,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(AnimatorDurationTileService.class);
         services.add(ShowTapsTileService.class);
         services.add(ToggleAnimationTileService.class);
+        services.add(RotationSwitchTileService.class);
         return services;
     }
 

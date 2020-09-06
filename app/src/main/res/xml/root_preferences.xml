@@ -110,6 +110,10 @@
             android:key="switch_states"
             android:title="@string/switch_volume_modes" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_screen_lock_rotation"
+            android:key="force_rotation"
+            android:title="@string/force_rotation" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

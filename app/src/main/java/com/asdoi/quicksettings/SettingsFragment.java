@@ -98,7 +98,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
         ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
-        ArrayList<Class<?>> selectApplicationServices = SettingsActivity.getCustomAppServices();
+        ArrayMap<Class<?>, String> selectApplicationServices = SettingsActivity.getCustomAppKeys();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -111,8 +111,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (secureSettingsDumpServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
-                } else if (selectApplicationServices.contains(serviceClass)) {
-                    setSelectApplicationPreferences(switchPreference, serviceClass);
+                } else if (selectApplicationServices.containsKey(serviceClass)) {
+                    setSelectApplicationPreferences(switchPreference, serviceClass, selectApplicationServices);
                 } else if (notificationPolicyServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getNotificationPolicyListener(serviceClass));
                 } else if (secureSettingsModifySystemServices.contains(serviceClass)) {
@@ -131,8 +131,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         };
     }
 
-    private void setSelectApplicationPreferences(SwitchPreferenceCompat switchPreference, Class<?> serviceClass) {
-        final String key = SettingsActivity.getCustomAppKeys().get(serviceClass);
+    private void setSelectApplicationPreferences(SwitchPreferenceCompat switchPreference, Class<?> serviceClass, ArrayMap<Class<?>, String> customAppKeys) {
+        final String key = customAppKeys.get(serviceClass);
 
         String customPackageAtStart = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
         if (customPackageAtStart != null)

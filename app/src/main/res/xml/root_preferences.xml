@@ -59,8 +59,24 @@
             android:key="open_files"
             android:title="@string/open_files" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_apps"
+            android:icon="@drawable/ic_open_in_new"
             android:key="custom_app_one"
+            android:title="@string/custom_app" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_open_in_new"
+            android:key="custom_app_two"
+            android:title="@string/custom_app" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_open_in_new"
+            android:key="custom_app_three"
+            android:title="@string/custom_app" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_open_in_new"
+            android:key="custom_app_four"
+            android:title="@string/custom_app" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_open_in_new"
+            android:key="custom_app_five"
             android:title="@string/custom_app" />
     </PreferenceCategory>
 

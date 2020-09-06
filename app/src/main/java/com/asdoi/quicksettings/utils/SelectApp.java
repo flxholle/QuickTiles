@@ -53,7 +53,7 @@ public class SelectApp {
         Dialog dialog = new AlertDialog.Builder(context)
                 .setView(applicationsList)
                 .setPositiveButton(null, null)
-                .setNegativeButton(null, null)
+                .setNegativeButton(R.string.cancel, null)
                 .create();
         applicationsList.setAdapter(new ApplicationAdapter(context, getApplicationList(context), dialog, key, runAfterSelection));
         return dialog;

@@ -22,7 +22,11 @@ import com.asdoi.quicksettings.tiles.NewCalendarEventTileService;
 import com.asdoi.quicksettings.tiles.NewTimerTileService;
 import com.asdoi.quicksettings.tiles.NextSongTileService;
 import com.asdoi.quicksettings.tiles.OpenAboutPhoneTileService;
+import com.asdoi.quicksettings.tiles.OpenAppFiveTileService;
+import com.asdoi.quicksettings.tiles.OpenAppFourTileService;
 import com.asdoi.quicksettings.tiles.OpenAppOneTileService;
+import com.asdoi.quicksettings.tiles.OpenAppThreeTileService;
+import com.asdoi.quicksettings.tiles.OpenAppTwoTileService;
 import com.asdoi.quicksettings.tiles.OpenCalculatorTileService;
 import com.asdoi.quicksettings.tiles.OpenCastTileService;
 import com.asdoi.quicksettings.tiles.OpenConnectedDevicesTileService;
@@ -94,18 +98,20 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("developer_options", OpenDeveloperOptionsTileService.class);
         servicePreferences.put("open_language", OpenLocaleTileService.class);
         servicePreferences.put("custom_app_one", OpenAppOneTileService.class);
+        servicePreferences.put("custom_app_two", OpenAppTwoTileService.class);
+        servicePreferences.put("custom_app_three", OpenAppThreeTileService.class);
+        servicePreferences.put("custom_app_four", OpenAppFourTileService.class);
+        servicePreferences.put("custom_app_five", OpenAppFiveTileService.class);
         return servicePreferences;
-    }
-
-    public static ArrayList<Class<?>> getCustomAppServices() {
-        ArrayList<Class<?>> services = new ArrayList<>();
-        services.add(OpenAppOneTileService.class);
-        return services;
     }
 
     public static ArrayMap<Class<?>, String> getCustomAppKeys() {
         ArrayMap<Class<?>, String> servicePreferences = new ArrayMap<>();
         servicePreferences.put(OpenAppOneTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_ONE);
+        servicePreferences.put(OpenAppTwoTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_TWO);
+        servicePreferences.put(OpenAppThreeTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_THREE);
+        servicePreferences.put(OpenAppFourTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_FOUR);
+        servicePreferences.put(OpenAppFiveTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_FIVE);
         return servicePreferences;
     }
 

@@ -426,7 +426,47 @@
         <service
             android:name=".tiles.OpenAppOneTileService"
             android:enabled="false"
-            android:icon="@drawable/ic_apps"
+            android:icon="@drawable/ic_open_in_new"
+            android:label="@string/custom_app"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.OpenAppTwoTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_open_in_new"
+            android:label="@string/custom_app"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.OpenAppThreeTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_open_in_new"
+            android:label="@string/custom_app"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.OpenAppFourTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_open_in_new"
+            android:label="@string/custom_app"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".tiles.OpenAppFiveTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

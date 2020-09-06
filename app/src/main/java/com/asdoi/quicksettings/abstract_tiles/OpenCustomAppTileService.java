@@ -36,7 +36,7 @@ public abstract class OpenCustomAppTileService extends IntentTileService {
             tile.setLabel(selectedApp.loadLabel(getPackageManager()));
         } else {
             tile.setLabel(getString(R.string.custom_app));
-            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_apps));
+            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_open_in_new));
         }
         tile.updateTile();
     }

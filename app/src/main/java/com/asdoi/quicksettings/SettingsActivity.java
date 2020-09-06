@@ -38,6 +38,7 @@ import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;
 import com.asdoi.quicksettings.tiles.TakePhotoTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
+import com.asdoi.quicksettings.tiles.UsbDebuggingNetworkTileService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
 import com.asdoi.quicksettings.tiles.VibrateCallsTileService;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
@@ -85,6 +86,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("vibrate_calls", VibrateCallsTileService.class);
         servicePreferences.put("switch_states", DoNotDisturbSwitchTileService.class);
         servicePreferences.put("force_rotation", RotationSwitchTileService.class);
+        servicePreferences.put("adb_over_network", UsbDebuggingNetworkTileService.class);
         return servicePreferences;
     }
 
@@ -119,6 +121,12 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
     public static ArrayList<Class<?>> getSecureSettingsAndDumpServices() {
         ArrayList<Class<?>> services = new ArrayList<>();
         services.add(DemoModeTileService.class);
+        return services;
+    }
+
+    public static ArrayList<Class<?>> getRootServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(UsbDebuggingNetworkTileService.class);
         return services;
     }
 

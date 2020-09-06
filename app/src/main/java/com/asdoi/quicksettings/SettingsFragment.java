@@ -20,8 +20,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.asdoi.quicksettings.utils.CounterSharedPref;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
+import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 import com.bytehamster.lib.preferencesearch.SearchConfiguration;
 import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
@@ -78,7 +78,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Preference resetCounter = findPreference("reset_counter");
         resetCounter.setOnPreferenceClickListener((preference -> {
-            CounterSharedPref.resetCounter(requireContext());
+            SharedPreferencesUtil.resetCounter(requireContext());
             return true;
         }));
     }
@@ -89,6 +89,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> modifySystemSettingsServices = SettingsActivity.getModifySystemSettingsServices();
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
+        ArrayList<Class<?>> rootServices = SettingsActivity.getRootServices();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -103,6 +104,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
                 } else if (notificationPolicyServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getNotificationPolicyListener(serviceClass));
+                } else if (rootServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getRootListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
                 }
@@ -150,6 +153,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             } else if (newValue.equals(Boolean.TRUE)) {
                 setComponentState(Boolean.FALSE, serviceClass);
                 GrantPermissionDialogs.getNotificationPolicyDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getRootListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasRootPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getRootDialog(requireContext()).show();
                 return false;
             }
             return true;

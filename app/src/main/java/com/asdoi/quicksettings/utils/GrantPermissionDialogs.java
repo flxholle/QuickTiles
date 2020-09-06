@@ -125,4 +125,33 @@ public class GrantPermissionDialogs {
                 })
                 .create();
     }
+
+    public static boolean hasRootPermission(Context context) {
+        try {
+            Process su = Runtime.getRuntime().exec("su");
+            DataOutputStream os = new DataOutputStream(su.getOutputStream());
+            os.writeBytes("exit\n");
+            os.close();
+            su.waitFor();
+            os.close();
+            su.destroy();
+            return true;
+        } catch (Exception e) {
+            Toast.makeText(context, R.string.root_failure, Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static Dialog getRootDialog(final Context context) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+                .setCancelable(true)
+                .setTitle(R.string.permission_required)
+                .setMessage(R.string.root_required_description)
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.root, (dialog, which) -> {
+                    hasRootPermission(context);
+                })
+                .create();
+    }
 }

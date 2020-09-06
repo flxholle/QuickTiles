@@ -138,6 +138,10 @@
             android:summary="@string/adrian_garcia_credit"
             android:title="@string/usb_debugging" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_usb_debugging_enabled"
+            android:key="adb_over_network"
+            android:title="@string/adb_over_network" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_demo_mode_enabled"
             android:key="demo_mode"
             android:summary="@string/adrian_garcia_credit"

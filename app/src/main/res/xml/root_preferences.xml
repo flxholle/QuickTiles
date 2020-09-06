@@ -54,10 +54,17 @@
             android:icon="@drawable/ic_folder"
             android:key="open_files"
             android:title="@string/open_files" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/open_settings">
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_search"
             android:key="search_settings"
             android:title="@string/search_settings" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_language"
+            android:key="open_language"
+            android:title="@string/languages" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_history"
             android:key="notification_history"
@@ -71,17 +78,13 @@
             android:key="data_usage"
             android:title="@string/data_usage" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_devices_other"
-            android:key="connected_devices"
-            android:title="@string/connected_devices" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_language"
-            android:key="open_language"
-            android:title="@string/languages" />
-        <SwitchPreferenceCompat
             android:icon="@drawable/ic_cast"
             android:key="screen_cast"
             android:title="@string/screen_cast" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_devices_other"
+            android:key="connected_devices"
+            android:title="@string/connected_devices" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_perm_device_information"
             android:key="about_phone"
@@ -100,12 +103,10 @@
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_brightness_auto"
             android:key="adaptive_brightness"
-            android:summary="@string/rascarlo_credit"
             android:title="@string/adaptive_brightness" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
-            android:summary="@string/fei_ke_credit"
             android:title="@string/grayscale" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_brightness_high"
@@ -143,52 +144,46 @@
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_usb_debugging_enabled"
             android:key="usb_debugging"
-            android:summary="@string/adrian_garcia_credit"
             android:title="@string/usb_debugging" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_demo_mode_enabled"
             android:key="demo_mode"
-            android:summary="@string/adrian_garcia_credit"
             android:title="@string/demo_mode" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_demo_mode_enabled"
+            android:key="developer_options"
+            android:title="@string/developer_options" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_show_taps_enabled"
             android:key="show_taps"
-            android:summary="@string/adrian_garcia_credit"
             android:title="@string/show_taps"
             app:isPreferenceVisible="false" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_keep_screen_on_enabled"
             android:key="keep_screen_on"
-            android:summary="@string/adrian_garcia_credit"
             android:title="@string/keep_screen_on" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_animator_duration_enabled"
             android:key="animator_duration"
-            android:summary="@string/adrian_garcia_credit"
             android:title="@string/animator_duration" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_animation_on"
             android:key="disable_all_animations"
-            android:summary="@string/mustafa_ali_credit"
             android:title="@string/disable_all_animations" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_finish_activities_enabled"
             android:key="finish_activities"
-            android:summary="@string/adrian_garcia_credit"
             android:title="@string/finish_activities" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_developer_mode"
-            android:key="developer_options"
-            android:title="@string/developer_options" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits">
         <Preference
             android:icon="@drawable/ic_info"
-            android:key="libraries"
-            android:title="@string/open_source_libraries" />
+            android:key="credits"
+            android:title="@string/credits" />
         <Preference
             android:icon="@drawable/ic_info"
-            android:key="credits" />
+            android:key="libraries"
+            android:title="@string/open_source_libraries" />
     </PreferenceCategory>
 </PreferenceScreen>

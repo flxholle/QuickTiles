@@ -1,17 +1,19 @@
 package com.asdoi.quicksettings;
 
+import android.app.Dialog;
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.ArrayMap;
 import android.util.TypedValue;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -58,9 +60,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         config.index(R.xml.root_preferences);
 
         Preference credits = findPreference("credits");
-        credits.setTitle(Html.fromHtml(getString(R.string.app_icon_credit), Html.FROM_HTML_MODE_LEGACY));
         credits.setOnPreferenceClickListener((view) -> {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_icon_credit_link))));
+            Dialog dialog = new AlertDialog.Builder(requireContext())
+                    .setTitle(R.string.credits)
+                    .setMessage(Html.fromHtml(getString(R.string.credits_description), Html.FROM_HTML_MODE_LEGACY))
+                    .setPositiveButton(R.string.ok, (button, listener) -> {
+                    })
+                    .show();
+            ((TextView) dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
             return true;
         });
 

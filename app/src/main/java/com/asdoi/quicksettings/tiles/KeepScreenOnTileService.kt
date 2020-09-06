@@ -21,6 +21,7 @@ import android.os.BatteryManager
 import android.provider.Settings
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.abstract_tiles.WriteSecureSettingsTileService
+import com.asdoi.quicksettings.utils.GrantPermissionDialogs
 import com.asdoi.quicksettings.utils.SharedPreferencesUtil
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
@@ -39,15 +40,44 @@ class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
     }
 
     override fun queryValue(): Int {
-        return WriteSystemSettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
+        val screenTimeout = WriteSystemSettingsUtils.getIntFromSystemSettings(contentResolver, ScreenTimeoutTileService.SETTING)
+        val pluggedState = WriteSystemSettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
+
+        return if (pluggedState == OFF) {
+            if (screenTimeout == Int.MAX_VALUE)
+                ANY
+            else
+                pluggedState
+        } else
+            pluggedState
     }
 
     override fun reset() {
         saveValue(OFF)
     }
 
+    override fun checkPermission(): Boolean {
+        if (GrantPermissionDialogs.hasModifySystemSettingsPermission(this)
+                && GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
+            return true
+        else if (!GrantPermissionDialogs.hasModifySystemSettingsPermission(this))
+            showDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this))
+        else
+            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
+        return false
+    }
+
     override fun saveValue(value: Int): Boolean {
-        return WriteSystemSettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
+        val screenTimeout = WriteSystemSettingsUtils.getIntFromSystemSettings(contentResolver, ScreenTimeoutTileService.SETTING)
+        return if (value == ANY) {
+            SharedPreferencesUtil.setScreenTimeout(this, screenTimeout)
+            WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, ScreenTimeoutTileService.SETTING, Int.MAX_VALUE)
+            WriteSystemSettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, PLUGGED_AC)
+        } else {
+            if (screenTimeout == Int.MAX_VALUE)
+                WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, ScreenTimeoutTileService.SETTING, SharedPreferencesUtil.getScreenTimeout(this))
+            WriteSystemSettingsUtils.setIntToGlobalSettings(contentResolver, SETTING, value)
+        }
     }
 
     override fun getValueList(): List<Int> {

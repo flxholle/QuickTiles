@@ -99,7 +99,6 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(GrayscaleTileService.class);
         services.add(UsbDebuggingTileService.class);
         services.add(FinishActivitiesTileService.class);
-        services.add(KeepScreenOnTileService.class);
         services.add(AnimatorDurationTileService.class);
         services.add(ShowTapsTileService.class);
         services.add(ToggleAnimationTileService.class);
@@ -125,6 +124,12 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
     public static ArrayList<Class<?>> getSecureSettingsAndDumpServices() {
         ArrayList<Class<?>> services = new ArrayList<>();
         services.add(DemoModeTileService.class);
+        return services;
+    }
+
+    public static ArrayList<Class<?>> getSecureSettingsModifySystemServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(KeepScreenOnTileService.class);
         return services;
     }
 

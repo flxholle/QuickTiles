@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager;
 public class SharedPreferencesUtil {
     public static String COUNTER = "counter_value";
     public static String CUSTOMIZE_KEEP_SCREEN_ON = "keep_screen_on_customize";
+    public static String SCREEN_TIMEOUT = "screen_timeout_save";
 
     public static int getCounter(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
@@ -28,5 +29,16 @@ public class SharedPreferencesUtil {
     public static int getCustomizeKeepScreenOn(Context context) {
         return Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(CUSTOMIZE_KEEP_SCREEN_ON, "3"));
+    }
+
+    public static int getScreenTimeout(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(SCREEN_TIMEOUT, 60000);
+    }
+
+    public static void setScreenTimeout(Context context, int value) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putInt(SCREEN_TIMEOUT, value)
+                .apply();
     }
 }

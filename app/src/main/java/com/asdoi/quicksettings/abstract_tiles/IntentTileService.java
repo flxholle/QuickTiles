@@ -12,10 +12,7 @@ public abstract class IntentTileService extends BaseTileService {
         Intent intent = createIntent();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-
-            Intent close_notification_bar = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-            sendBroadcast(close_notification_bar);
+            startActivityAndCollapse(intent);
         } else {
             Toast.makeText(this, R.string.no_app_found, Toast.LENGTH_LONG).show();
         }

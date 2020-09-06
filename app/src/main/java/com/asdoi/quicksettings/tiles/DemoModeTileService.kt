@@ -49,16 +49,17 @@ class DemoModeTileService : WriteSecureSettingsTileService<Int>() {
         stopDemoMode()
     }
 
-    override fun onClick() {
+    override fun checkPermission(): Boolean {
         if (GrantPermissionDialogs.hasDumpPermission(this)
                 && GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
-            super.onClick()
+            return true
         else if (!GrantPermissionDialogs.hasDumpPermission(this))
             showDialog(GrantPermissionDialogs.getDumpDialog(this))
         else if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
             showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
         else
             showDialog(GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(this))
+        return false
     }
 
     override fun saveValue(value: Int): Boolean {

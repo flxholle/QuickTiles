@@ -96,6 +96,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> modifySystemSettingsServices = SettingsActivity.getModifySystemSettingsServices();
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
+        ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -110,6 +111,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
                 } else if (notificationPolicyServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getNotificationPolicyListener(serviceClass));
+                } else if (secureSettingsModifySystemServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getSecureSettingsModifySystemListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
                 }
@@ -174,6 +177,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(requireContext()).show();
                 else if (!GrantPermissionDialogs.hasDumpPermission(requireContext()))
                     GrantPermissionDialogs.getDumpDialog(requireContext()).show();
+                else
+                    GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getSecureSettingsModifySystemListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext())
+                    && GrantPermissionDialogs.hasWriteSecureSettingsPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                if (!GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext()))
+                    GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
                 else
                     GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
                 return false;

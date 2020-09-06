@@ -88,6 +88,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
         ArrayList<Class<?>> modifySystemSettingsServices = SettingsActivity.getModifySystemSettingsServices();
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
+        ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -100,6 +101,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (secureSettingsDumpServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
+                } else if (notificationPolicyServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getNotificationPolicyListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
                 }
@@ -134,6 +137,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             } else if (newValue.equals(Boolean.TRUE)) {
                 setComponentState(Boolean.FALSE, serviceClass);
                 GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getNotificationPolicyListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasNotificationPolicyPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getNotificationPolicyDialog(requireContext()).show();
                 return false;
             }
             return true;

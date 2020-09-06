@@ -106,6 +106,10 @@
             android:key="vibrate_calls"
             android:title="@string/vibrate_on_calls" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_ring_volume"
+            android:key="switch_states"
+            android:title="@string/switch_volume_modes" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_grayscale"
             android:key="grayscale"
             android:summary="@string/fei_ke_credit"

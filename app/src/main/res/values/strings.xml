@@ -79,6 +79,12 @@
     <string name="minute">Minute</string>
     <string name="minutes">Minutes</string>
     <string name="vibrate_on_calls">Vibrate On Calls</string>
+    <string name="normal">Normal</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="priority_only">Priority Only</string>
+    <string name="alarms_only">Alarms Only</string>
+    <string name="total_silence">Total Silence</string>
+    <string name="switch_volume_modes">Switch Volume Modes</string>
 
     <string name="permission_notification_policy_description">To use this feature, a permission has to be granted. Please open the settings and grant the \"Do Not Disturb access\" permission.</string>
 </resources>

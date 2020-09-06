@@ -11,6 +11,7 @@ import com.asdoi.quicksettings.tiles.BatteryTileService;
 import com.asdoi.quicksettings.tiles.BrightnessTileService;
 import com.asdoi.quicksettings.tiles.CounterTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
+import com.asdoi.quicksettings.tiles.DoNotDisturbSwitchTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
@@ -81,6 +82,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("counter", CounterTileService.class);
         servicePreferences.put("screen_timeout", ScreenTimeoutTileService.class);
         servicePreferences.put("vibrate_calls", VibrateCallsTileService.class);
+        servicePreferences.put("switch_states", DoNotDisturbSwitchTileService.class);
         return servicePreferences;
     }
 
@@ -102,6 +104,12 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(BrightnessTileService.class);
         services.add(ScreenTimeoutTileService.class);
         services.add(VibrateCallsTileService.class);
+        return services;
+    }
+
+    public static ArrayList<Class<?>> getNotificationPolicyServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(DoNotDisturbSwitchTileService.class);
         return services;
     }
 

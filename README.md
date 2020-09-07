@@ -11,6 +11,7 @@ Android Quick Settings Tiles
  - Make call
  - Take photo/record video
  - Open calculator/file manager
+ - Open custom apps
  - Search settings
  - Open languages
  - Open VPN/data usage/screen cast/connected devices/about

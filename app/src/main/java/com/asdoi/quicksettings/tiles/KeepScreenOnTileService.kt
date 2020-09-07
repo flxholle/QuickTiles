@@ -43,6 +43,9 @@ class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
         val screenTimeout = WriteSystemSettingsUtils.getIntFromSystemSettings(contentResolver, ScreenTimeoutTileService.SETTING)
         val pluggedState = WriteSystemSettingsUtils.getIntFromGlobalSettings(contentResolver, SETTING)
 
+        if (screenTimeout != Int.MAX_VALUE)
+            SharedPreferencesUtil.setScreenTimeout(this, screenTimeout)
+
         return if (pluggedState == OFF) {
             if (screenTimeout == Int.MAX_VALUE)
                 ANY

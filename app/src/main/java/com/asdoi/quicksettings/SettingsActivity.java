@@ -159,6 +159,10 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         prefsFragment = new SettingsFragment();
         getSupportFragmentManager()
                 .beginTransaction()

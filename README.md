@@ -34,6 +34,8 @@ Android Quick Settings Tiles
 
 ### Todo:
  - Add Customization to "Demo Mode" from https://github.com/adriangl/Dev-QuickSettings/tree/feature/settings
+ - Add JobServices to check if the system settings were manually changed by user
+ - Fix delay after tile is pressed
 
 ### Credits:
 App icon made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>

@@ -99,8 +99,8 @@ class DoNotDisturbSwitchTileService : NotificationPolicyTileService<Int>() {
                     VIBRATE_MODE -> R.drawable.ic_vibration
 //                    SILENCE_MODE -> R.drawable.ic_notifications_off
                     PRIORITY_ONLY -> R.drawable.ic_priority_high
-                    ALARMS_ONLY -> R.drawable.ic_remove_circle
-                    TOTAL_SILENCE -> R.drawable.ic_exit_circle_left
+                    ALARMS_ONLY -> R.drawable.ic_alarm_on
+                    TOTAL_SILENCE -> R.drawable.ic_remove_circle
                     else -> R.drawable.ic_ring_volume
                 }
 

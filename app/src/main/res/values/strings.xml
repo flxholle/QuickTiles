@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">QuickSettings</string>
+    <string name="app_name" translatable="false">QuickTiles</string>
     <string name="app_icon_credit_link" translatable="false">https://www.flaticon.com/authors/nikita-golubev</string>
     <string name="open_source_libraries">Open source libraries</string>
     <string name="credits">Credits</string>

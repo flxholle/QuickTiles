@@ -5,10 +5,10 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.asdoi.quicksettings"
+        applicationId "com.asdoi.quicktiles"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 11

@@ -100,7 +100,7 @@
     <string name="custom_app">Custom App</string>
     <string name="switch_silence_loud">Switch between Loud and Silence</string>
     <string name="silence">Silence</string>
-    <string name="loud">Loud</string>
+    <string name="normal">Normal</string>
 
     <string name="pref_keep_screen_on_mode_ac_adapter">When connected to an AC adapter</string>
     <string name="pref_keep_screen_on_mode_usb_port">When connected to an USB port</string>

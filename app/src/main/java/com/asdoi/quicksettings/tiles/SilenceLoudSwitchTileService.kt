@@ -68,9 +68,9 @@ class SilenceLoudSwitchTileService : NotificationPolicyTileService<Int>() {
 
     override fun getLabel(value: Int): CharSequence? {
         return getString(when (value) {
-            NORMAL_MODE -> R.string.loud
+            NORMAL_MODE -> R.string.normal
             TOTAL_SILENCE -> R.string.silence
-            else -> R.string.loud
+            else -> R.string.normal
         })
     }
 

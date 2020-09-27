@@ -89,5 +89,5 @@
     <string name="permission_required_description">Um diese Funktion zu nutzen, muss eine Bereichtigung erteilt werden. Kopiere folgenden Code und führe ihn auf einem PC aus oder nutze eine Root-Methode: %s</string>
     <string name="switch_silence_loud">Zwischen Laut und Stumm wechseln</string>
     <string name="silence">Stumm</string>
-    <string name="loud">Laut</string>
+    <string name="normal">Normal</string>
 </resources>

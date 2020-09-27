@@ -125,6 +125,10 @@
             android:key="switch_states"
             android:title="@string/switch_volume_modes" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_ring_volume"
+            android:key="switch_silence_loud"
+            android:title="@string/switch_silence_loud" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_brightness_high"
             android:key="adjust_brightness"
             android:title="@string/adjust_brightness" />

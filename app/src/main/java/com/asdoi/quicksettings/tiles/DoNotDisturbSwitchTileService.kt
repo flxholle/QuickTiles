@@ -109,13 +109,13 @@ class DoNotDisturbSwitchTileService : NotificationPolicyTileService<Int>() {
 
     override fun getLabel(value: Int): CharSequence? {
         return getString(when (value) {
-            NORMAL_MODE -> R.string.normal
+            NORMAL_MODE -> R.string.loud
             VIBRATE_MODE -> R.string.vibrate
 //            SILENCE_MODE -> "Silence"
             PRIORITY_ONLY -> R.string.priority_only
             ALARMS_ONLY -> R.string.alarms_only
             TOTAL_SILENCE -> R.string.total_silence
-            else -> R.string.normal
+            else -> R.string.loud
         })
     }
 

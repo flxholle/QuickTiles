@@ -79,7 +79,6 @@
     <string name="minute">Minute</string>
     <string name="minutes">Minutes</string>
     <string name="vibrate_on_calls">Vibrate On Calls</string>
-    <string name="normal">Normal</string>
     <string name="vibrate">Vibrate</string>
     <string name="priority_only">Priority Only</string>
     <string name="alarms_only">Alarms Only</string>
@@ -99,6 +98,9 @@
     <string name="open_settings">Open Settings</string>
     <string name="on_which_connection">On which Connection</string>
     <string name="custom_app">Custom App</string>
+    <string name="switch_silence_loud">Switch between Loud and Silence</string>
+    <string name="silence">Silence</string>
+    <string name="loud">Loud</string>
 
     <string name="pref_keep_screen_on_mode_ac_adapter">When connected to an AC adapter</string>
     <string name="pref_keep_screen_on_mode_usb_port">When connected to an USB port</string>

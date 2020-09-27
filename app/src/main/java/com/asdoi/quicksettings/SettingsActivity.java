@@ -44,6 +44,7 @@ import com.asdoi.quicksettings.tiles.RecordVideoTileService;
 import com.asdoi.quicksettings.tiles.RotationSwitchTileService;
 import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;
+import com.asdoi.quicksettings.tiles.SilenceLoudSwitchTileService;
 import com.asdoi.quicksettings.tiles.TakePhotoTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
@@ -102,6 +103,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("custom_app_three", OpenAppThreeTileService.class);
         servicePreferences.put("custom_app_four", OpenAppFourTileService.class);
         servicePreferences.put("custom_app_five", OpenAppFiveTileService.class);
+        servicePreferences.put("switch_silence_loud", SilenceLoudSwitchTileService.class);
         return servicePreferences;
     }
 

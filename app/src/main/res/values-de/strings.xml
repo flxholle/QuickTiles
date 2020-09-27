@@ -56,7 +56,6 @@
     <string name="ok">OK</string>
     <string name="connected_devices">Verbundene Geräte</string>
     <string name="force_rotation">Fixe Displayrotation</string>
-    <string name="normal">Normal</string>
     <string name="animator_scale_1x">Animationsdauer: 1x</string>
     <string name="languages">Sprachen</string>
     <string name="open_apps">Apps Öffnen</string>
@@ -88,4 +87,7 @@
     <string name="permission_modify_system_settings_description">Um diese Funktion zu nutzen, muss eine Bereichtigung erteilt werden. Bitte öffne die Einstellungen und erlaube der App die Systemeinstellungen zu verändern.</string>
     <string name="permission_notification_policy_description">Um diese Funktion zu nutzen, muss eine Bereichtigung erteilt werden. Bitte öffne die Einstellungen und erlaube der App auf den \"Bitte nicht stören\"-Modus zuzugreifen.</string>
     <string name="permission_required_description">Um diese Funktion zu nutzen, muss eine Bereichtigung erteilt werden. Kopiere folgenden Code und führe ihn auf einem PC aus oder nutze eine Root-Methode: %s</string>
+    <string name="switch_silence_loud">Zwischen Laut und Stumm wechseln</string>
+    <string name="silence">Stumm</string>
+    <string name="loud">Laut</string>
 </resources>

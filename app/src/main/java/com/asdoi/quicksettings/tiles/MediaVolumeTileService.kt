@@ -9,34 +9,34 @@ class MediaVolumeTileService : SelectionTileService<Int>() {
     companion object {
         const val SETTING = AudioManager.STREAM_MUSIC
 
-        const val MUTE = 0
-        const val MAX_VOLUME = 1
+        const val MUTED = 0
+        const val LOUD = 1
     }
 
     override fun isActive(value: Int): Boolean {
-        return value != MUTE
+        return value != MUTED
     }
 
     override fun queryValue(): Int {
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         return if (audioManager.getStreamVolume(SETTING) == 0)
-            MUTE
+            MUTED
         else
-            MAX_VOLUME
+            LOUD
     }
 
     override fun reset() {
-        saveValue(MAX_VOLUME)
+        saveValue(LOUD)
     }
 
     override fun saveValue(value: Int): Boolean {
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-        audioManager.setStreamVolume(SETTING, if (value == MUTE) 0 else audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE, AudioManager.FLAG_SHOW_UI)
         return true
     }
 
     override fun getValueList(): List<Int> {
-        return listOf(MUTE, MAX_VOLUME)
+        return listOf(MUTED, LOUD)
     }
 
     override fun getIcon(value: Int): Icon? {

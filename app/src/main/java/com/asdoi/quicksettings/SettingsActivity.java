@@ -32,6 +32,7 @@ import com.asdoi.quicksettings.tiles.OpenCastTileService;
 import com.asdoi.quicksettings.tiles.OpenConnectedDevicesTileService;
 import com.asdoi.quicksettings.tiles.OpenDataUsageTileService;
 import com.asdoi.quicksettings.tiles.OpenDeveloperOptionsTileService;
+import com.asdoi.quicksettings.tiles.OpenDisplayTileService;
 import com.asdoi.quicksettings.tiles.OpenFilesTileService;
 import com.asdoi.quicksettings.tiles.OpenLocaleTileService;
 import com.asdoi.quicksettings.tiles.OpenNotificationLogTileService;
@@ -104,6 +105,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("custom_app_four", OpenAppFourTileService.class);
         servicePreferences.put("custom_app_five", OpenAppFiveTileService.class);
         servicePreferences.put("switch_silence_loud", SilenceLoudSwitchTileService.class);
+        servicePreferences.put("open_display", OpenDisplayTileService.class);
         return servicePreferences;
     }
 

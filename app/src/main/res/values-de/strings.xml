@@ -90,4 +90,5 @@
     <string name="switch_silence_loud">Zwischen Laut und Stumm wechseln</string>
     <string name="silence">Stumm</string>
     <string name="normal">Normal</string>
+    <string name="display">Display</string>
 </resources>

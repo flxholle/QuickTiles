@@ -483,6 +483,16 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        <service
+            android:name=".tiles.OpenDisplayTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_phonelink_setup"
+            android:label="@string/display"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

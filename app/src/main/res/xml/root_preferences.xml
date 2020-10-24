@@ -90,6 +90,10 @@
             android:key="open_language"
             android:title="@string/languages" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_phonelink_setup"
+            android:key="open_display"
+            android:title="@string/display" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_history"
             android:key="notification_history"
             android:title="@string/notification_history" />

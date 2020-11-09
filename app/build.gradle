@@ -11,15 +11,15 @@ android {
         applicationId "com.asdoi.quicktiles"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 11
-        versionName "1.1"
+        versionCode 12
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -37,6 +37,11 @@ Android Quick Settings Tiles
  - Add JobServices to check if the system settings were manually changed by the user
  - Fix the delay after a tile is pressed
 
+### Download
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
+
 ### Credits:
 App icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 <br>

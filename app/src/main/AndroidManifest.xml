@@ -43,6 +43,19 @@
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 
         <service
+            android:name=".NotificationJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".job_services.BootCompletedReceiver">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <service
             android:name=".intent_tiles.PlayPauseTileService"
             android:enabled="false"
             android:icon="@drawable/ic_play_pause"
@@ -422,6 +435,9 @@
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="true" />
         </service>
         <service
             android:name=".tiles.VibrateCallsTileService"

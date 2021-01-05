@@ -92,7 +92,7 @@ class DoNotDisturbSwitchTileService : NotificationPolicyTileService<Int>() {
         return listOf(NORMAL_MODE, VIBRATE_MODE, PRIORITY_ONLY, ALARMS_ONLY, TOTAL_SILENCE)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         val iconResource =
                 when (value) {
                     NORMAL_MODE -> R.drawable.ic_ring_volume
@@ -107,7 +107,7 @@ class DoNotDisturbSwitchTileService : NotificationPolicyTileService<Int>() {
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun getLabel(value: Int): CharSequence {
         return getString(when (value) {
             NORMAL_MODE -> R.string.normal
             VIBRATE_MODE -> R.string.vibrate

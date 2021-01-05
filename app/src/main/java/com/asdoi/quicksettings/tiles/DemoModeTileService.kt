@@ -80,12 +80,14 @@ class DemoModeTileService : WriteSecureSettingsTileService<Int>() {
         }
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         return Icon.createWithResource(applicationContext,
                 if (value != 0) R.drawable.ic_demo_mode_enabled else R.drawable.ic_demo_mode_disabled)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.demo_mode)
     }
 

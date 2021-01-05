@@ -49,12 +49,14 @@ class UsbDebuggingTileService : WriteSecureSettingsTileService<Int>() {
         return listOf(0, 1)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         return Icon.createWithResource(applicationContext,
                 if (value != 0) R.drawable.ic_usb_debugging_enabled else R.drawable.ic_usb_debugging_disabled)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.usb_debugging)
     }
 }

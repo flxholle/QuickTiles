@@ -62,12 +62,14 @@ class ShowTapsTileService : WriteSecureSettingsTileService<Int>() {
         return listOf(0, 1)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         return Icon.createWithResource(applicationContext,
                 if (value != 0) R.drawable.ic_show_taps_enabled else R.drawable.ic_show_taps_disabled)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.show_taps)
     }
 }

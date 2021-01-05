@@ -57,8 +57,10 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
 
     private fun updateState() {
         qsTile.state = if (isActive(value)) Tile.STATE_ACTIVE else Tile.STATE_INACTIVE
-        qsTile.label = getLabel(value)
-        qsTile.icon = getIcon(value)
+        if (updateLabel())
+            qsTile.label = getLabel(value)
+        if (updateIcon())
+            qsTile.icon = getIcon(value)
 
         qsTile.updateTile()
     }
@@ -71,8 +73,15 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
 
     abstract fun saveValue(value: T): Boolean
 
-    abstract fun getIcon(value: T): Icon?
+    abstract fun getIcon(value: T): Icon
 
-    abstract fun getLabel(value: T): CharSequence?
+    abstract fun getLabel(value: T): CharSequence
 
+    open fun updateLabel(): Boolean {
+        return true
+    }
+
+    open fun updateIcon(): Boolean {
+        return true
+    }
 }

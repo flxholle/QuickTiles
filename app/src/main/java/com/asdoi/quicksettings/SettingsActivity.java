@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.asdoi.quicksettings.intent_tiles.BatteryTileService;
 import com.asdoi.quicksettings.intent_tiles.MakeCallTileService;
-import com.asdoi.quicksettings.intent_tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.intent_tiles.NewAlarmTileService;
 import com.asdoi.quicksettings.intent_tiles.NewCalendarEventTileService;
 import com.asdoi.quicksettings.intent_tiles.NewTimerTileService;
@@ -46,6 +45,7 @@ import com.asdoi.quicksettings.tiles.DoNotDisturbSwitchTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
+import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.RotationSwitchTileService;
 import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;

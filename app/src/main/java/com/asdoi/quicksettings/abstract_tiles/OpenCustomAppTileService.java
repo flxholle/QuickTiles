@@ -2,7 +2,6 @@ package com.asdoi.quicksettings.abstract_tiles;
 
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
-import android.graphics.drawable.Icon;
 import android.service.quicksettings.Tile;
 
 import com.asdoi.quicksettings.R;
@@ -23,7 +22,6 @@ public abstract class OpenCustomAppTileService extends IntentTileService {
 
     @Override
     public Intent createIntent() {
-        updateState();
         String packageName = SharedPreferencesUtil.getCustomPackage(this, getPreferencesKey());
         if (packageName != null)
             return getPackageManager().getLaunchIntentForPackage(packageName);
@@ -41,7 +39,6 @@ public abstract class OpenCustomAppTileService extends IntentTileService {
             tile.setLabel(selectedApp.loadLabel(getPackageManager()));
         } else {
             tile.setLabel(getString(R.string.custom_app));
-            tile.setIcon(Icon.createWithResource(this, R.drawable.ic_open_in_new));
         }
         tile.updateTile();
     }

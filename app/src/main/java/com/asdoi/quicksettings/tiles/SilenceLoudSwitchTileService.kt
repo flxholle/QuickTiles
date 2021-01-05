@@ -55,7 +55,7 @@ class SilenceLoudSwitchTileService : NotificationPolicyTileService<Int>() {
         return listOf(NORMAL_MODE, TOTAL_SILENCE)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         val iconResource =
                 when (value) {
                     NORMAL_MODE -> R.drawable.ic_ring_volume
@@ -66,7 +66,7 @@ class SilenceLoudSwitchTileService : NotificationPolicyTileService<Int>() {
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun getLabel(value: Int): CharSequence {
         return getString(when (value) {
             NORMAL_MODE -> R.string.normal
             TOTAL_SILENCE -> R.string.silence

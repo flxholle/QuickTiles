@@ -82,7 +82,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".intent_tiles.MediaVolumeTileService"
+            android:name=".tiles.MediaVolumeTileService"
             android:enabled="false"
             android:icon="@drawable/ic_music_video"
             android:label="@string/media_volume"

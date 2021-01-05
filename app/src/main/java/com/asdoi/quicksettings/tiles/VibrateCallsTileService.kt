@@ -31,11 +31,15 @@ class VibrateCallsTileService : ModifySystemSettingsTileService<Int>() {
         return listOf(0, 1)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun updateIcon() = false
+
+    override fun getIcon(value: Int): Icon {
         return Icon.createWithResource(applicationContext, R.drawable.ic_vibration)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.vibrate_on_calls)
     }
 

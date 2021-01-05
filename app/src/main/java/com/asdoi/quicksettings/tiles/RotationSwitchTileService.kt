@@ -49,7 +49,7 @@ class RotationSwitchTileService : WriteSecureSettingsTileService<Int>() {
         return listOf(NORMAL, LANDSCAPE, NORMAL_REVERSED, LANDSCAPE_REVERSED, AUTO_ROTATION)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         val resource =
                 if (value == AUTO_ROTATION)
                     R.drawable.ic_screen_rotation
@@ -59,7 +59,7 @@ class RotationSwitchTileService : WriteSecureSettingsTileService<Int>() {
         return Icon.createWithResource(applicationContext, resource)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun getLabel(value: Int): CharSequence {
         return getString(
                 when (value) {
                     NORMAL -> R.string.zero_degrees

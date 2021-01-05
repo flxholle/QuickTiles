@@ -94,12 +94,14 @@ class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
         return listOf(OFF, value)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         return Icon.createWithResource(applicationContext,
                 if (value != OFF) R.drawable.ic_keep_screen_on_enabled else R.drawable.ic_keep_screen_on_disabled)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.keep_screen_on)
     }
 

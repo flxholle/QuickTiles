@@ -31,7 +31,7 @@ class ScreenTimeoutTileService : ModifySystemSettingsTileService<Int>() {
         return listOf(15000, 30000, 60000, 120000, 300000, 600000, 1800000, Int.MAX_VALUE)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         val iconResource =
                 when (value) {
                     15000 -> R.drawable.ic_screen15s
@@ -47,7 +47,7 @@ class ScreenTimeoutTileService : ModifySystemSettingsTileService<Int>() {
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun getLabel(value: Int): CharSequence {
         if (value == Int.MAX_VALUE)
             return getString(R.string.infinite)
 

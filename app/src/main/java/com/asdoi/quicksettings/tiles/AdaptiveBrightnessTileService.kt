@@ -33,7 +33,7 @@ class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
         return listOf(AUTO, MANUAL)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         val iconResource =
                 if (value == AUTO)
                     R.drawable.ic_brightness_auto
@@ -43,7 +43,9 @@ class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.adaptive_brightness)
     }
 }

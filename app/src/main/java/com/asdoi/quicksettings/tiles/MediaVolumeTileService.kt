@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.intent_tiles
+package com.asdoi.quicksettings.tiles
 
 import android.graphics.drawable.Icon
 import android.media.AudioManager
@@ -39,11 +39,15 @@ class MediaVolumeTileService : SelectionTileService<Int>() {
         return listOf(MUTED, LOUD)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun updateIcon() = false
+
+    override fun getIcon(value: Int): Icon {
         return Icon.createWithResource(applicationContext, R.drawable.ic_music_video)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.media_volume)
     }
 

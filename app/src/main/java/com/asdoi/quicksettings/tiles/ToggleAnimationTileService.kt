@@ -48,7 +48,7 @@ class ToggleAnimationTileService : WriteSecureSettingsTileService<Float>() {
         }
     }
 
-    override fun getIcon(value: Float): Icon? {
+    override fun getIcon(value: Float): Icon {
         val icon = when {
             value <= 0f -> R.drawable.ic_animation_off
             else -> R.drawable.ic_animation_on
@@ -56,7 +56,7 @@ class ToggleAnimationTileService : WriteSecureSettingsTileService<Float>() {
         return Icon.createWithResource(applicationContext, icon)
     }
 
-    override fun getLabel(value: Float): CharSequence? {
+    override fun getLabel(value: Float): CharSequence {
         val string = when {
             value <= 0f -> R.string.enable_all_animations
             else -> R.string.disable_all_animations

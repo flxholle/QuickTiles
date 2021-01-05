@@ -47,7 +47,7 @@ class BrightnessTileService : ModifySystemSettingsTileService<Int>() {
         return listOf(0, 85, 170, 255)
     }
 
-    override fun getIcon(value: Int): Icon? {
+    override fun getIcon(value: Int): Icon {
         val iconResource =
                 if (value <= 0)
                     R.drawable.ic_brightness_low
@@ -59,7 +59,9 @@ class BrightnessTileService : ModifySystemSettingsTileService<Int>() {
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Int): CharSequence? {
+    override fun updateLabel() = false
+
+    override fun getLabel(value: Int): CharSequence {
         return getString(R.string.adjust_brightness)
     }
 }

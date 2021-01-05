@@ -47,7 +47,7 @@ class AnimatorDurationTileService : WriteSecureSettingsTileService<Float>() {
         return listOf(0f, 0.5f, 1f, 1.5f, 2f, 5f, 10f)
     }
 
-    override fun getIcon(value: Float): Icon? {
+    override fun getIcon(value: Float): Icon {
         var iconResource = R.drawable.ic_animator_duration_enabled
         if (value <= 0f) {
             iconResource = R.drawable.ic_animator_duration_disabled
@@ -68,7 +68,7 @@ class AnimatorDurationTileService : WriteSecureSettingsTileService<Float>() {
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Float): CharSequence? {
+    override fun getLabel(value: Float): CharSequence {
         var stringResource = R.string.animator_duration
         if (value <= 0f) {
             stringResource = R.string.animator_off

@@ -25,9 +25,12 @@ import com.asdoi.quicksettings.intent_tiles.OpenDataUsageTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenDeveloperOptionsTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenDisplayTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenFilesTileService;
+import com.asdoi.quicksettings.intent_tiles.OpenHomeTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenLocaleTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenNotificationLogTileService;
+import com.asdoi.quicksettings.intent_tiles.OpenPrivacyTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenSettingsSearchTileService;
+import com.asdoi.quicksettings.intent_tiles.OpenUserDictionaryTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenVolumePanelTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenVpnTileService;
 import com.asdoi.quicksettings.intent_tiles.PlayPauseTileService;
@@ -106,6 +109,9 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("custom_app_five", OpenAppFiveTileService.class);
         servicePreferences.put("switch_silence_loud", SilenceLoudSwitchTileService.class);
         servicePreferences.put("open_display", OpenDisplayTileService.class);
+        servicePreferences.put("open_home", OpenHomeTileService.class);
+        servicePreferences.put("open_privacy", OpenPrivacyTileService.class);
+        servicePreferences.put("open_user_dictionary", OpenUserDictionaryTileService.class);
         return servicePreferences;
     }
 

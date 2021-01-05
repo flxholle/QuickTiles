@@ -90,9 +90,21 @@
             android:key="open_language"
             android:title="@string/languages" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_dictionary"
+            android:key="open_user_dictionary"
+            android:title="@string/personal_dictionary" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_privacy"
+            android:key="open_privacy"
+            android:title="@string/privacy" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_phonelink_setup"
             android:key="open_display"
             android:title="@string/display" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_home"
+            android:key="open_home"
+            android:title="@string/home_app" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_history"
             android:key="notification_history"

@@ -93,4 +93,7 @@
     <string name="display">Display</string>
     <string name="select_an_app">Wähle eine App aus</string>
     <string name="system_apps_are_excluded">System-Apps werden ausgeschlossen</string>
+    <string name="home_app">Start-App</string>
+    <string name="privacy">Datenschutz</string>
+    <string name="personal_dictionary">Eigenes Wörterbuch</string>
 </resources>

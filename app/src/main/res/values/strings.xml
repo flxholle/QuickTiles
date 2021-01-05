@@ -102,6 +102,9 @@
     <string name="silence">Silence</string>
     <string name="normal">Normal</string>
     <string name="display">Display</string>
+    <string name="home_app">Home App</string>
+    <string name="privacy">Privacy</string>
+    <string name="personal_dictionary">Personal Dictionary</string>
 
     <string name="select_an_app">Select an app</string>
     <string name="system_apps_are_excluded">System apps are excluded</string>

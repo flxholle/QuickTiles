@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.service.quicksettings.TileService;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.ArrayMap;
@@ -22,6 +23,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
+import com.asdoi.quicksettings.tiles.CounterTileService;
 import com.asdoi.quicksettings.utils.GrantPermissionDialogs;
 import com.asdoi.quicksettings.utils.SelectApp;
 import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
@@ -87,6 +89,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference resetCounter = findPreference("reset_counter");
         resetCounter.setOnPreferenceClickListener((preference -> {
             SharedPreferencesUtil.resetCounter(requireContext());
+            TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), CounterTileService.class));
             return true;
         }));
     }
@@ -143,11 +146,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             if (newValue.equals(Boolean.TRUE) && customPackageNew == null) {
                 SelectApp.selectApps(requireContext(), key, () -> {
                     setComponentState(Boolean.TRUE, serviceClass);
+                    TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), serviceClass));
                     ((SwitchPreferenceCompat) preference).setChecked(true);
 
                     String customPackageUpdated = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
                     preference.setTitle(SelectApp.getApplicationInfo(requireContext(), customPackageUpdated).loadLabel(requireContext().getPackageManager()));
-
                 }).show();
                 return false;
             } else {

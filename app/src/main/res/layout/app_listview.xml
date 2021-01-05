@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp">
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
 
     <ImageView
         android:id="@+id/app_icon"

@@ -12,6 +12,11 @@ import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 public abstract class OpenCustomAppTileService extends IntentTileService {
 
     @Override
+    public void onTileAdded() {
+        updateState();
+    }
+
+    @Override
     public void onStartListening() {
         updateState();
     }

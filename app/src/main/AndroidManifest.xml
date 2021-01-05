@@ -43,6 +43,21 @@
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 
         <service
+            android:name=".job_services.AdaptiveBrightnessTileJobService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- on boot completed, call request listening state to update the tile and start the job service-->
+        <receiver
+            android:name=".utils.BootCompletedBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+
+        <service
             android:name=".tiles.PlayPauseTileService"
             android:enabled="false"
             android:icon="@drawable/ic_play_pause"

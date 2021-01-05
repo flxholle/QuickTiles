@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.asdoi.quicktiles"
+        applicationId "com.asdoi.quicktiles2"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 12

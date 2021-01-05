@@ -4,6 +4,7 @@ import android.graphics.drawable.Icon
 import android.provider.Settings
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.abstract_tiles.ModifySystemSettingsTileService
+import com.asdoi.quicksettings.job_services.AdaptiveBrightnessTileJobService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
@@ -11,6 +12,14 @@ class AdaptiveBrightnessTileService : ModifySystemSettingsTileService<Int>() {
         const val SETTING = Settings.System.SCREEN_BRIGHTNESS_MODE
         const val AUTO = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
         const val MANUAL = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+    }
+
+    override fun onTileAdded() {
+        AdaptiveBrightnessTileJobService.scheduleUpdateJob(this)
+    }
+
+    override fun onTileRemoved() {
+        AdaptiveBrightnessTileJobService.cancelJob(this)
     }
 
     override fun isActive(value: Int): Boolean {

@@ -43,7 +43,7 @@
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 
         <service
-            android:name=".tiles.PlayPauseTileService"
+            android:name=".intent_tiles.PlayPauseTileService"
             android:enabled="false"
             android:icon="@drawable/ic_play_pause"
             android:label="@string/play_pause"
@@ -56,7 +56,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.NextSongTileService"
+            android:name=".intent_tiles.NextSongTileService"
             android:enabled="false"
             android:icon="@drawable/ic_skip_next"
             android:label="@string/next_song"
@@ -69,7 +69,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.PreviousSongTileService"
+            android:name=".intent_tiles.PreviousSongTileService"
             android:enabled="false"
             android:icon="@drawable/ic_skip_previous"
             android:label="@string/previous_song"
@@ -82,7 +82,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.MediaVolumeTileService"
+            android:name=".intent_tiles.MediaVolumeTileService"
             android:enabled="false"
             android:icon="@drawable/ic_music_video"
             android:label="@string/media_volume"
@@ -189,7 +189,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.NewAlarmTileService"
+            android:name=".intent_tiles.NewAlarmTileService"
             android:enabled="false"
             android:icon="@drawable/ic_alarm_add"
             android:label="@string/new_alarm"
@@ -202,7 +202,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.NewTimerTileService"
+            android:name=".intent_tiles.NewTimerTileService"
             android:enabled="false"
             android:icon="@drawable/ic_timer"
             android:label="@string/new_timer"
@@ -215,7 +215,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.TakePhotoTileService"
+            android:name=".intent_tiles.TakePhotoTileService"
             android:enabled="false"
             android:icon="@drawable/ic_photo_camera"
             android:label="@string/take_photo"
@@ -228,7 +228,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.RecordVideoTileService"
+            android:name=".intent_tiles.RecordVideoTileService"
             android:enabled="false"
             android:icon="@drawable/ic_videocam"
             android:label="@string/record_video"
@@ -241,7 +241,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenCalculatorTileService"
+            android:name=".intent_tiles.OpenCalculatorTileService"
             android:enabled="false"
             android:icon="@drawable/ic_grid_on"
             android:label="@string/open_calculator"
@@ -254,7 +254,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenVolumePanelTileService"
+            android:name=".intent_tiles.OpenVolumePanelTileService"
             android:enabled="false"
             android:icon="@drawable/ic_volume_up"
             android:label="@string/open_volume_panel"
@@ -277,7 +277,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.OpenFilesTileService"
+            android:name=".intent_tiles.OpenFilesTileService"
             android:enabled="false"
             android:icon="@drawable/ic_folder"
             android:label="@string/open_files"
@@ -287,7 +287,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.BatteryTileService"
+            android:name=".intent_tiles.BatteryTileService"
             android:enabled="false"
             android:icon="@drawable/ic_battery_full"
             android:label="@string/battery"
@@ -297,7 +297,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.OpenVpnTileService"
+            android:name=".intent_tiles.OpenVpnTileService"
             android:enabled="false"
             android:icon="@drawable/ic_vpn_key"
             android:label="@string/vpn"
@@ -310,7 +310,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenDataUsageTileService"
+            android:name=".intent_tiles.OpenDataUsageTileService"
             android:enabled="false"
             android:icon="@drawable/ic_data_usage"
             android:label="@string/data_usage"
@@ -323,7 +323,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenAboutPhoneTileService"
+            android:name=".intent_tiles.OpenAboutPhoneTileService"
             android:enabled="false"
             android:icon="@drawable/ic_perm_device_information"
             android:label="@string/about_phone"
@@ -336,7 +336,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenConnectedDevicesTileService"
+            android:name=".intent_tiles.OpenConnectedDevicesTileService"
             android:enabled="false"
             android:icon="@drawable/ic_devices_other"
             android:label="@string/connected_devices"
@@ -349,7 +349,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenNotificationLogTileService"
+            android:name=".intent_tiles.OpenNotificationLogTileService"
             android:enabled="false"
             android:icon="@drawable/ic_history"
             android:label="@string/notification_history"
@@ -362,7 +362,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenSettingsSearchTileService"
+            android:name=".intent_tiles.OpenSettingsSearchTileService"
             android:enabled="false"
             android:icon="@drawable/ic_search"
             android:label="@string/search_settings"
@@ -375,7 +375,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.NewCalendarEventTileService"
+            android:name=".intent_tiles.NewCalendarEventTileService"
             android:enabled="false"
             android:icon="@drawable/ic_event"
             android:label="@string/new_event"
@@ -388,7 +388,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.MakeCallTileService"
+            android:name=".intent_tiles.MakeCallTileService"
             android:enabled="false"
             android:icon="@drawable/ic_call"
             android:label="@string/make_call"
@@ -454,7 +454,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.OpenCastTileService"
+            android:name=".intent_tiles.OpenCastTileService"
             android:enabled="false"
             android:icon="@drawable/ic_cast"
             android:label="@string/screen_cast"
@@ -467,7 +467,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenDeveloperOptionsTileService"
+            android:name=".intent_tiles.OpenDeveloperOptionsTileService"
             android:enabled="false"
             android:icon="@drawable/ic_developer_mode"
             android:label="@string/developer_options"
@@ -480,7 +480,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenLocaleTileService"
+            android:name=".intent_tiles.OpenLocaleTileService"
             android:enabled="false"
             android:icon="@drawable/ic_language"
             android:label="@string/languages"
@@ -493,7 +493,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenAppOneTileService"
+            android:name=".intent_tiles.OpenAppOneTileService"
             android:enabled="false"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
@@ -506,7 +506,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenAppTwoTileService"
+            android:name=".intent_tiles.OpenAppTwoTileService"
             android:enabled="false"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
@@ -519,7 +519,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenAppThreeTileService"
+            android:name=".intent_tiles.OpenAppThreeTileService"
             android:enabled="false"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
@@ -532,7 +532,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenAppFourTileService"
+            android:name=".intent_tiles.OpenAppFourTileService"
             android:enabled="false"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
@@ -545,7 +545,7 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".tiles.OpenAppFiveTileService"
+            android:name=".intent_tiles.OpenAppFiveTileService"
             android:enabled="false"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
@@ -568,7 +568,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.OpenDisplayTileService"
+            android:name=".intent_tiles.OpenDisplayTileService"
             android:enabled="false"
             android:icon="@drawable/ic_phonelink_setup"
             android:label="@string/display"

@@ -6,10 +6,4 @@ public abstract class BaseTileService extends TileService {
 
     //This should be called when the Tile gets disabled by the user
     public abstract void reset();
-
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        reset();
-//    }
 }

@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.tiles
+package com.asdoi.quicksettings.intent_tiles
 
 import android.graphics.drawable.Icon
 import android.media.AudioManager

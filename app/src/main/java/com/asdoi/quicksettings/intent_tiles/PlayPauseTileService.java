@@ -1,4 +1,4 @@
-package com.asdoi.quicksettings.tiles;
+package com.asdoi.quicksettings.intent_tiles;
 
 import android.content.Context;
 import android.media.AudioManager;

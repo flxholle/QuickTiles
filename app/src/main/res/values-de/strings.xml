@@ -91,4 +91,6 @@
     <string name="silence">Stumm</string>
     <string name="normal">Normal</string>
     <string name="display">Display</string>
+    <string name="select_an_app">Wähle eine App aus</string>
+    <string name="system_apps_are_excluded">System-Apps werden ausgeschlossen</string>
 </resources>

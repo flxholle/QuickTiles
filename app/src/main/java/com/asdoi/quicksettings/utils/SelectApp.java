@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,12 +49,23 @@ public class SelectApp {
     }
 
     public static Dialog selectApps(Context context, String key, Runnable runAfterSelection) {
+        LinearLayout customView = new LinearLayout(context);
+        customView.setOrientation(LinearLayout.VERTICAL);
+        customView.setPadding((int) context.getResources().getDimension(R.dimen.custom_app_padding), 0, (int) context.getResources().getDimension(R.dimen.custom_app_padding), 0);
+
+        TextView description = new TextView(context);
+        description.setText("(" + context.getString(R.string.system_apps_are_excluded) + ")");
         ListView applicationsList = new ListView(context);
-        applicationsList.setPadding(32, 32, 32, 32);
+        applicationsList.setPadding(0, (int) context.getResources().getDimension(R.dimen.custom_app_top), 0, 0);
+
+        customView.addView(description);
+        customView.addView(applicationsList);
+
         Dialog dialog = new AlertDialog.Builder(context)
-                .setView(applicationsList)
+                .setView(customView)
                 .setPositiveButton(null, null)
                 .setNegativeButton(R.string.cancel, null)
+                .setTitle(R.string.select_an_app)
                 .create();
         applicationsList.setAdapter(new ApplicationAdapter(context, getApplicationList(context), dialog, key, runAfterSelection));
         return dialog;

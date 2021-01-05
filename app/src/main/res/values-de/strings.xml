@@ -40,7 +40,7 @@
     <string name="screen_timeout">Display automatisch ausschalten</string>
     <string name="animator_off">Keine Animationen</string>
     <string name="animator_duration">Animationsdauer</string>
-    <string name="grayscale">Grau färben</string>
+    <string name="grayscale">Grau färben (&lt; Android 11)</string>
     <string name="notification_history">Benachrichtigungsverlauf</string>
     <string name="screen_cast">Bildschirmübertragung</string>
     <string name="credits">Mitwirkende</string>

@@ -34,7 +34,7 @@
     <string name="media_volume">Media Volume</string>
 
     <string name="system_utilities">System Utilities</string>
-    <string name="grayscale">Grayscale</string>
+    <string name="grayscale">Grayscale (&lt; Android 11)</string>
     <string name="adaptive_brightness">Adaptive Brightness</string>
     <string name="development">Development</string>
     <string name="finish_activities">Always Finish Activities</string>

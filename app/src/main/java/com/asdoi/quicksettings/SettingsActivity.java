@@ -1,7 +1,9 @@
 package com.asdoi.quicksettings;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.ArrayMap;
+import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -129,6 +131,15 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put(OpenAppFourTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_FOUR);
         servicePreferences.put(OpenAppFiveTileService.class, SharedPreferencesUtil.CUSTOM_PACKAGE_FIVE);
         return servicePreferences;
+    }
+
+    public static ArrayMap<Class<?>, Pair<Boolean, Integer>> getHigherThanMinAPIKeys() {
+        //Pair: true = SDK_INT must be higher or equal; false = SDK_INT must be lower
+        ArrayMap<Class<?>, Pair<Boolean, Integer>> services = new ArrayMap<>();
+        services.put(GrayscaleTileService.class, new Pair<>(false, Build.VERSION_CODES.R));
+        services.put(LockScreenTileService.class, new Pair<>(true, Build.VERSION_CODES.P));
+        services.put(ScreenshotTileService.class, new Pair<>(true, Build.VERSION_CODES.P));
+        return services;
     }
 
     public static ArrayList<Class<?>> getSecureSettingsServices() {

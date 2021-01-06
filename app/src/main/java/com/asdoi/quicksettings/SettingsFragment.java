@@ -6,11 +6,13 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.service.quicksettings.TileService;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.ArrayMap;
+import android.util.Pair;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -103,11 +105,25 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
         ArrayMap<Class<?>, String> selectApplicationServices = SettingsActivity.getCustomAppKeys();
         ArrayList<Class<?>> accessibilityServiceServices = SettingsActivity.getAccessibilityServiceServices();
+        ArrayMap<Class<?>, Pair<Boolean, Integer>> higherMinApiServices = SettingsActivity.getHigherThanMinAPIKeys();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
             if (switchPreference != null) {
                 final Class<?> serviceClass = entry.getValue();
+
+                if (higherMinApiServices.containsKey(serviceClass)) {
+                    Pair<Boolean, Integer> apiValue = higherMinApiServices.get(serviceClass);
+                    if (apiValue.first && Build.VERSION.SDK_INT < apiValue.second) {
+                        switchPreference.setEnabled(false);
+                        switchPreference.setVisible(false);
+                        continue;
+                    } else if (!apiValue.first && Build.VERSION.SDK_INT >= apiValue.second) {
+                        switchPreference.setEnabled(false);
+                        switchPreference.setVisible(false);
+                        continue;
+                    }
+                }
 
                 if (secureSettingsServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsListener(serviceClass));

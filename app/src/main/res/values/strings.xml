@@ -35,7 +35,7 @@
     <string name="media_volume">Media Volume</string>
 
     <string name="system_utilities">System Utilities</string>
-    <string name="grayscale">Grayscale (&lt; Android 11)</string>
+    <string name="grayscale">Grayscale</string>
     <string name="adaptive_brightness">Adaptive Brightness</string>
     <string name="development">Development</string>
     <string name="finish_activities">Always Finish Activities</string>
@@ -113,8 +113,8 @@
     <string name="an_error_occurred">An error occurred</string>
     <string name="permission_accessibility_service_description">To use this feature, a permission has to be granted. Please open the settings and select %s as \"Accessibility Service\".</string>
     <string name="accessibility_service_description">This service is required for some tiles in order to work.</string>
-    <string name="lock_screen">Lock Screen (&gt; Android 9)</string>
-    <string name="screenshot">Screenshot (&gt; Android 9)</string>
+    <string name="lock_screen">Lock Screen</string>
+    <string name="screenshot">Screenshot</string>
     <string name="power_menu">Power Menu</string>
 
     <string name="pref_keep_screen_on_mode_ac_adapter">When connected to an AC adapter</string>

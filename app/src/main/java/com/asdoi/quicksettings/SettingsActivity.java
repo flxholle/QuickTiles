@@ -5,6 +5,9 @@ import android.util.ArrayMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.asdoi.quicksettings.accessibility_tiles.LockScreenTileService;
+import com.asdoi.quicksettings.accessibility_tiles.PowerDialogTileService;
+import com.asdoi.quicksettings.accessibility_tiles.ScreenshotTileService;
 import com.asdoi.quicksettings.intent_tiles.BatteryTileService;
 import com.asdoi.quicksettings.intent_tiles.MakeCallTileService;
 import com.asdoi.quicksettings.intent_tiles.NewAlarmTileService;
@@ -112,6 +115,9 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("open_home", OpenHomeTileService.class);
         servicePreferences.put("open_privacy", OpenPrivacyTileService.class);
         servicePreferences.put("open_user_dictionary", OpenUserDictionaryTileService.class);
+        servicePreferences.put("power_dialog", PowerDialogTileService.class);
+        servicePreferences.put("take_screenshot", ScreenshotTileService.class);
+        servicePreferences.put("lock_screen", LockScreenTileService.class);
         return servicePreferences;
     }
 
@@ -161,6 +167,14 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
     public static ArrayList<Class<?>> getSecureSettingsModifySystemServices() {
         ArrayList<Class<?>> services = new ArrayList<>();
         services.add(KeepScreenOnTileService.class);
+        return services;
+    }
+
+    public static ArrayList<Class<?>> getAccessibilityServiceServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(PowerDialogTileService.class);
+        services.add(ScreenshotTileService.class);
+        services.add(LockScreenTileService.class);
         return services;
     }
 

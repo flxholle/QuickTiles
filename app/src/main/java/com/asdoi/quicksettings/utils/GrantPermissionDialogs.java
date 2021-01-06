@@ -1,6 +1,7 @@
 package com.asdoi.quicksettings.utils;
 
 import android.Manifest;
+import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -9,8 +10,10 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.net.Uri;
 import android.provider.Settings;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +23,7 @@ import com.asdoi.quicksettings.BuildConfig;
 import com.asdoi.quicksettings.R;
 
 import java.io.DataOutputStream;
+import java.util.List;
 
 public class GrantPermissionDialogs {
     private static final String WRITE_SECURE_SETTINGS = Manifest.permission.WRITE_SECURE_SETTINGS;
@@ -122,6 +126,38 @@ public class GrantPermissionDialogs {
                 .setPositiveButton(R.string.settings, (dialog, which) -> {
                     context.startActivity(new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                })
+                .create();
+    }
+
+    public static boolean hasAccessibilityServicePermission(Context context) {
+        return hasAccessibilityServicePermission(context, CustomAccessibilityService.class);
+    }
+
+    public static boolean hasAccessibilityServicePermission(Context context, Class<?> accessibilityServiceClass) {
+        AccessibilityManager accessibilityManager = (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+        List<AccessibilityServiceInfo> accessibilityServiceInfoList;
+        if (accessibilityManager != null) {
+            accessibilityServiceInfoList = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_ALL_MASK);
+            for (AccessibilityServiceInfo enabledService : accessibilityServiceInfoList) {
+                ServiceInfo enabledServiceInfo = enabledService.getResolveInfo().serviceInfo;
+                if (enabledServiceInfo.packageName.equals(context.getPackageName()) && enabledServiceInfo.name.equals(accessibilityServiceClass.getName()))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public static Dialog getAccessibilityServiceDialog(final Context context) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+                .setCancelable(true)
+                .setTitle(R.string.permission_required)
+                .setMessage(context.getString(R.string.permission_accessibility_service_description, context.getString(R.string.app_name)))
+                .setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss())
+                .setPositiveButton(R.string.settings, (dialog, which) -> {
+                    context.startActivity(
+                            new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+                                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
                 })
                 .create();
     }

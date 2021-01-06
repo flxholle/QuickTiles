@@ -102,6 +102,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
         ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
         ArrayMap<Class<?>, String> selectApplicationServices = SettingsActivity.getCustomAppKeys();
+        ArrayList<Class<?>> accessibilityServiceServices = SettingsActivity.getAccessibilityServiceServices();
 
         for (Map.Entry<String, Class<?>> entry : preferencesServices.entrySet()) {
             SwitchPreferenceCompat switchPreference = findPreference(entry.getKey());
@@ -120,6 +121,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getNotificationPolicyListener(serviceClass));
                 } else if (secureSettingsModifySystemServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsModifySystemListener(serviceClass));
+                } else if (accessibilityServiceServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getAccessibilityServiceListener(serviceClass));
                 } else {
                     switchPreference.setOnPreferenceChangeListener(getDefaultChangeListener(serviceClass));
                 }
@@ -231,6 +234,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
                 else
                     GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getAccessibilityServiceListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasAccessibilityServicePermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getAccessibilityServiceDialog(requireContext()).show();
                 return false;
             }
             return true;

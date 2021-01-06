@@ -157,13 +157,25 @@
             android:key="grayscale"
             android:title="@string/grayscale" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_screenshot"
+            android:key="take_screenshot"
+            android:title="@string/screenshot" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_screen_lock_rotation"
             android:key="force_rotation"
             android:title="@string/force_rotation" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_lock_screen"
+            android:key="lock_screen"
+            android:title="@string/lock_screen" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_vibration"
             android:key="vibrate_calls"
             android:title="@string/vibrate_on_calls" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_power_dialog"
+            android:key="power_dialog"
+            android:title="@string/power_menu" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_battery_full"
             android:key="battery"

@@ -169,6 +169,10 @@
             android:key="lock_screen"
             android:title="@string/lock_screen" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_toggle_split_screen"
+            android:key="toggle_split_screen"
+            android:title="@string/split_screen" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_vibration"
             android:key="vibrate_calls"
             android:title="@string/vibrate_on_calls" />

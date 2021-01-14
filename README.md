@@ -46,6 +46,8 @@ Android Quick Settings Tiles
 ### Credits:
 App icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 <br>
+Toggle-split-screen icon made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+<br>
 Following projects were used:
 <ul>
     <li><a href="https://github.com/mustafa01ali/Dev-Tiles">Dev-Tiles</a> by Mustafa Ali under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>

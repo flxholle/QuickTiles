@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.asdoi.quicksettings.accessibility_tiles.LockScreenTileService;
 import com.asdoi.quicksettings.accessibility_tiles.PowerDialogTileService;
 import com.asdoi.quicksettings.accessibility_tiles.ScreenshotTileService;
+import com.asdoi.quicksettings.accessibility_tiles.ToggleSplitScreenTileService;
 import com.asdoi.quicksettings.intent_tiles.BatteryTileService;
 import com.asdoi.quicksettings.intent_tiles.MakeCallTileService;
 import com.asdoi.quicksettings.intent_tiles.NewAlarmTileService;
@@ -120,6 +121,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("power_dialog", PowerDialogTileService.class);
         servicePreferences.put("take_screenshot", ScreenshotTileService.class);
         servicePreferences.put("lock_screen", LockScreenTileService.class);
+        servicePreferences.put("toggle_split_screen", ToggleSplitScreenTileService.class);
         return servicePreferences;
     }
 
@@ -139,6 +141,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.put(GrayscaleTileService.class, new Pair<>(false, Build.VERSION_CODES.R));
         services.put(LockScreenTileService.class, new Pair<>(true, Build.VERSION_CODES.P));
         services.put(ScreenshotTileService.class, new Pair<>(true, Build.VERSION_CODES.P));
+        services.put(ToggleSplitScreenTileService.class, new Pair<>(true, Build.VERSION_CODES.N));
         return services;
     }
 
@@ -186,6 +189,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(PowerDialogTileService.class);
         services.add(ScreenshotTileService.class);
         services.add(LockScreenTileService.class);
+        services.add(ToggleSplitScreenTileService.class);
         return services;
     }
 

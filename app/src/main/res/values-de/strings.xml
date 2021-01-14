@@ -102,4 +102,5 @@
     <string name="accessibility_service_description">Dieser Dienst wird für einige Funktionen benötigt.</string>
     <string name="permission_accessibility_service_description">Um diese Funktion zu nutzen, muss eine Bereichtigung erteilt werden. Bitte öffne die Einstellungen und wähle %s als \"Bedienungshilfen-Dienst\" aus.</string>
     <string name="an_error_occurred">Es ist ein Fehler aufgetreten</string>
+    <string name="split_screen">Geteilter Bildschirm</string>
 </resources>

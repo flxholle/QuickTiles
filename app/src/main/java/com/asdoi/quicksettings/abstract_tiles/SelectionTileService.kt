@@ -39,8 +39,8 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
         val newValue = getValueList()[newIndex]
 
         // Disable tile while setting the value
-        qsTile.state = Tile.STATE_UNAVAILABLE
-        qsTile.updateTile()
+//        qsTile.state = Tile.STATE_UNAVAILABLE
+//        qsTile.updateTile()
 
         if (checkPermission()) {
             if (saveValue(newValue)) {

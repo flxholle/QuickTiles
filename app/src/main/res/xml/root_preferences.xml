@@ -165,6 +165,10 @@
             android:key="force_rotation"
             android:title="@string/force_rotation" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_screen_lock_rotation"
+            android:key="fix_rotation"
+            android:title="@string/fix_rotation" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_lock_screen"
             android:key="lock_screen"
             android:title="@string/lock_screen" />

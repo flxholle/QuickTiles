@@ -89,6 +89,10 @@
     <string name="switch_volume_modes">Switch Volume Modes</string>
     <string name="force_rotation">Force Rotation</string>
     <string name="auto_rotation">Auto Rotation</string>
+    <string name="fixed_rotation">Fixed Rotation (%s)</string>
+    <string name="fix_rotation">Fix Rotation</string>
+    <string name="portrait">Portrait</string>
+    <string name="landscape">Landscape</string>
     <string name="zero_degrees">0°</string>
     <string name="ninety_degrees">90°</string>
     <string name="onehundredeighty_degrees">180°</string>

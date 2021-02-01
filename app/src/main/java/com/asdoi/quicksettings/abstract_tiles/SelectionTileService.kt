@@ -35,12 +35,9 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
     }
 
     private fun setNextValue() {
-        val newIndex = ((getValueList().indexOf(value) + 1) % getValueList().size)
-        val newValue = getValueList()[newIndex]
-
-        // Disable tile while setting the value
-//        qsTile.state = Tile.STATE_UNAVAILABLE
-//        qsTile.updateTile()
+        val valueList = getValueList()
+        val newIndex = ((valueList.indexOf(value) + 1) % valueList.size)
+        val newValue = valueList[newIndex]
 
         if (checkPermission()) {
             if (saveValue(newValue)) {

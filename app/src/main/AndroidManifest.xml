@@ -466,6 +466,16 @@
             </intent-filter>
         </service>
         <service
+            android:name=".tiles.SwitchFixedRotationTileService"
+            android:enabled="false"
+            android:icon="@drawable/ic_screen_lock_rotation"
+            android:label="@string/fix_rotation"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
             android:name=".intent_tiles.OpenCastTileService"
             android:enabled="false"
             android:icon="@drawable/ic_cast"

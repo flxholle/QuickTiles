@@ -137,6 +137,16 @@
             android:key="screen_timeout"
             android:title="@string/screen_timeout" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_keep_screen_on_enabled"
+            android:key="keep_screen_on"
+            android:title="@string/keep_screen_on" />
+        <ListPreference
+            android:defaultValue="3"
+            android:entries="@array/keep_screen_on_customize_values"
+            android:entryValues="@array/keep_screen_on_customize"
+            android:key="keep_screen_on_customize"
+            android:title="@string/on_which_connection" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_ring_volume"
             android:key="switch_states"
             android:title="@string/switch_volume_modes" />
@@ -218,16 +228,6 @@
             android:key="show_taps"
             android:title="@string/show_taps"
             app:isPreferenceVisible="false" />
-        <SwitchPreferenceCompat
-            android:icon="@drawable/ic_keep_screen_on_enabled"
-            android:key="keep_screen_on"
-            android:title="@string/keep_screen_on" />
-        <ListPreference
-            android:defaultValue="3"
-            android:entries="@array/keep_screen_on_customize_values"
-            android:entryValues="@array/keep_screen_on_customize"
-            android:key="keep_screen_on_customize"
-            android:title="@string/on_which_connection" />
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_animator_duration_enabled"
             android:key="animator_duration"

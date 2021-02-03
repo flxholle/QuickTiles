@@ -183,7 +183,7 @@
             android:key="lock_screen"
             android:title="@string/lock_screen" />
         <SwitchPreferenceCompat
-            android:icon="@drawable/ic_toggle_split_screen"
+            android:icon="@drawable/ic_split_screen"
             android:key="toggle_split_screen"
             android:title="@string/split_screen" />
         <SwitchPreferenceCompat

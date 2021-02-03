@@ -58,6 +58,6 @@ Following projects were used:
     <li><a href="https://github.com/mustafa01ali/Dev-Tiles">Dev-Tiles</a> by Mustafa Ali under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
     <li><a href="https://github.com/adriangl/Dev-QuickSettings">Dev-QuickSettings</a> by Adrián García under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
     <li><a href="https://github.com/rascarlo/AdaptiveBrightnessTile">Adaptive Brightness Tile</a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
-    <li><a href="https://github.com/rascarlo/PowerButtonTile">PowerButtonTile/a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
+    <li><a href="https://github.com/rascarlo/PowerButtonTile">PowerButtonTile</a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
     <li><a href="https://github.com/fei-ke/Greyscale">Greyscale</a> by fei-ke under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
 </ul>

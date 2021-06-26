@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import android.net.Uri;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Toast;
 
@@ -22,7 +23,11 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import com.asdoi.quicksettings.BuildConfig;
 import com.asdoi.quicksettings.R;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class GrantPermissionDialogs {
@@ -158,6 +163,67 @@ public class GrantPermissionDialogs {
                     context.startActivity(
                             new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
                                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+                })
+                .create();
+    }
+
+    // Found somewhere online
+    public static boolean hasRootPermission() {
+        boolean retval ;
+        try
+        {
+            Process suProcess = Runtime.getRuntime().exec("su");
+
+            DataOutputStream os = new DataOutputStream(suProcess.getOutputStream());
+            BufferedReader osBr = new BufferedReader(new InputStreamReader(suProcess.getInputStream()));
+
+            os.writeBytes("id\n");
+            os.flush();
+            String currUid = osBr.readLine();
+            boolean exitSu = false;
+            if (null == currUid)
+            {
+                retval = false;
+                Log.d("ROOT", "Can't get root access or denied by user");
+            }
+            else if (currUid.contains("uid=0"))
+            {
+                retval = true;
+                exitSu = true;
+                Log.d("ROOT", "Root access granted");
+            }
+            else
+            {
+                retval = false;
+                exitSu = true;
+                Log.d("ROOT", "Root access rejected: " + currUid);
+            }
+
+            if (exitSu)
+            {
+                os.writeBytes("exit\n");
+                os.flush();
+            }
+        }
+        catch (Exception e)
+        {
+            retval = false;
+            Log.d("ROOT", "Root access rejected [" + e.getClass().getName() + "] : " + e.getMessage());
+        }
+
+        return retval;
+    }
+
+    public static Dialog getRootPermissionDialog(final Context context) {
+        return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
+                .setCancelable(true)
+                .setTitle(R.string.permission_required)
+                .setMessage(context.getString(R.string.permission_root_description))
+                .setNegativeButton(R.string.ok, null)
+                .setPositiveButton(R.string.root, (dialog, which) -> {
+                    if(!hasRootPermission()) {
+                        Toast.makeText(context, R.string.root_failure, Toast.LENGTH_SHORT).show();
+                    }
                 })
                 .create();
     }

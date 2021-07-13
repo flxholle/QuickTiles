@@ -183,17 +183,20 @@ public class GrantPermissionDialogs {
             boolean exitSu = false;
             if (null == currUid)
             {
+                // su process exited immediately/crashed - no need to run "exit\n"
                 retval = false;
                 Log.d("ROOT", "Can't get root access or denied by user");
             }
             else if (currUid.contains("uid=0"))
             {
+                // su process started successfully with appropriate permissions - needs to be closed with "exit\n"
                 retval = true;
                 exitSu = true;
                 Log.d("ROOT", "Root access granted");
             }
             else
             {
+                // su process started successfully without root permissions - still needs to be closed with "exit\n"
                 retval = false;
                 exitSu = true;
                 Log.d("ROOT", "Root access rejected: " + currUid);
@@ -207,6 +210,7 @@ public class GrantPermissionDialogs {
         }
         catch (Exception e)
         {
+            // device not rooted
             retval = false;
             Log.d("ROOT", "Root access rejected [" + e.getClass().getName() + "] : " + e.getMessage());
         }

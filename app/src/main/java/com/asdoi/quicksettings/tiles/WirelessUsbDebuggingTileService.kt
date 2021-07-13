@@ -35,6 +35,7 @@ import java.nio.ByteOrder
 class WirelessUsbDebuggingTileService : RootTileService<Int>() {
     companion object {
         const val ADB_SETTING = Settings.Global.ADB_ENABLED
+        const val WIRELESS_ADB_PORT = "5555"
     }
 
     override fun isActive(value: Int): Boolean {
@@ -47,7 +48,7 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
         val jString = Class.forName("java.lang.String")
         val method = kClass.getMethod("get", jString)
         val reader = method.invoke(null, "service.adb.tcp.port")
-        return if (reader == "5555") 1 else 0
+        return if (reader == WIRELESS_ADB_PORT) 1 else 0
     }
 
     override fun reset() {
@@ -59,7 +60,7 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
             contentResolver,
             ADB_SETTING
         ) == 1
-        val portCommand = "setprop service.adb.tcp.port " + if (value == 1) "5555" else "-1"
+        val portCommand = "setprop service.adb.tcp.port " + if (value == 1) WIRELESS_ADB_PORT else "-1"
         val adbdCommand = "stop adbd" + if(finalAdbdState) " && start adbd" else ""
         var retVal: Boolean
         try {
@@ -93,7 +94,8 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
     private fun getLocalWifiIpAddress(): String {
         val wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         var ipAddress: Int
-        ipAddress = (wifiManager.connectionInfo?.ipAddress ?: return "0.0.0.0")
+        val errorGettingIPAddress = resources.getString(R.string.unable_to_get_ip_address);
+        ipAddress = (wifiManager.connectionInfo?.ipAddress ?: return errorGettingIPAddress)
         if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
             ipAddress = Integer.reverseBytes(ipAddress)
         }
@@ -101,11 +103,11 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
         return try {
             InetAddress.getByAddress(ipByteArray).hostAddress
         } catch (ex: UnknownHostException) {
-            "0.0.0.0"
+            errorGettingIPAddress
         }
     }
 
     override fun getLabel(value: Int): CharSequence {
-        return if(value == 0) getString(R.string.wireless_usb_debugging) else getLocalWifiIpAddress()
+        return if(value == 0) getString(R.string.wireless_usb_debugging) else getLocalWifiIpAddress() + ":" + WIRELESS_ADB_PORT
     }
 }

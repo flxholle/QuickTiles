@@ -49,6 +49,7 @@ import com.asdoi.quicksettings.tiles.CounterTileService;
 import com.asdoi.quicksettings.tiles.DemoModeTileService;
 import com.asdoi.quicksettings.tiles.DoNotDisturbSwitchTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
+import com.asdoi.quicksettings.tiles.FixRotationTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
@@ -56,7 +57,6 @@ import com.asdoi.quicksettings.tiles.RotationSwitchTileService;
 import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;
 import com.asdoi.quicksettings.tiles.SilenceLoudSwitchTileService;
-import com.asdoi.quicksettings.tiles.SwitchFixedRotationTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
 import com.asdoi.quicksettings.tiles.VibrateCallsTileService;
@@ -123,7 +123,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("take_screenshot", ScreenshotTileService.class);
         servicePreferences.put("lock_screen", LockScreenTileService.class);
         servicePreferences.put("toggle_split_screen", ToggleSplitScreenTileService.class);
-        servicePreferences.put("fix_rotation", SwitchFixedRotationTileService.class);
+        servicePreferences.put("fix_rotation", FixRotationTileService.class);
         return servicePreferences;
     }
 
@@ -156,7 +156,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(ShowTapsTileService.class);
         services.add(ToggleAnimationTileService.class);
         services.add(RotationSwitchTileService.class);
-        services.add(SwitchFixedRotationTileService.class);
+        services.add(FixRotationTileService.class);
         return services;
     }
 

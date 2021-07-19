@@ -23,7 +23,6 @@ import android.provider.Settings
 import android.widget.Toast
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.abstract_tiles.RootTileService
-import com.asdoi.quicksettings.abstract_tiles.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 import java.io.DataOutputStream
 import java.math.BigInteger
@@ -45,8 +44,7 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
     @SuppressLint("PrivateApi")
     override fun queryValue(): Int {
         val kClass = Class.forName("android.os.SystemProperties")
-        val jString = Class.forName("java.lang.String")
-        val method = kClass.getMethod("get", jString)
+        val method = kClass.getMethod("get", String::class.java)
         val reader = method.invoke(null, "service.adb.tcp.port")
         return if (reader == WIRELESS_ADB_PORT) 1 else 0
     }
@@ -56,10 +54,10 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
     }
 
     override fun saveValue(value: Int): Boolean {
-        val finalAdbdState = value == 1 || WriteSystemSettingsUtils.getIntFromGlobalSettings(
-            contentResolver,
-            ADB_SETTING
-        ) == 1
+        val finalAdbdState =
+                value == 1 ||
+                        WriteSystemSettingsUtils.getIntFromGlobalSettings(contentResolver, ADB_SETTING) == 1
+
         val portCommand = "setprop service.adb.tcp.port " + if (value == 1) WIRELESS_ADB_PORT else "-1"
         val adbdCommand = "stop adbd" + if(finalAdbdState) " && start adbd" else ""
         var retVal: Boolean
@@ -95,19 +93,19 @@ class WirelessUsbDebuggingTileService : RootTileService<Int>() {
         val wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         var ipAddress: Int
         val errorGettingIPAddress = resources.getString(R.string.unable_to_get_ip_address);
-        ipAddress = (wifiManager.connectionInfo?.ipAddress ?: return errorGettingIPAddress)
-        if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
+        ipAddress = wifiManager.connectionInfo?.ipAddress ?: return errorGettingIPAddress
+        if (ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN) {
             ipAddress = Integer.reverseBytes(ipAddress)
         }
         val ipByteArray: ByteArray = BigInteger.valueOf(ipAddress.toLong()).toByteArray()
         return try {
-            InetAddress.getByAddress(ipByteArray).hostAddress
+            InetAddress.getByAddress(ipByteArray).hostAddress + ":" + WIRELESS_ADB_PORT
         } catch (ex: UnknownHostException) {
             errorGettingIPAddress
         }
     }
 
     override fun getLabel(value: Int): CharSequence {
-        return if(value == 0) getString(R.string.wireless_usb_debugging) else getLocalWifiIpAddress() + ":" + WIRELESS_ADB_PORT
+        return if (value == 0) getString(R.string.wireless_usb_debugging) else getLocalWifiIpAddress()
     }
 }

@@ -120,7 +120,7 @@
     <string name="system_apps_are_excluded">System apps are excluded</string>
 
     <string name="an_error_occurred">An error occurred</string>
-    <string name="unable_to_get_ip_address" translatable="false">Error: Unable to get local IP address</string>
+    <string name="unable_to_get_ip_address" translatable="false">Unable to get local IP address</string>
     <string name="permission_accessibility_service_description">To use this feature, a permission has to be granted. Please open the settings and select %s as \"Accessibility Service\".</string>
     <string name="accessibility_service_description">This service is required for some tiles in order to work.</string>
     <string name="lock_screen">Lock Screen</string>

@@ -101,6 +101,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
         ArrayList<Class<?>> modifySystemSettingsServices = SettingsActivity.getModifySystemSettingsServices();
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
+        ArrayList<Class<?>> rootServices = SettingsActivity.getRootServices();
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
         ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
         ArrayMap<Class<?>, String> selectApplicationServices = SettingsActivity.getCustomAppKeys();
@@ -131,6 +132,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (secureSettingsDumpServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
+                } else if (rootServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getRootListener(serviceClass));
                 } else if (selectApplicationServices.containsKey(serviceClass)) {
                     setSelectApplicationPreferences(switchPreference, serviceClass, selectApplicationServices);
                 } else if (notificationPolicyServices.contains(serviceClass)) {
@@ -235,6 +238,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     GrantPermissionDialogs.getWriteSecureSettingsDialog(requireContext()).show();
                 return false;
             }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getRootListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (newValue.equals(Boolean.FALSE)) {
+                setComponentState(newValue, serviceClass);
+                return true;
+            }
+            if (!GrantPermissionDialogs.hasRootPermission()) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                GrantPermissionDialogs.getRootPermissionDialog(requireContext()).show();
+                return false;
+            }
+            setComponentState(newValue, serviceClass);
             return true;
         };
     }

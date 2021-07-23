@@ -216,6 +216,10 @@
             android:key="usb_debugging"
             android:title="@string/usb_debugging" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_usb_debugging_enabled"
+            android:key="usb_wifi_debugging"
+            android:title="@string/wireless_usb_debugging" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_demo_mode_enabled"
             android:key="demo_mode"
             android:title="@string/demo_mode" />

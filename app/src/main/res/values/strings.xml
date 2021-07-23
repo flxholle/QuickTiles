@@ -101,7 +101,7 @@
     <string name="miscellaneous">Miscellaneous</string>
     <string name="screen_cast">Screen Cast</string>
     <string name="developer_options">Developer Options</string>
-    <string name="languages">Languages</string>
+    <string name="switch_languages">Switch Languages</string>
     <string name="open_settings">Open Settings</string>
     <string name="on_which_connection">On which Connection</string>
     <string name="custom_app">Custom App</string>
@@ -128,4 +128,5 @@
     <string name="pref_keep_screen_on_mode_usb_port">When connected to an USB port</string>
     <string name="pref_keep_screen_on_mode_wireless">When connected to a wireless source</string>
     <string name="pref_keep_screen_on_mode_any">When connected to any power source</string>
+    <string name="failed_to_update_language">Failed to update language</string>
 </resources>

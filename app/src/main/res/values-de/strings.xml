@@ -57,7 +57,7 @@
     <string name="connected_devices">Verbundene Geräte</string>
     <string name="force_rotation">Feste Displayrotation</string>
     <string name="animator_scale_1x">Animationsdauer: 1x</string>
-    <string name="languages">Sprachen</string>
+    <string name="switch_languages">Sprachen wechseln</string>
     <string name="open_apps">Apps Öffnen</string>
     <string name="animator_scale_5x">Animationsdauer: 5x</string>
     <string name="keep_screen_on">Display an lassen</string>
@@ -107,4 +107,5 @@
     <string name="fix_rotation">Fixiere Displayrotation</string>
     <string name="portrait">Porträt</string>
     <string name="landscape">Querformat</string>
+    <string name="failed_to_update_language">Ändern der Sprache fehlgeschlagen</string>
 </resources>

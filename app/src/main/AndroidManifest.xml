@@ -504,10 +504,10 @@
                 android:value="true" />
         </service>
         <service
-            android:name=".intent_tiles.OpenLocaleTileService"
+            android:name=".tiles.SwitchLanguagesTileService"
             android:enabled="false"
             android:icon="@drawable/ic_language"
-            android:label="@string/languages"
+            android:label="@string/switch_languages"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />

@@ -60,6 +60,7 @@ import com.asdoi.quicksettings.tiles.SwitchFixedRotationTileService;
 import com.asdoi.quicksettings.tiles.ToggleAnimationTileService;
 import com.asdoi.quicksettings.tiles.UsbDebuggingTileService;
 import com.asdoi.quicksettings.tiles.VibrateCallsTileService;
+import com.asdoi.quicksettings.tiles.WirelessUsbDebuggingTileService;
 import com.asdoi.quicksettings.utils.SharedPreferencesUtil;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResult;
 import com.bytehamster.lib.preferencesearch.SearchPreferenceResultListener;
@@ -78,6 +79,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("grayscale", GrayscaleTileService.class);
         servicePreferences.put("adaptive_brightness", AdaptiveBrightnessTileService.class);
         servicePreferences.put("usb_debugging", UsbDebuggingTileService.class);
+        servicePreferences.put("usb_wifi_debugging", WirelessUsbDebuggingTileService.class);
         servicePreferences.put("finish_activities", FinishActivitiesTileService.class);
         servicePreferences.put("keep_screen_on", KeepScreenOnTileService.class);
         servicePreferences.put("demo_mode", DemoModeTileService.class);
@@ -178,6 +180,12 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
     public static ArrayList<Class<?>> getSecureSettingsAndDumpServices() {
         ArrayList<Class<?>> services = new ArrayList<>();
         services.add(DemoModeTileService.class);
+        return services;
+    }
+
+    public static ArrayList<Class<?>> getRootServices() {
+        ArrayList<Class<?>> services = new ArrayList<>();
+        services.add(WirelessUsbDebuggingTileService.class);
         return services;
     }
 

@@ -1,21 +1,24 @@
 package com.asdoi.quicksettings.tiles
 
-import android.content.res.Configuration
+import android.content.Context
 import android.graphics.drawable.Icon
 import android.provider.Settings
 import android.view.Surface
+import android.view.WindowManager
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.abstract_tiles.WriteSecureSettingsTileService
 import com.asdoi.quicksettings.utils.WriteSystemSettingsUtils
 
 
-class SwitchFixedRotationTileService : WriteSecureSettingsTileService<Int>() {
+class FixRotationTileService : WriteSecureSettingsTileService<Int>() {
     companion object {
         const val SETTING_AUTO_ROTATION = Settings.System.ACCELEROMETER_ROTATION
         const val SETTING_ROTATION = Settings.System.USER_ROTATION
 
-        const val NORMAL = Surface.ROTATION_0
+        const val PORTRAIT = Surface.ROTATION_0
         const val LANDSCAPE = Surface.ROTATION_90
+        const val PORTRAIT_REVERSED = Surface.ROTATION_180
+        const val LANDSCAPE_REVERSED = Surface.ROTATION_270
 
         const val AUTO_ROTATION = 10
         const val FIXED_ROTATION = 11
@@ -34,15 +37,10 @@ class SwitchFixedRotationTileService : WriteSecureSettingsTileService<Int>() {
 
     override fun reset() {
         WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING_AUTO_ROTATION, 1)
-        WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING_ROTATION, NORMAL)
     }
 
     private fun getRotation(): Int {
-        return when (resources.configuration.orientation) {
-            Configuration.ORIENTATION_PORTRAIT -> NORMAL
-            Configuration.ORIENTATION_LANDSCAPE -> LANDSCAPE
-            else -> NORMAL
-        }
+        return (getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.rotation
     }
 
     override fun saveValue(value: Int): Boolean {
@@ -50,8 +48,8 @@ class SwitchFixedRotationTileService : WriteSecureSettingsTileService<Int>() {
             reset()
             true
         } else {
-            WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING_AUTO_ROTATION, 0)
             WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING_ROTATION, getRotation())
+            WriteSystemSettingsUtils.setIntToSystemSettings(contentResolver, SETTING_AUTO_ROTATION, 0)
         }
     }
 
@@ -75,10 +73,13 @@ class SwitchFixedRotationTileService : WriteSecureSettingsTileService<Int>() {
         } else {
             val rotation = getString(
                     when (getRotation()) {
-                        NORMAL -> R.string.portrait
-                        LANDSCAPE -> R.string.landscape
-                        else -> R.string.portrait
-                    })
+                        PORTRAIT -> R.string.zero_degrees
+                        PORTRAIT_REVERSED -> R.string.ninety_degrees
+                        LANDSCAPE -> R.string.onehundredeighty_degrees
+                        LANDSCAPE_REVERSED -> R.string.twohundredseventy_degrees
+                        else -> R.string.zero_degrees
+                    }
+            )
             getString(R.string.fixed_rotation, rotation)
         }
     }

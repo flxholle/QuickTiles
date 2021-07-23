@@ -477,7 +477,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".tiles.SwitchFixedRotationTileService"
+            android:name=".tiles.FixRotationTileService"
             android:enabled="false"
             android:icon="@drawable/ic_screen_lock_rotation"
             android:label="@string/fix_rotation"

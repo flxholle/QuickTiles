@@ -101,6 +101,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         ArrayList<Class<?>> secureSettingsServices = SettingsActivity.getSecureSettingsServices();
         ArrayList<Class<?>> modifySystemSettingsServices = SettingsActivity.getModifySystemSettingsServices();
         ArrayList<Class<?>> secureSettingsDumpServices = SettingsActivity.getSecureSettingsAndDumpServices();
+        ArrayList<Class<?>> modifySystemChangeConfigurationServices = SettingsActivity.getModifySystemChangeConfigurationServices();
         ArrayList<Class<?>> notificationPolicyServices = SettingsActivity.getNotificationPolicyServices();
         ArrayList<Class<?>> secureSettingsModifySystemServices = SettingsActivity.getSecureSettingsModifySystemServices();
         ArrayMap<Class<?>, String> selectApplicationServices = SettingsActivity.getCustomAppKeys();
@@ -131,6 +132,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     switchPreference.setOnPreferenceChangeListener(getModifySystemSettingsListener(serviceClass));
                 } else if (secureSettingsDumpServices.contains(serviceClass)) {
                     switchPreference.setOnPreferenceChangeListener(getSecureSettingsDumpListener(serviceClass));
+                } else if (modifySystemChangeConfigurationServices.contains(serviceClass)) {
+                    switchPreference.setOnPreferenceChangeListener(getModifySystemChangeConfigurationListener(serviceClass));
                 } else if (selectApplicationServices.containsKey(serviceClass)) {
                     setSelectApplicationPreferences(switchPreference, serviceClass, selectApplicationServices);
                 } else if (notificationPolicyServices.contains(serviceClass)) {
@@ -214,6 +217,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             } else if (newValue.equals(Boolean.TRUE)) {
                 setComponentState(Boolean.FALSE, serviceClass);
                 GrantPermissionDialogs.getNotificationPolicyDialog(requireContext()).show();
+                return false;
+            }
+            return true;
+        };
+    }
+
+    private Preference.OnPreferenceChangeListener getModifySystemChangeConfigurationListener(Class<?> serviceClass) {
+        return (preference, newValue) -> {
+            if (GrantPermissionDialogs.hasChangeConfigurationPermission(requireContext())
+                    && GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext())) {
+                setComponentState(newValue, serviceClass);
+            } else if (newValue.equals(Boolean.TRUE)) {
+                setComponentState(Boolean.FALSE, serviceClass);
+                if (!GrantPermissionDialogs.hasModifySystemSettingsPermission(requireContext()))
+                    GrantPermissionDialogs.getModifySystemSettingsDialog(requireContext()).show();
+                else if (!GrantPermissionDialogs.hasChangeConfigurationPermission(requireContext()))
+                    GrantPermissionDialogs.getChangeConfigurationDialog(requireContext()).show();
                 return false;
             }
             return true;

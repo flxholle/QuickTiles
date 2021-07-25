@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import com.asdoi.quicksettings.R
 import com.asdoi.quicksettings.abstract_tiles.ModifySystemSettingsTileService
+import com.asdoi.quicksettings.utils.GrantPermissionDialogs
 import java.util.*
 
 class SwitchLanguagesTileService : ModifySystemSettingsTileService<Locale>() {
@@ -17,6 +18,17 @@ class SwitchLanguagesTileService : ModifySystemSettingsTileService<Locale>() {
 
     override fun onClick() {
         unlockAndRun { super.onClick() }
+    }
+
+    override fun checkPermission(): Boolean {
+        if (GrantPermissionDialogs.hasChangeConfigurationPermission(this)
+                && GrantPermissionDialogs.hasModifySystemSettingsPermission(this))
+            return true
+        else if (!GrantPermissionDialogs.hasModifySystemSettingsPermission(this))
+            showDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this))
+        else
+            showDialog(GrantPermissionDialogs.getChangeConfigurationDialog(this))
+        return false
     }
 
     override fun isActive(value: Locale) = false
@@ -73,6 +85,7 @@ class SwitchLanguagesTileService : ModifySystemSettingsTileService<Locale>() {
             true
         } catch (e: Exception) {
             Log.d(TAG, "Failed to set language")
+            Log.d(TAG, e.stackTraceToString())
             Toast.makeText(baseContext, R.string.failed_to_update_language, Toast.LENGTH_LONG).show()
 
             //Fallback: Open language settings
@@ -90,6 +103,8 @@ class SwitchLanguagesTileService : ModifySystemSettingsTileService<Locale>() {
     override fun getIcon(value: Locale): Icon {
         return Icon.createWithResource(applicationContext, R.drawable.ic_language)
     }
+
+    override fun updateIcon() = false
 
     override fun getLabel(value: Locale): CharSequence {
         return value.getDisplayName(value)

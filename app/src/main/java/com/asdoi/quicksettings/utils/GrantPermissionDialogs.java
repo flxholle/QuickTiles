@@ -28,6 +28,7 @@ import java.util.List;
 public class GrantPermissionDialogs {
     private static final String WRITE_SECURE_SETTINGS = Manifest.permission.WRITE_SECURE_SETTINGS;
     private static final String DUMP = Manifest.permission.DUMP;
+    private static final String CHANGE_CONFIGURATION = Manifest.permission.CHANGE_CONFIGURATION;
 
     public static Dialog getModifySystemSettingsDialog(final Context context) {
         return new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.myDialog))
@@ -45,6 +46,14 @@ public class GrantPermissionDialogs {
 
     public static boolean hasModifySystemSettingsPermission(Context context) {
         return Settings.System.canWrite(context);
+    }
+
+    public static boolean hasChangeConfigurationPermission(Context context) {
+        return hasPermission(context, CHANGE_CONFIGURATION);
+    }
+
+    public static Dialog getChangeConfigurationDialog(Context context) {
+        return getSystemPermissionDialog(context, CHANGE_CONFIGURATION);
     }
 
     private static Dialog getSystemPermissionDialog(final String adbCommand, final String rootCommand, final Context context) {

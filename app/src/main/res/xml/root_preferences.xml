@@ -198,6 +198,10 @@
             android:icon="@drawable/ic_battery_full"
             android:key="battery"
             android:title="@string/battery" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_heads_up"
+            android:key="heads_up"
+            android:title="@string/heads_up" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/miscellaneous">

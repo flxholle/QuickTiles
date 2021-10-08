@@ -46,6 +46,7 @@
     <string name="wireless_usb_debugging">Wireless USB Debugging</string>
     <string name="keep_screen_on">Keep Screen On</string>
     <string name="demo_mode">Demo Mode</string>
+    <string name="heads_up">Heads-up</string>
     <string name="animator_duration">Animator Duration Scale</string>
     <string name="animator_off">Animation Off</string>
     <string name="animator_scale_0_5x">Animation Scale 0.5x</string>

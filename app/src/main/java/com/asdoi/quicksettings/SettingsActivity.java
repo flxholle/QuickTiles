@@ -51,6 +51,7 @@ import com.asdoi.quicksettings.tiles.DoNotDisturbSwitchTileService;
 import com.asdoi.quicksettings.tiles.FinishActivitiesTileService;
 import com.asdoi.quicksettings.tiles.FixRotationTileService;
 import com.asdoi.quicksettings.tiles.GrayscaleTileService;
+import com.asdoi.quicksettings.tiles.HeadsUpTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.RotationSwitchTileService;
@@ -126,6 +127,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("lock_screen", LockScreenTileService.class);
         servicePreferences.put("toggle_split_screen", ToggleSplitScreenTileService.class);
         servicePreferences.put("fix_rotation", FixRotationTileService.class);
+        servicePreferences.put("heads_up", HeadsUpTileService.class);
         return servicePreferences;
     }
 
@@ -159,6 +161,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         services.add(ToggleAnimationTileService.class);
         services.add(RotationSwitchTileService.class);
         services.add(FixRotationTileService.class);
+        services.add(HeadsUpTileService.class);
         return services;
     }
 

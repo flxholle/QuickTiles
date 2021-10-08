@@ -48,17 +48,19 @@ class HeadsUpTileService : WriteSecureSettingsTileService<Int>() {
 
     override fun getIcon(value: Int): Icon {
         val iconResource =
-                if (value == 1)
-                    R.drawable.ic_heads_up
-                else
-                    R.drawable.ic_heads_up_off
+            if (value == 1)
+                R.drawable.ic_heads_up
+            else
+                R.drawable.ic_heads_up_off
 
         return Icon.createWithResource(applicationContext, iconResource)
     }
 
-    override fun getLabel(value: Int): CharSequence {
-        val stringResource = R.string.heads_up
+    override fun updateLabel(): Boolean {
+        return false
+    }
 
-        return getString(stringResource)
+    override fun getLabel(value: Int): CharSequence {
+        return getString(R.string.heads_up)
     }
 }

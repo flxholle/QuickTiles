@@ -55,6 +55,7 @@ import com.asdoi.quicksettings.tiles.HeadsUpTileService;
 import com.asdoi.quicksettings.tiles.KeepScreenOnTileService;
 import com.asdoi.quicksettings.tiles.MediaVolumeTileService;
 import com.asdoi.quicksettings.tiles.RotationSwitchTileService;
+import com.asdoi.quicksettings.tiles.ScreenInfinityTileService;
 import com.asdoi.quicksettings.tiles.ScreenTimeoutTileService;
 import com.asdoi.quicksettings.tiles.ShowTapsTileService;
 import com.asdoi.quicksettings.tiles.SilenceLoudSwitchTileService;
@@ -105,6 +106,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("new_event", NewCalendarEventTileService.class);
         servicePreferences.put("make_call", MakeCallTileService.class);
         servicePreferences.put("counter", CounterTileService.class);
+        servicePreferences.put("screen_infinity", ScreenInfinityTileService.class);
         servicePreferences.put("screen_timeout", ScreenTimeoutTileService.class);
         servicePreferences.put("vibrate_calls", VibrateCallsTileService.class);
         servicePreferences.put("switch_states", DoNotDisturbSwitchTileService.class);
@@ -169,6 +171,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         ArrayList<Class<?>> services = new ArrayList<>();
         services.add(AdaptiveBrightnessTileService.class);
         services.add(BrightnessTileService.class);
+        services.add(ScreenInfinityTileService.class);
         services.add(ScreenTimeoutTileService.class);
         services.add(VibrateCallsTileService.class);
         return services;

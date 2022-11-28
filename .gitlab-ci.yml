@@ -1,0 +1,47 @@
+variables:
+  ANDROID_COMPILE_SDK: "30"
+  ANDROID_BUILD_TOOLS: "33.0.1"
+
+  # It's what version of the command line tools we're going to download from the official site.
+  # Official Site-> https://developer.android.com/studio/index.html
+  # There, look down below at the cli tools only, sdk tools package is of format:
+  #        commandlinetools-os_type-ANDROID_SDK_TOOLS_latest.zip
+  # when the script was last modified for latest compileSdkVersion, it was which is written down below
+  ANDROID_SDK_TOOLS: "9123335"
+
+
+assembleDebug:
+  stage: build
+  image: gradle
+  before_script:
+  - apt-get --quiet update --yes
+  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+
+  # download sdk tools and add them to PATH
+  - export ANDROID_HOME="${PWD}/android-home"
+  - install -d $ANDROID_HOME
+  - wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip
+  - pushd $ANDROID_HOME
+  - unzip -d cmdline-tools cmdline-tools.zip
+  - mv cmdline-tools/cmdline-tools/ cmdline-tools/latest/
+  - popd
+  - export PATH=$PATH:${ANDROID_HOME}/cmdline-tools/latest/bin/
+
+  - sdkmanager --version
+  # use yes to accept all licenses
+  - yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses || true
+  - sdkmanager --sdk_root=${ANDROID_HOME} "platforms;android-${ANDROID_COMPILE_SDK}"
+  - sdkmanager --sdk_root=${ANDROID_HOME} "platform-tools"
+  - sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;${ANDROID_BUILD_TOOLS}"
+
+  # Not necessary, but just for surity
+  - chmod +x ./gradlew
+  script:
+    - gradle --version
+    - gradle wrapper
+    - ./gradlew assembleDebug
+    # move apk file to base folder
+    - mv app/build/outputs/apk/debug/app-debug.apk app-debug.apk
+  artifacts:
+    paths:
+      - app-debug.apk

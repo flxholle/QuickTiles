@@ -134,6 +134,10 @@
     <PreferenceCategory android:title="@string/system_utilities">
         <SwitchPreferenceCompat
             android:icon="@drawable/ic_screen_infinity"
+            android:key="screen_infinity"
+            android:title="@string/screen_infinity" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_screen_infinity"
             android:key="screen_timeout"
             android:title="@string/screen_timeout" />
         <SwitchPreferenceCompat

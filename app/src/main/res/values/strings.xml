@@ -79,6 +79,7 @@
     <string name="no_app_found">No matching app installed!</string>
     <string name="counter">Counter</string>
     <string name="reset_counter">Reset Counter</string>
+    <string name="screen_infinity">Screen Infinity</string>
     <string name="screen_timeout">Screen Timeout</string>
     <string name="infinite">Infinite</string>
     <string name="seconds">Seconds</string>

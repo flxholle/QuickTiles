@@ -37,6 +37,7 @@
     <string name="battery">Akkustand</string>
     <string name="enable_all_animations">Alle Animationen aktivieren</string>
     <string name="animator_scale_10x">Animationsdauer: 10x</string>
+    <string name="screen_infinity">Display unendlichkeit</string>
     <string name="screen_timeout">Display automatisch ausschalten</string>
     <string name="animator_off">Keine Animationen</string>
     <string name="animator_duration">Animationsdauer</string>

@@ -45,8 +45,8 @@ Android Quick Settings Tiles
      height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
 
  ### Screenshots:
-<img src="https://gitlab.com/asdoi/quick-tiles/-/raw/master/fastlane/metadata/android/en/images/phoneScreenshots/1.png?inline=false" width=270>
-<img src="https://gitlab.com/asdoi/quick-tiles/-/raw/master/fastlane/metadata/android/en/images/phoneScreenshots/2.png?inline=false" width=270>
+<img src="./fastlane/metadata/android/en/images/phoneScreenshots/1.png?inline=false" width=270>
+<img src="./fastlane/metadata/android/en/images/phoneScreenshots/2.png?inline=false" width=270>
 
 ### Credits:
 App icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

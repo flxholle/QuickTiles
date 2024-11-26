@@ -6,6 +6,7 @@
     <string name="copy_text">Kopieren</string>
     <string name="disable_all_animations">Alle Animationen ausschalten</string>
     <string name="demo_mode">Demo Modus</string>
+    <string name="heads_up">Vorabbenachrichtigungen</string>
     <string name="new_timer">Neuer Timer</string>
     <string name="seconds">Sekunden</string>
     <string name="pref_keep_screen_on_mode_ac_adapter">Wenn das Handy mit dem Stromkabel verbunden ist.</string>

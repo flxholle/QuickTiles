@@ -106,6 +106,10 @@
             android:key="open_home"
             android:title="@string/home_app" />
         <SwitchPreferenceCompat
+            android:icon="@drawable/ic_keyboard"
+            android:key="open_input"
+            android:title="@string/input_method" />
+        <SwitchPreferenceCompat
             android:icon="@drawable/ic_history"
             android:key="notification_history"
             android:title="@string/notification_history" />

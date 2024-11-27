@@ -31,6 +31,7 @@ import com.asdoi.quicksettings.intent_tiles.OpenDeveloperOptionsTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenDisplayTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenFilesTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenHomeTileService;
+import com.asdoi.quicksettings.intent_tiles.OpenInputTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenLocaleTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenNotificationLogTileService;
 import com.asdoi.quicksettings.intent_tiles.OpenPrivacyTileService;
@@ -120,6 +121,7 @@ public class SettingsActivity extends AppCompatActivity implements SearchPrefere
         servicePreferences.put("switch_silence_loud", SilenceLoudSwitchTileService.class);
         servicePreferences.put("open_display", OpenDisplayTileService.class);
         servicePreferences.put("open_home", OpenHomeTileService.class);
+        servicePreferences.put("open_input", OpenInputTileService.class);
         servicePreferences.put("open_privacy", OpenPrivacyTileService.class);
         servicePreferences.put("open_user_dictionary", OpenUserDictionaryTileService.class);
         servicePreferences.put("power_dialog", PowerDialogTileService.class);

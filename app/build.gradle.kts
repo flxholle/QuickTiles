@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.implementation
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -40,10 +38,10 @@ android {
 
 dependencies {
     implementation(libs.aboutlibraries.core)
-    implementation(libs.aboutlibraries.compose.m3) // Material 3
-    implementation(libs.androidx.preference.ktx)
-    implementation(libs.searchpreference)
     implementation(libs.aboutlibraries.view)
+    implementation(libs.searchpreference)
+
+    implementation(libs.androidx.preference.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

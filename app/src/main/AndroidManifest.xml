@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.asdoi.quicksettings">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission
         android:name="android.permission.WRITE_SECURE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission
         android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -21,13 +20,18 @@
 
     <application
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="31">
+
         <activity
             android:name=".SettingsActivity"
+            android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,6 +49,7 @@
 
         <service
             android:name=".utils.CustomAccessibilityService"
+            android:exported="true"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -58,6 +63,7 @@
         <service
             android:name=".intent_tiles.PlayPauseTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_play_pause"
             android:label="@string/play_pause"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -71,6 +77,7 @@
         <service
             android:name=".intent_tiles.NextSongTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_skip_next"
             android:label="@string/next_song"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -84,6 +91,7 @@
         <service
             android:name=".intent_tiles.PreviousSongTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_skip_previous"
             android:label="@string/previous_song"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -97,6 +105,7 @@
         <service
             android:name=".tiles.MediaVolumeTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_music_video"
             android:label="@string/media_volume"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -111,6 +120,7 @@
         <service
             android:name=".tiles.GrayscaleTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_grayscale"
             android:label="@string/grayscale"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -124,6 +134,7 @@
         <service
             android:name=".tiles.AdaptiveBrightnessTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_brightness_auto"
             android:label="@string/adaptive_brightness"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -134,6 +145,7 @@
         <service
             android:name=".tiles.UsbDebuggingTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_usb_debugging_enabled"
             android:label="@string/usb_debugging"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -144,6 +156,7 @@
         <service
             android:name=".tiles.WirelessUsbDebuggingTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_usb_debugging_enabled"
             android:label="@string/wireless_usb_debugging"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -154,6 +167,7 @@
         <service
             android:name=".tiles.FinishActivitiesTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_finish_activities_enabled"
             android:label="@string/finish_activities"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -164,6 +178,7 @@
         <service
             android:name=".tiles.KeepScreenOnTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_keep_screen_on_enabled"
             android:label="@string/keep_screen_on"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -174,6 +189,7 @@
         <service
             android:name=".tiles.DemoModeTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_demo_mode_enabled"
             android:label="@string/demo_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -184,6 +200,7 @@
         <service
             android:name=".tiles.AnimatorDurationTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_animator_duration_enabled"
             android:label="@string/animator_duration"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -194,6 +211,7 @@
         <service
             android:name=".tiles.ShowTapsTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_show_taps_enabled"
             android:label="@string/show_taps"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -204,6 +222,7 @@
         <service
             android:name=".tiles.ToggleAnimationTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_animation_on"
             android:label="@string/disable_all_animations"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -214,6 +233,7 @@
         <service
             android:name=".intent_tiles.NewAlarmTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_alarm_add"
             android:label="@string/new_alarm"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -227,6 +247,7 @@
         <service
             android:name=".intent_tiles.NewTimerTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_timer"
             android:label="@string/new_timer"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -240,6 +261,7 @@
         <service
             android:name=".intent_tiles.TakePhotoTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_photo_camera"
             android:label="@string/take_photo"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -253,6 +275,7 @@
         <service
             android:name=".intent_tiles.RecordVideoTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_videocam"
             android:label="@string/record_video"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -266,6 +289,7 @@
         <service
             android:name=".intent_tiles.OpenCalculatorTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_grid_on"
             android:label="@string/open_calculator"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -279,6 +303,7 @@
         <service
             android:name=".intent_tiles.OpenVolumePanelTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_volume_up"
             android:label="@string/open_volume_panel"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -292,6 +317,7 @@
         <service
             android:name=".tiles.BrightnessTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_brightness_high"
             android:label="@string/adjust_brightness"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -302,6 +328,7 @@
         <service
             android:name=".intent_tiles.OpenFilesTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_folder"
             android:label="@string/open_files"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -312,6 +339,7 @@
         <service
             android:name=".intent_tiles.BatteryTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_battery_full"
             android:label="@string/battery"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -322,6 +350,7 @@
         <service
             android:name=".intent_tiles.OpenVpnTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_vpn_key"
             android:label="@string/vpn"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -335,6 +364,7 @@
         <service
             android:name=".intent_tiles.OpenDataUsageTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_data_usage"
             android:label="@string/data_usage"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -348,6 +378,7 @@
         <service
             android:name=".intent_tiles.OpenAboutPhoneTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_perm_device_information"
             android:label="@string/about_phone"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -361,6 +392,7 @@
         <service
             android:name=".intent_tiles.OpenConnectedDevicesTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_devices_other"
             android:label="@string/connected_devices"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -374,6 +406,7 @@
         <service
             android:name=".intent_tiles.OpenNotificationLogTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_history"
             android:label="@string/notification_history"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -387,6 +420,7 @@
         <service
             android:name=".intent_tiles.OpenSettingsSearchTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_search"
             android:label="@string/search_settings"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -400,6 +434,7 @@
         <service
             android:name=".intent_tiles.NewCalendarEventTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_event"
             android:label="@string/new_event"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -413,6 +448,7 @@
         <service
             android:name=".intent_tiles.MakeCallTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_call"
             android:label="@string/make_call"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -426,6 +462,7 @@
         <service
             android:name=".tiles.CounterTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_exposure_plus_1"
             android:label="@string/counter"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -439,6 +476,7 @@
         <service
             android:name=".tiles.ScreenTimeoutTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_screen_infinity"
             android:label="@string/screen_timeout"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -449,6 +487,7 @@
         <service
             android:name=".tiles.VibrateCallsTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_vibration"
             android:label="@string/vibrate_on_calls"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -459,6 +498,7 @@
         <service
             android:name=".tiles.DoNotDisturbSwitchTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_ring_volume"
             android:label="@string/switch_volume_modes"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -469,6 +509,7 @@
         <service
             android:name=".tiles.RotationSwitchTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_screen_lock_rotation"
             android:label="@string/force_rotation"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -479,6 +520,7 @@
         <service
             android:name=".tiles.FixRotationTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_screen_lock_rotation"
             android:label="@string/fix_rotation"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -489,6 +531,7 @@
         <service
             android:name=".intent_tiles.OpenCastTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_cast"
             android:label="@string/screen_cast"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -502,6 +545,7 @@
         <service
             android:name=".intent_tiles.OpenDeveloperOptionsTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_developer_mode"
             android:label="@string/developer_options"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -515,6 +559,7 @@
         <service
             android:name=".intent_tiles.OpenLocaleTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_language"
             android:label="@string/languages"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -528,6 +573,7 @@
         <service
             android:name=".intent_tiles.OpenAppOneTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -541,6 +587,7 @@
         <service
             android:name=".intent_tiles.OpenAppTwoTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -554,6 +601,7 @@
         <service
             android:name=".intent_tiles.OpenAppThreeTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -567,6 +615,7 @@
         <service
             android:name=".intent_tiles.OpenAppFourTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -580,6 +629,7 @@
         <service
             android:name=".intent_tiles.OpenAppFiveTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_open_in_new"
             android:label="@string/custom_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -593,6 +643,7 @@
         <service
             android:name=".tiles.SilenceLoudSwitchTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_ring_volume"
             android:label="@string/switch_silence_loud"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -603,6 +654,7 @@
         <service
             android:name=".intent_tiles.OpenDisplayTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_phonelink_setup"
             android:label="@string/display"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -616,6 +668,7 @@
         <service
             android:name=".intent_tiles.OpenHomeTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_home"
             android:label="@string/home_app"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -629,6 +682,7 @@
         <service
             android:name=".intent_tiles.OpenPrivacyTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_privacy"
             android:label="@string/privacy"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -642,6 +696,7 @@
         <service
             android:name=".intent_tiles.OpenUserDictionaryTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_dictionary"
             android:label="@string/personal_dictionary"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -655,6 +710,7 @@
         <service
             android:name=".accessibility_tiles.PowerDialogTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_power_dialog"
             android:label="@string/power_menu"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -668,6 +724,7 @@
         <service
             android:name=".accessibility_tiles.ScreenshotTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_screenshot"
             android:label="@string/screenshot"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -681,6 +738,7 @@
         <service
             android:name=".accessibility_tiles.LockScreenTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_lock_screen"
             android:label="@string/lock_screen"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -694,6 +752,7 @@
         <service
             android:name=".accessibility_tiles.ToggleSplitScreenTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_split_screen"
             android:label="@string/split_screen"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
@@ -707,6 +766,7 @@
         <service
             android:name=".tiles.HeadsUpTileService"
             android:enabled="false"
+            android:exported="true"
             android:icon="@drawable/ic_heads_up"
             android:label="@string/heads_up"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">

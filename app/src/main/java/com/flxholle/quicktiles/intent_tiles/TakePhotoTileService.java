@@ -9,6 +9,6 @@ public class TakePhotoTileService extends IntentTileService {
 
     @Override
     public Intent createIntent() {
-        return new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        return new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
     }
 }

@@ -1,6 +1,7 @@
 package com.flxholle.quicktiles.intent_tiles;
 
 import android.content.Intent;
+import android.os.Build;
 import android.provider.DocumentsContract;
 import android.service.quicksettings.Tile;
 
@@ -28,7 +29,12 @@ public class OpenFilesTileService extends IntentTileService {
     @Override
     public void onStartListening() {
         Tile tile = getQsTile();
-        tile.setLabel(getString(R.string.free_space) + ": " + getAvailableInternalMemorySize());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            tile.setLabel(getString(R.string.open_files));
+            tile.setSubtitle(getString(R.string.free_space) + ": " + getAvailableInternalMemorySize());
+        } else {
+            tile.setLabel(getString(R.string.free_space) + ": " + getAvailableInternalMemorySize());
+        }
         tile.updateTile();
     }
 }

@@ -62,13 +62,13 @@
     <string name="new_timer">New Timer</string>
     <string name="take_photo">Take Photo</string>
     <string name="record_video">Record Video</string>
-    <string name="open_calculator">Open Calculator</string>
+    <string name="open_calculator">Calculator</string>
     <string name="open_volume_panel">Volume Panel</string>
     <string name="adjust_brightness">Adjust Brightness</string>
-    <string name="open_files">Open File Manager</string>
+    <string name="open_files">File Manager</string>
     <string name="free_space">Free Space</string>
     <string name="battery">Battery Level</string>
-    <string name="vpn">Open VPN</string>
+    <string name="vpn">VPN</string>
     <string name="data_usage">Data Usage</string>
     <string name="about_phone">About Phone</string>
     <string name="connected_devices">Connected Devices</string>

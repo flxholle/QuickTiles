@@ -9,6 +9,6 @@ public class RecordVideoTileService extends IntentTileService {
 
     @Override
     public Intent createIntent() {
-        return new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        return new Intent(MediaStore.INTENT_ACTION_VIDEO_CAMERA);
     }
 }

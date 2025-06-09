@@ -132,4 +132,6 @@
     <string name="pref_keep_screen_on_mode_usb_port">When connected to an USB port</string>
     <string name="pref_keep_screen_on_mode_wireless">When connected to a wireless source</string>
     <string name="pref_keep_screen_on_mode_any">When connected to any power source</string>
+
+    <string name="set_custom_app_name">Set a custom name</string>
 </resources>

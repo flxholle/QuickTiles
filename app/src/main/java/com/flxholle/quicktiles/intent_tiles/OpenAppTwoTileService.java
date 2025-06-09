@@ -8,4 +8,9 @@ public class OpenAppTwoTileService extends OpenCustomAppTileService {
     public String getPreferencesKey() {
         return SharedPreferencesUtil.CUSTOM_PACKAGE_TWO;
     }
+
+    @Override
+    public String getLabelPreferenceKey() {
+        return SharedPreferencesUtil.CUSTOM_PACKAGE_TWO_LABEL;
+    }
 }

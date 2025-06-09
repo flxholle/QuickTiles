@@ -8,11 +8,17 @@ public class SharedPreferencesUtil {
     public static String COUNTER = "counter_value";
     public static String CUSTOMIZE_KEEP_SCREEN_ON = "keep_screen_on_customize";
     public static String SCREEN_TIMEOUT = "screen_timeout_save";
+
     public static String CUSTOM_PACKAGE_ONE = "custom_package_one";
+    public static String CUSTOM_PACKAGE_ONE_LABEL = "custom_package_one_label";
     public static String CUSTOM_PACKAGE_TWO = "custom_package_two";
+    public static String CUSTOM_PACKAGE_TWO_LABEL = "custom_package_two_label";
     public static String CUSTOM_PACKAGE_THREE = "custom_package_three";
+    public static String CUSTOM_PACKAGE_THREE_LABEL = "custom_package_three_label";
     public static String CUSTOM_PACKAGE_FOUR = "custom_package_four";
+    public static String CUSTOM_PACKAGE_FOUR_LABEL = "custom_package_four_label";
     public static String CUSTOM_PACKAGE_FIVE = "custom_package_five";
+    public static String CUSTOM_PACKAGE_FIVE_LABEL = "custom_package_five_label";
 
     public static int getCounter(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)

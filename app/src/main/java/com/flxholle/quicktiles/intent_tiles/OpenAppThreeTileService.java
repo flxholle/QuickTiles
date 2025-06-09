@@ -8,4 +8,9 @@ public class OpenAppThreeTileService extends OpenCustomAppTileService {
     public String getPreferencesKey() {
         return SharedPreferencesUtil.CUSTOM_PACKAGE_THREE;
     }
+
+    @Override
+    public String getLabelPreferenceKey() {
+        return SharedPreferencesUtil.CUSTOM_PACKAGE_THREE_LABEL;
+    }
 }

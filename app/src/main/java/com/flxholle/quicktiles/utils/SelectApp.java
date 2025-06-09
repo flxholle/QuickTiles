@@ -30,7 +30,8 @@ public class SelectApp {
         Iterator<ApplicationInfo> it = installedApplications.iterator();
         while (it.hasNext()) {
             ApplicationInfo appInfo = it.next();
-            if ((appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+            // Remove system apps or apps without a launcher intent
+            if (packageManager.getLaunchIntentForPackage(appInfo.packageName) == null) {
                 it.remove();
             }
         }
@@ -80,6 +81,42 @@ public class SelectApp {
 
     public static Dialog selectApps(Context context, String key) {
         return selectApps(context, key, () -> {
+        });
+    }
+
+    public static Dialog insertCustomAppName(Context context, String key, String preselection, Runnable runAfterSelection) {
+        final LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(
+                (int) context.getResources().getDimension(R.dimen.custom_app_padding),
+                (int) context.getResources().getDimension(R.dimen.custom_app_top),
+                (int) context.getResources().getDimension(R.dimen.custom_app_padding),
+                0
+        );
+
+//        final TextView description = new TextView(context);
+//        description.setText(context.getString(R.string.enter_custom_app_name));
+//        layout.addView(description);
+
+        final android.widget.EditText input = new android.widget.EditText(context);
+        input.setText(preselection);
+        layout.addView(input);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setTitle(R.string.set_custom_app_name)
+                .setView(layout)
+                .setPositiveButton(R.string.ok, (d, which) -> {
+                    String customName = input.getText().toString();
+                    SharedPreferencesUtil.setCustomPackage(context, key, customName);
+                    runAfterSelection.run();
+                })
+                .create();
+
+        return dialog;
+    }
+
+    public static Dialog insertCustomAppName(Context context, String key, String preselection) {
+        return insertCustomAppName(context, key, preselection, () -> {
         });
     }
 

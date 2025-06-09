@@ -8,4 +8,9 @@ public class OpenAppFourTileService extends OpenCustomAppTileService {
     public String getPreferencesKey() {
         return SharedPreferencesUtil.CUSTOM_PACKAGE_FOUR;
     }
+
+    @Override
+    public String getLabelPreferenceKey() {
+        return SharedPreferencesUtil.CUSTOM_PACKAGE_FOUR_LABEL;
+    }
 }

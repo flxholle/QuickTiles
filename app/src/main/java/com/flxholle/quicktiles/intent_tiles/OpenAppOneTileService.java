@@ -8,4 +8,9 @@ public class OpenAppOneTileService extends OpenCustomAppTileService {
     public String getPreferencesKey() {
         return SharedPreferencesUtil.CUSTOM_PACKAGE_ONE;
     }
+
+    @Override
+    public String getLabelPreferenceKey() {
+        return SharedPreferencesUtil.CUSTOM_PACKAGE_ONE_LABEL;
+    }
 }

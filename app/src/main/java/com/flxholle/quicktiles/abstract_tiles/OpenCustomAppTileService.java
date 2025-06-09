@@ -1,7 +1,6 @@
 package com.flxholle.quicktiles.abstract_tiles;
 
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.service.quicksettings.Tile;
 
 import com.flxholle.quicktiles.R;
@@ -35,8 +34,7 @@ public abstract class OpenCustomAppTileService extends IntentTileService {
         Tile tile = getQsTile();
         String packageName = SharedPreferencesUtil.getCustomPackage(this, getPreferencesKey());
         if (packageName != null) {
-            ApplicationInfo selectedApp = SelectApp.getApplicationInfo(this, packageName);
-            tile.setLabel(selectedApp.loadLabel(getPackageManager()));
+            tile.setLabel(SharedPreferencesUtil.getCustomPackage(this, getLabelPreferenceKey()));
         } else {
             tile.setLabel(getString(R.string.custom_app));
         }
@@ -44,4 +42,6 @@ public abstract class OpenCustomAppTileService extends IntentTileService {
     }
 
     public abstract String getPreferencesKey();
+
+    public abstract String getLabelPreferenceKey();
 }

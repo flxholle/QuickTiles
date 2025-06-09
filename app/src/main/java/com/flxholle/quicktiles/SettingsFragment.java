@@ -25,12 +25,11 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.SwitchPreferenceCompat;
 
-import com.flxholle.quicktiles.tiles.CounterTileService;
+import com.bytehamster.lib.preferencesearch.SearchConfiguration;
+import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.flxholle.quicktiles.utils.GrantPermissionDialogs;
 import com.flxholle.quicktiles.utils.SelectApp;
 import com.flxholle.quicktiles.utils.SharedPreferencesUtil;
-import com.bytehamster.lib.preferencesearch.SearchConfiguration;
-import com.bytehamster.lib.preferencesearch.SearchPreference;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import java.util.ArrayList;
@@ -91,7 +90,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference resetCounter = findPreference("reset_counter");
         resetCounter.setOnPreferenceClickListener((preference -> {
             SharedPreferencesUtil.resetCounter(requireContext());
-            TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), CounterTileService.class));
+//            TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), CounterTileService.class));
             return true;
         }));
     }
@@ -161,18 +160,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         String customPackageAtStart = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
         if (customPackageAtStart != null)
-            switchPreference.setTitle(SelectApp.getApplicationInfo(requireContext(), customPackageAtStart).loadLabel(requireContext().getPackageManager()));
+            switchPreference.setTitle(SharedPreferencesUtil.getCustomPackage(requireContext(), key + "_label"));
 
         switchPreference.setOnPreferenceChangeListener((preference, newValue) -> {
             String customPackageNew = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
+
             if (newValue.equals(Boolean.TRUE) && customPackageNew == null) {
                 SelectApp.selectApps(requireContext(), key, () -> {
-                    setComponentState(Boolean.TRUE, serviceClass);
-                    TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), serviceClass));
-                    ((SwitchPreferenceCompat) preference).setChecked(true);
-
                     String customPackageUpdated = SharedPreferencesUtil.getCustomPackage(requireContext(), key);
-                    preference.setTitle(SelectApp.getApplicationInfo(requireContext(), customPackageUpdated).loadLabel(requireContext().getPackageManager()));
+                    String preselection = SelectApp.getApplicationInfo(requireContext(), customPackageUpdated).loadLabel(requireContext().getPackageManager()).toString();
+
+                    String labelKey = key + "_label";
+                    SelectApp.insertCustomAppName(requireContext(), labelKey, preselection, () -> {
+                        setComponentState(Boolean.TRUE, serviceClass);
+                    TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), serviceClass));
+                        ((SwitchPreferenceCompat) preference).setChecked(true);
+                        preference.setTitle(SharedPreferencesUtil.getCustomPackage(requireContext(), labelKey));
+                    }).show();
                 }).show();
                 return false;
             } else {

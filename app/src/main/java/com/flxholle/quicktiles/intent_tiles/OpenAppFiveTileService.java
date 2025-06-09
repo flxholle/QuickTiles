@@ -8,4 +8,9 @@ public class OpenAppFiveTileService extends OpenCustomAppTileService {
     public String getPreferencesKey() {
         return SharedPreferencesUtil.CUSTOM_PACKAGE_FIVE;
     }
+
+    @Override
+    public String getLabelPreferenceKey() {
+        return SharedPreferencesUtil.CUSTOM_PACKAGE_FIVE_LABEL;
+    }
 }

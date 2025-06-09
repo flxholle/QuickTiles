@@ -1,44 +1,65 @@
-<b>Current Features:</b>
- - Media control (play/pause, next, previous, media volume)
- - Show volume panel
- - New event/alarm/timer
- - Make call
- - Take photo/record video
- - Open calculator/file manager
- - Open custom apps
- - Search settings
- - Open languages
- - Open dictionary/privacy
- - Open VPN/data usage/screen cast/connected devices/about
- - Set screen timeout
- - Switch volume modes (normal, vibrate, priority only, alarms only, total silence)
- - Adjust brightness
- - Adaptive brightness toggle
- - Grayscale
- - Take screenshot
- - Force rotation (0°, 90°, 180°, 270°)
- - Lock screen
- - Split screen
- - Set vibration on calls
- - Open power menu
- - Show battery level
- - Counter
- - Enable/disable USB debugging
- - Enable/Disable demo mode
- - Open developer options
- - Enable/Disable keep screen on
- - Set animator duration scale
- - Disable all animations
- - Always finish activities
+QuickTiles lets you add custom quick settings tiles to your Android device, enabling fast access to
+your favorite actions and shortcuts. The app is open source and privacy-friendly.
 
- <b>Credits:</b>
- App icon made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a><br>
- <br>
- Following projects were used:
- <ul>
-     <li><a href="https://github.com/mustafa01ali/Dev-Tiles">Dev-Tiles</a> by Mustafa Ali under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
-     <li><a href="https://github.com/adriangl/Dev-QuickSettings">Dev-QuickSettings</a> by Adrián García under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
-     <li><a href="https://github.com/rascarlo/AdaptiveBrightnessTile">Adaptive Brightness Tile</a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
-     <li><a href="https://github.com/rascarlo/PowerButtonTile">PowerButtonTile/a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
-     <li><a href="https://github.com/fei-ke/Greyscale">Greyscale</a> by fei-ke under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
- </ul>
+<b>Features:</b>
+- 🎵 Media control (play/pause, next, previous, media volume)
+- 🔊 Show volume panel
+- 📅 New event/alarm/timer
+- 📞 Make call
+- 📷 Take photo/record video
+- 🧮 Open calculator/file manager
+- 📱 Open custom apps
+- 🔍 Search settings
+- 🌐 Open languages
+- 📖 Open dictionary/privacy
+- 🔗 Open VPN/data usage/screen cast/connected devices/about
+- ⏲️ Set screen timeout
+- 🔔 Switch volume modes (normal, vibrate, priority only, alarms only, total silence)
+- 💡 Adjust brightness
+- 🌙 Adaptive brightness toggle
+- 🌑 Grayscale
+- 📸 Take screenshot
+- 🔄 Force rotation (0°, 90°, 180°, 270°)
+- 🔒 Lock screen
+- 🖥️ Split screen
+- 📳 Set vibration on calls
+- ⚡ Open power menu
+- 🔋 Show battery level
+- 🔢 Counter
+- 🐞 Enable/disable USB debugging
+- 🕹️ Enable/Disable demo mode
+- 🛠️ Open developer options
+- 🌙 Enable/Disable keep screen on
+- 🏃 Set animator duration scale
+- 🚫 Disable all animations
+- 🏁 Always finish activities
+
+**Important:**
+Google Play Protect may warn that QuickTiles is a "harmful app."
+This is a false positive. You can check the full source code in this repository — there is no
+malicious activity.<br>
+If you disable Play Protect, Android may still periodically show warnings. This seems to be because
+Android stores previously detected warnings and repeats them, even after Play Protect is turned off.
+
+
+<b>Acknowledgments</b>:
+
+Icons
+- Old App icon by [Freepik](https://www.flaticon.com/authors/freepik)
+  from [Flaticon](https://www.flaticon.com/)
+- New App Icon generated with DALL-E 3
+  ([OpenAI](https://openai.com/dall-e-3/))
+- Toggle-split-screen icon by [Smashicons](https://www.flaticon.com/authors/smashicons)
+  from [Flaticon](https://www.flaticon.com/)
+
+Open Source Projects
+- [Dev-Tiles](https://github.com/mustafa01ali/Dev-Tiles) by Mustafa
+  Ali ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt))
+- [Dev-QuickSettings](https://github.com/adriangl/Dev-QuickSettings) by Adrián
+  García ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt))
+- [Adaptive Brightness Tile](https://github.com/rascarlo/AdaptiveBrightnessTile) by
+  rascarlo ([GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.txt))
+- [PowerButtonTile](https://github.com/rascarlo/PowerButtonTile) by
+  rascarlo ([GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.txt))
+- [Greyscale](https://github.com/fei-ke/Greyscale) by
+  fei-ke ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt))

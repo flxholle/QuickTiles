@@ -14,7 +14,7 @@
 
 <br />
 <div align="center">
-<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" alt="Logo" width="120" height="120">
+<img src="./appicon.png" alt="Logo" width="120" height="120">
 
 <h3 align="center">QuickTiles</h3>
 

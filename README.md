@@ -14,7 +14,7 @@
 
 <br />
 <div align="center">
-<img src="app/src/main/res/mipmap-anydpi-v26/ic_launcher_foreground.xml" alt="Logo" width="120" height="120">
+<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" alt="Logo" width="120" height="120">
 
 <h3 align="center">QuickTiles</h3>
 
@@ -56,12 +56,12 @@
 </details>
 
 ## About The Project
-
-<img src="./fastlane/metadata/android/en/images/phoneScreenshots/1.png?inline=false" width=270 alt="Screenshot">
-<img src="./fastlane/metadata/android/en/images/phoneScreenshots/2.png?inline=false" width=270 alt="Screenshot">
-
 QuickTiles lets you add custom quick settings tiles to your Android device, enabling fast access to
 your favorite actions and shortcuts. The app is open source and privacy-friendly.
+
+
+<img src="./fastlane/metadata/android/en/images/phoneScreenshots/1.png?inline=false" width=200 alt="Screenshot">
+<img src="./fastlane/metadata/android/en/images/phoneScreenshots/2.png?inline=false" width=200 alt="Screenshot">
 
 ### Download
 
@@ -70,7 +70,7 @@ alt="Get it on F-Droid"
 height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<div align="right">(<a href="#top">back to top</a>)</div>
 
 ### Features ✨
 
@@ -106,7 +106,7 @@ height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
 - 🚫 Disable all animations
 - 🏁 Always finish activities
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<div align="right">(<a href="#top">back to top</a>)</div>
 
 ### Built With
 
@@ -115,14 +115,14 @@ height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
 * ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 * ![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<div align="right">(<a href="#top">back to top</a>)</div>
 
 ## Usage
 
 After installing, open QuickTiles and enable the tiles you want to use. You can then access them
 from the quick settings panel on your Android device.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<div align="right">(<a href="#top">back to top</a>)</div>
 
 ## Google Play Protect Warning
 

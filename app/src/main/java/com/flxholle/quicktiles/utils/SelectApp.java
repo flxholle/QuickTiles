@@ -35,6 +35,13 @@ public class SelectApp {
             }
         }
 
+        // Sort applications by name
+        installedApplications.sort((app1, app2) -> {
+            String name1 = app1.loadLabel(packageManager).toString();
+            String name2 = app2.loadLabel(packageManager).toString();
+            return name1.compareToIgnoreCase(name2);
+        });
+
         // Return installed applications
         return installedApplications;
     }

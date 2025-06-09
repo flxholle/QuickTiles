@@ -1,8 +1,7 @@
 package com.flxholle.quicktiles.abstract_tiles
 
 import android.content.Intent
-import android.os.Handler
-import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import com.flxholle.quicktiles.R
 import com.flxholle.quicktiles.utils.CustomAccessibilityService
@@ -13,13 +12,13 @@ abstract class AccessibilityTileService : BaseTileService() {
     override fun onClick() {
         if (GrantPermissionDialogs.hasAccessibilityServicePermission(this)) {
             try {
-                sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
-
-                Handler(Looper.myLooper()!!).postDelayed({
-                    startService(Intent(this, CustomAccessibilityService::class.java).setAction(getActionString()))
-                }, 500)
-
+                startService(
+                    Intent(this, CustomAccessibilityService::class.java).setAction(
+                        getActionString()
+                    )
+                )
             } catch (e: Exception) {
+                Log.e("AccessibilityTileService", "Error starting service", e)
                 Toast.makeText(this, R.string.an_error_occurred, Toast.LENGTH_LONG).show()
             }
         } else {

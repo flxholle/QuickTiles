@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name" translatable="false">QuickTiles</string>
+    <string name="app_icon_credit_link" translatable="false">https://www.flaticon.com/authors/nikita-golubev</string>
+    <string name="open_source_libraries">Açık kaynak kütüphaneler</string>
+    <string name="credits">Katkıda Bulunanlar</string>
+    <string name="credits_description" translatable="false"><![CDATA[
+        App icon made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+        <br>
+        Toggle-split-screen icon made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        <br>
+        Following projects were used:
+        <ul>
+            <li><a href="https://github.com/mustafa01ali/Dev-Tiles">Dev-Tiles</a> by Mustafa Ali under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
+            <li><a href="https://github.com/adriangl/Dev-QuickSettings">Dev-QuickSettings</a> by Adrián García under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
+            <li><a href="https://github.com/rascarlo/AdaptiveBrightnessTile">Adaptive Brightness Tile</a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
+            <li><a href="https://github.com/rascarlo/PowerButtonTile">PowerButtonTile/a> by rascarlo under <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></li>
+            <li><a href="https://github.com/fei-ke/Greyscale">Greyscale</a> by fei-ke under <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></li>
+        </ul>
+]]></string>
+
+    <string name="permission_required">İzin Gerekli!</string>
+    <string name="permission_required_description">Bu özelliği kullanmak için bir iznin verilmesi gerekiyor. Aşağıdaki komutu kopyalayın ve bir bilgisayarda çalıştırın veya Root kullanın:\n\n%s\n</string>
+    <string name="permission_notification_policy_description">Bu özelliği kullanmak için bir iznin verilmesi gerekiyor. Lütfen ayarları açın ve \"Rahatsız Etmeyin erişimi\" iznini verin.</string>
+    <string name="permission_modify_system_settings_description">Bu özelliği kullanmak için bir iznin verilmesi gerekiyor. Lütfen ayarları açın ve \"Sistem ayarlarını değiştirme\" iznini verin.</string>
+    <string name="permission_root_description">Bu özelliği kullanmak için telefonunuzun rootlu olması ve bu uygulamaya root izinlerinin verilmesi gerekmektedir.</string>
+    <string name="settings">Ayarlar</string>
+    <string name="cancel">İptal</string>
+    <string name="ok">Tamam</string>
+    <string name="copy_text">Kopyala</string>
+    <string name="copy_success">Başarıyla Kopyalandı</string>
+    <string name="root">Root</string>
+    <string name="root_failure">Root izni verilmedi!</string>
+
+    <string name="media_control">Medya Kontrolü</string>
+    <string name="play_pause">Oynat/Duraklat</string>
+    <string name="next_song">Sonraki</string>
+    <string name="previous_song">Önceki</string>
+    <string name="media_volume">Medya Sesi</string>
+
+    <string name="system_utilities">Sistem Araçları</string>
+    <string name="grayscale">Gri Tonlama</string>
+    <string name="adaptive_brightness">Uyarlanabilir Parlaklık</string>
+    <string name="development">Geliştirme</string>
+    <string name="finish_activities">Etkinlikleri Her Zaman Bitir</string>
+    <string name="usb_debugging">USB Hata Ayıklama</string>
+    <string name="wireless_usb_debugging">Kablosuz Hata Ayıklama</string>
+    <string name="keep_screen_on">Ekranı Açık Tut</string>
+    <string name="demo_mode">Demo Modu</string>
+    <string name="heads_up">Bildirim Pencereleri</string>
+    <string name="animator_duration">Animatör Süre Ölçeği</string>
+    <string name="animator_off">Animasyon Kapalı</string>
+    <string name="animator_scale_0_5x">Animasyon Ölçeği 0.5x</string>
+    <string name="animator_scale_1x">Animasyon Ölçeği 1x</string>
+    <string name="animator_scale_1_5x">Animasyon Ölçeği 1.5x</string>
+    <string name="animator_scale_2x">Animasyon Ölçeği 2x</string>
+    <string name="animator_scale_5x">Animasyon Ölçeği 5x</string>
+    <string name="animator_scale_10x">Animasyon Ölçeği 10x</string>
+    <string name="show_taps">Dokunmaları Göster</string>
+    <string name="disable_all_animations">Tüm Animasyonları Devre Dışı Bırak</string>
+    <string name="enable_all_animations">Tüm Animasyonları Etkinleştir</string>
+    <string name="new_alarm">Yeni Alarm</string>
+    <string name="new_timer">Yeni Zamanlayıcı</string>
+    <string name="take_photo">Fotoğraf Çek</string>
+    <string name="record_video">Video Kaydet</string>
+    <string name="open_calculator">Hesap Makinesi</string>
+    <string name="open_volume_panel">Ses Paneli</string>
+    <string name="adjust_brightness">Parlaklığı Ayarla</string>
+    <string name="open_files">Dosya Yöneticisi</string>
+    <string name="free_space">Boş Alan</string>
+    <string name="battery">Pil Seviyesi</string>
+    <string name="vpn">VPN</string>
+    <string name="data_usage">Veri Kullanımı</string>
+    <string name="about_phone">Telefon Hakkında</string>
+    <string name="connected_devices">Bağlı Cihazlar</string>
+    <string name="notification_history">Bildirim Geçmişi</string>
+    <string name="search_settings">Ayarlarda Ara</string>
+    <string name="new_event">Yeni Etkinlik</string>
+    <string name="make_call">Arama Yap</string>
+    <string name="no_app_found">Eşleşen bir uygulama yüklü değil!</string>
+    <string name="counter">Sayaç</string>
+    <string name="reset_counter">Sayacı Sıfırla</string>
+    <string name="screen_timeout">Ekran Zaman Aşımı</string>
+    <string name="infinite">Sınırsız</string>
+    <string name="seconds">Saniye</string>
+    <string name="minute">Dakika</string>
+    <string name="minutes">Dakika</string>
+    <string name="vibrate_on_calls">Aramalarda Titret</string>
+    <string name="vibrate">Titreşim</string>
+    <string name="priority_only">Yalnızca Öncelikli</string>
+    <string name="alarms_only">Yalnızca Alarmlar</string>
+    <string name="total_silence">Tam Sessizlik</string>
+    <string name="switch_volume_modes">Ses Modları Arasında Geçiş Yap</string>
+    <string name="force_rotation">Döndürmeyi Zorla</string>
+    <string name="auto_rotation">Otomatik Döndürme</string>
+    <string name="fixed_rotation">Sabit Döndürme (%s)</string>
+    <string name="fix_rotation">Döndürmeyi Sabitle</string>
+    <string name="portrait">Dikey</string>
+    <string name="landscape">Yatay</string>
+    <string name="zero_degrees">0°</string>
+    <string name="ninety_degrees">90°</string>
+    <string name="onehundredeighty_degrees">180°</string>
+    <string name="twohundredseventy_degrees">270°</string>
+    <string name="open_apps">Uygulamaları Aç</string>
+    <string name="miscellaneous">Çeşitli</string>
+    <string name="screen_cast">Ekran Yayını</string>
+    <string name="developer_options">Geliştirici Seçenekleri</string>
+    <string name="languages">Diller</string>
+    <string name="open_settings">Ayarları Aç</string>
+    <string name="on_which_connection">Hangi Bağlantıda</string>
+    <string name="custom_app">Özel Uygulama</string>
+    <string name="switch_silence_loud">Sesli ve Sessiz Arasında Geçiş Yap</string>
+    <string name="silence">Sessiz</string>
+    <string name="normal">Normal</string>
+    <string name="display">Ekran</string>
+    <string name="home_app">Ana Ekran Uygulaması</string>
+    <string name="privacy">Gizlilik</string>
+    <string name="personal_dictionary">Kişisel Sözlük</string>
+    <string name="split_screen">Bölünmüş Ekran</string>
+
+    <string name="select_an_app">Bir uygulama seçin</string>
+    <string name="system_apps_are_excluded">Sistem uygulamaları hariç tutulmuştur</string>
+
+    <string name="an_error_occurred">Bir hata oluştu</string>
+    <string name="unable_to_get_ip_address">Yerel IP adresi alınamıyor</string>
+    <string name="permission_accessibility_service_description">Bu özelliği kullanmak için bir iznin verilmesi gerekiyor. Lütfen ayarları açın ve %s\'i \"Erişilebilirlik Hizmeti\" olarak seçin.</string>
+    <string name="accessibility_service_description">Bu hizmet, bazı kutucukların çalışması için gereklidir.</string>
+    <string name="lock_screen">Ekranı Kilitle</string>
+    <string name="screenshot">Ekran Görüntüsü</string>
+    <string name="power_menu">Güç Menüsü</string>
+
+    <string name="pref_keep_screen_on_mode_ac_adapter">Bir AC adaptörüne bağlandığında</string>
+    <string name="pref_keep_screen_on_mode_usb_port">Bir USB portuna bağlandığında</string>
+    <string name="pref_keep_screen_on_mode_wireless">Kablosuz bir kaynağa bağlandığında</string>
+    <string name="pref_keep_screen_on_mode_any">Herhangi bir güç kaynağına bağlandığında</string>
+
+    <string name="set_custom_app_name">Özel bir ad belirle</string>
+</resources>

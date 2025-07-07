@@ -68,6 +68,9 @@ your favorite actions and shortcuts. The app is open source and privacy-friendly
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
 alt="Get it on F-Droid"
 height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
+[<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
+      alt="Direct apk download"
+      height="80">](https://gitlab.com/flxholle/quick-tiles/-/releases)
 
 
 <div align="right">(<a href="#top">back to top</a>)</div>

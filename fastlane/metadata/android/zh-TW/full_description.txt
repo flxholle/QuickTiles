@@ -1,0 +1,63 @@
+QuickTiles 讓您在 Android 裝置的快速設定中建立自訂方塊，快速存取您喜愛的動作和捷徑。
+本應用程式屬於開放原始碼且注重隱私。
+
+<b>特色</b>
+- 🎵 媒體控制 (播放 / 暫停、上一首、下一首、媒體音量)
+- 🔊 顯示音量面板
+- 📅 建立活動 / 鬧鐘 / 計時器
+- 📞 撥打電話
+- 📷 拍攝相片 / 錄製影片
+- 🧮 啟動計算機 / 檔案管理
+- 📱 啟動自訂應用程式
+- 🔍 搜尋設定
+- 🌐 開啟語言清單
+- 📖 開啟字典 / 隱私權
+- 🔗 開啟 VPN / 數據用量 / 投放螢幕 / 連線裝置 / 關於裝置
+- ⏲️ 設定螢幕自動關閉時間
+- 🔔 切換鈴響模式 (一般、震動、優先通知、僅限鬧鐘、完全靜音)
+- 💡 調整亮度
+- 🌙 切換自動調整亮度
+- 🌑 灰階模式
+- 📸 螢幕截圖
+- 🔄 強制旋轉 (0°、90°、180°、270°)
+- 🔒 螢幕鎖定
+- 🖥️ 分割畫面
+- 📳 設定通話震動
+- ⚡ 開啟電源選單
+- 🔋 顯示電池電量
+- 🔢 計數器
+- 🐞 啟用 / 停用 USB 偵錯
+- 🕹️ 啟用 / 停用示範模式
+- 🛠️ 開啟開發人員選項
+- 🌙 啟用 / 停用保持螢幕開啟
+- 🏃 設定動畫影片長度
+- 🚫 停用所有動畫
+- 🏁 一律刪除活動
+
+**重要事項**
+Google Play 安全防護可能會將 QuickTiles 視為「有害應用程式」。
+這實際上是誤報，您可檢查儲存庫中的所有原始碼 — 沒有任何惡意行為。
+即使您停用安全防護，Android 仍有可能依據先前的掃描紀錄重複發出警告，不受保護狀態影響。
+
+
+<b>感謝</b>
+
+圖示
+- 舊版應用程式圖示作者 [Freepik](https://www.flaticon.com/authors/freepik)
+  來自 [Flaticon](https://www.flaticon.com/)
+- 新版應用程式圖示由 DALL-E 3 產生
+  ([OpenAI](https://openai.com/dall-e-3/))
+- 切換分割畫面圖示作者 [Smashicons](https://www.flaticon.com/authors/smashicons)
+  來自 [Flaticon](https://www.flaticon.com/)
+
+開放原始碼計畫
+- [Dev-Tiles](https://github.com/mustafa01ali/Dev-Tiles) 作者 Mustafa
+  Ali ([Apache 授權 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt))
+- [Dev-QuickSettings](https://github.com/adriangl/Dev-QuickSettings) 作者 Adrián
+  García ([Apache 授權 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt))
+- [Adaptive Brightness Tile](https://github.com/rascarlo/AdaptiveBrightnessTile) 作者
+  rascarlo ([GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.txt))
+- [PowerButtonTile](https://github.com/rascarlo/PowerButtonTile) 作者
+  rascarlo ([GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.txt))
+- [Greyscale](https://github.com/fei-ke/Greyscale) by
+  fei-ke ([Apache 授權 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt))

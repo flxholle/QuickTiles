@@ -1,0 +1,121 @@
+<resources>
+    <string name="open_source_libraries">开源库</string>
+    <string name="credits">致谢</string>
+
+    <string name="permission_required">需要权限！</string>
+    <string name="permission_required_description">必须取得权限，才能使用这项功能。
+\n请使用 Root 或连接电脑并执行下列指令：
+\n\n%s
+\n</string>
+    <string name="permission_notification_policy_description">必须取得权限，才能使用这项功能。
+\n请前往设置并授予「勿扰模式访问权」。</string>
+    <string name="permission_modify_system_settings_description">必须取得权限，才能使用这项功能。
+\n请前往设置并授予「修改系统设置」。</string>
+    <string name="permission_root_description">设备必须 Root 并授予应用程序权限，才能使用这项功能。</string>
+    <string name="settings">设置</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="copy_text">复制</string>
+    <string name="copy_success">已复制内容</string>
+    <string name="root_failure">尚未取得 Root 权限！</string>
+
+    <string name="media_control">媒体控制</string>
+    <string name="play_pause">播放 / 暂停</string>
+    <string name="next_song">下一首</string>
+    <string name="previous_song">上一首</string>
+    <string name="media_volume">媒体音量</string>
+
+    <string name="system_utilities">系统功能</string>
+    <string name="grayscale">灰度</string>
+    <string name="adaptive_brightness">自动调整亮度</string>
+    <string name="development">开发</string>
+    <string name="finish_activities">一律删除活动</string>
+    <string name="usb_debugging">USB 调试</string>
+    <string name="wireless_usb_debugging">无线网络调试</string>
+    <string name="keep_screen_on">保持屏幕开启</string>
+    <string name="demo_mode">演示模式</string>
+    <string name="heads_up">通知提醒</string>
+    <string name="animator_duration">动画时长</string>
+    <string name="animator_off">动画关闭</string>
+    <string name="animator_scale_0_5x">动画比例 0.5x</string>
+    <string name="animator_scale_1x">动画比例 1x</string>
+    <string name="animator_scale_1_5x">动画比例 1.5x</string>
+    <string name="animator_scale_2x">动画比例 2x</string>
+    <string name="animator_scale_5x">动画比例 5x</string>
+    <string name="animator_scale_10x">动画比例 10x</string>
+    <string name="show_taps">显示触控反馈</string>
+    <string name="disable_all_animations">禁用所有动画</string>
+    <string name="enable_all_animations">启用所有动画</string>
+    <string name="new_alarm">新建闹钟</string>
+    <string name="new_timer">新建计时器</string>
+    <string name="take_photo">拍摄照片</string>
+    <string name="record_video">录制视频</string>
+    <string name="open_calculator">计算器</string>
+    <string name="open_volume_panel">音量面板</string>
+    <string name="adjust_brightness">调整亮度</string>
+    <string name="open_files">文件管理</string>
+    <string name="free_space">可用空间</string>
+    <string name="battery">电池电量</string>
+    <string name="data_usage">数据用量</string>
+    <string name="about_phone">关于设备</string>
+    <string name="connected_devices">已连接设备</string>
+    <string name="notification_history">通知记录</string>
+    <string name="search_settings">搜索设置</string>
+    <string name="new_event">新建活动</string>
+    <string name="make_call">拨打电话</string>
+    <string name="no_app_found">未安装符合条件的应用程序！</string>
+    <string name="counter">计数器</string>
+    <string name="reset_counter">重置计数器</string>
+    <string name="screen_timeout">屏幕自动关闭</string>
+    <string name="infinite">无限</string>
+    <string name="seconds">秒</string>
+    <string name="minute">分</string>
+    <string name="minutes">分</string>
+    <string name="vibrate_on_calls">通话震动</string>
+    <string name="vibrate">震动</string>
+    <string name="priority_only">仅限优先通知</string>
+    <string name="alarms_only">仅限闹钟</string>
+    <string name="total_silence">完全静音</string>
+    <string name="switch_volume_modes">切换音效模式</string>
+    <string name="force_rotation">强制旋转</string>
+    <string name="auto_rotation">自动旋转</string>
+    <string name="fixed_rotation">固定旋转 %s</string>
+    <string name="fix_rotation">固定旋转</string>
+    <string name="portrait">纵向</string>
+    <string name="landscape">横向</string>
+    <string name="open_apps">启动应用程序</string>
+    <string name="miscellaneous">其他</string>
+    <string name="screen_cast">投屏</string>
+    <string name="developer_options">开发者选项</string>
+    <string name="languages">语言</string>
+    <string name="open_settings">打开设置</string>
+    <string name="on_which_connection">启用时机</string>
+    <string name="custom_app">自定义应用程序</string>
+    <string name="switch_silence_loud">切换响铃与静音</string>
+    <string name="silence">静音</string>
+    <string name="normal">一般</string>
+    <string name="display">显示</string>
+    <string name="home_app">默认主屏幕</string>
+    <string name="privacy">隐私</string>
+    <string name="personal_dictionary">个人字典</string>
+    <string name="split_screen">分屏</string>
+
+    <string name="select_an_app">选择应用程序</string>
+    <string name="system_apps_are_excluded">已排除系统应用程序</string>
+
+    <string name="an_error_occurred">发生错误</string>
+    <string name="unable_to_get_ip_address">无法获取本地 IP 地址</string>
+    <string name="permission_accessibility_service_description">必须取得权限，才能使用这项功能。
+\n请前往设置并启用「%s」无障碍服务。</string>
+    <string name="accessibility_service_description">部分功能需要这项服务才能运行。</string>
+    <string name="lock_screen">锁屏</string>
+    <string name="screenshot">截图</string>
+    <string name="power_menu">电源菜单</string>
+
+    <string name="pref_keep_screen_on_mode_ac_adapter">连接 AC 充电器</string>
+    <string name="pref_keep_screen_on_mode_usb_port">连接 USB 端口</string>
+    <string name="pref_keep_screen_on_mode_wireless">连接任何网络</string>
+    <string name="pref_keep_screen_on_mode_any">连接任何电源</string>
+
+    <string name="set_custom_app_name">自定义名称</string>
+</resources>

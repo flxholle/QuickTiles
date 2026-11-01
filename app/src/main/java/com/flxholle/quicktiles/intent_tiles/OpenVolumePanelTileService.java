@@ -8,7 +8,7 @@ import com.flxholle.quicktiles.abstract_tiles.BaseTileService;
 public class OpenVolumePanelTileService extends BaseTileService {
 
     @Override
-    public void onClick() {
+    public void onTileClicked() {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }

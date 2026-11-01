@@ -9,7 +9,7 @@ import com.flxholle.quicktiles.abstract_tiles.BaseTileService;
 public class PlayPauseTileService extends BaseTileService {
 
     @Override
-    public void onClick() {
+    public void onTileClicked() {
         //https://stackoverflow.com/questions/20856706/how-to-control-currently-playing-music-player-in-android/30730295#30730295
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         KeyEvent downEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);

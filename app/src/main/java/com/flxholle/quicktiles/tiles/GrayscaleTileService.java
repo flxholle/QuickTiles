@@ -26,7 +26,7 @@ public class GrayscaleTileService extends BaseTileService {
     }
 
     @Override
-    public void onClick() {
+    public void onTileClicked() {
         if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this)) {
             showPermissionDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this));
             return;

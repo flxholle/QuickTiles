@@ -11,7 +11,7 @@ import com.flxholle.quicktiles.R;
 public abstract class IntentTileService extends BaseTileService {
 
     @Override
-    public final void onClick() {
+    public final void onTileClicked() {
         Intent intent = createIntent();
         if (intent == null) {
             Log.w(LOG_TAG, "No intent configured for " + getClass().getSimpleName());

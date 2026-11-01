@@ -2,6 +2,7 @@ package com.flxholle.quicktiles;
 
 import android.app.Dialog;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -31,6 +32,7 @@ import com.flxholle.quicktiles.tiles.CounterTileService;
 import com.flxholle.quicktiles.utils.GrantPermissionDialogs;
 import com.flxholle.quicktiles.utils.SelectApp;
 import com.flxholle.quicktiles.utils.SharedPreferencesUtil;
+import com.flxholle.quicktiles.utils.TileDiagnostics;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import java.util.ArrayList;
@@ -94,6 +96,59 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             TileService.requestListeningState(requireContext(), new ComponentName(requireContext(), CounterTileService.class));
             return true;
         }));
+
+        Preference diagnostics = findPreference("tile_diagnostics");
+        if (diagnostics != null) {
+            diagnostics.setOnPreferenceClickListener(preference -> {
+                showDiagnostics();
+                return true;
+            });
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateDiagnosticsSummary();
+    }
+
+    /**
+     * Shows the most recent tile event as the summary, so it can be checked without opening the
+     * dialog.
+     */
+    private void updateDiagnosticsSummary() {
+        Preference diagnostics = findPreference("tile_diagnostics");
+        if (diagnostics == null) {
+            return;
+        }
+        String log = TileDiagnostics.read(requireContext()).trim();
+        if (log.isEmpty()) {
+            diagnostics.setSummary(R.string.tile_diagnostics_empty);
+        } else {
+            diagnostics.setSummary(getString(R.string.tile_diagnostics_last, log.split("\n")[0]));
+        }
+    }
+
+    private void showDiagnostics() {
+        String log = TileDiagnostics.read(requireContext()).trim();
+        final String message = log.isEmpty() ? getString(R.string.tile_diagnostics_empty) : log;
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.tile_diagnostics)
+                .setMessage(message)
+                .setPositiveButton(R.string.share, (dialog, which) -> {
+                    Intent intent = new Intent(Intent.ACTION_SEND)
+                            .setType("text/plain")
+                            .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.tile_diagnostics))
+                            .putExtra(Intent.EXTRA_TEXT, message);
+                    startActivity(Intent.createChooser(intent, getString(R.string.share)));
+                })
+                .setNeutralButton(R.string.clear, (dialog, which) -> {
+                    TileDiagnostics.clear(requireContext());
+                    updateDiagnosticsSummary();
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
     }
 
     private void setSwitchPreferences() {

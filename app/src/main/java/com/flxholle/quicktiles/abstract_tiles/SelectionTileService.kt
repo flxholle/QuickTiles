@@ -28,7 +28,7 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
     }
 
     @CallSuper
-    override fun onClick() {
+    override fun onTileClicked() {
         setNextValue()
     }
 

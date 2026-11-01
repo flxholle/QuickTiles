@@ -250,6 +250,14 @@
             android:title="@string/finish_activities" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/troubleshooting">
+        <Preference
+            android:icon="@drawable/ic_perm_device_information"
+            android:key="tile_diagnostics"
+            android:summary="@string/tile_diagnostics_summary"
+            android:title="@string/tile_diagnostics" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/credits">
         <Preference
             android:icon="@drawable/ic_info"

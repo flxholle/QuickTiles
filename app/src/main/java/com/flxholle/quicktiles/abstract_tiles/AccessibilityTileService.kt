@@ -9,7 +9,7 @@ import com.flxholle.quicktiles.utils.GrantPermissionDialogs
 
 abstract class AccessibilityTileService : BaseTileService() {
 
-    override fun onClick() {
+    override fun onTileClicked() {
         if (!GrantPermissionDialogs.hasAccessibilityServicePermission(this)) {
             showPermissionDialog(GrantPermissionDialogs.getAccessibilityServiceDialog(this))
             return

@@ -2,11 +2,16 @@ package com.flxholle.quicktiles.abstract_tiles;
 
 import android.app.Dialog;
 import android.content.ComponentName;
+import android.content.Intent;
+import android.os.IBinder;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.flxholle.quicktiles.utils.TileDiagnostics;
 
 public abstract class BaseTileService extends TileService {
 
@@ -15,10 +20,46 @@ public abstract class BaseTileService extends TileService {
     //This should be called when the Tile gets disabled by the user
     public abstract void reset();
 
+    // Called when the user taps the tile
+    protected abstract void onTileClicked();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        record("onCreate");
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        record("onBind");
+        return super.onBind(intent);
+    }
+
+    @Override
+    public void onDestroy() {
+        record("onDestroy");
+        super.onDestroy();
+    }
+
+    // Called when the user taps the tile. This is final on purpose: every click is logged and
+    // exceptions are caught here, so a failing tile can never take the whole process (and with it
+    // every other tile of the app) down.
+    @Override
+    public final void onClick() {
+        record("onClick");
+        try {
+            onTileClicked();
+        } catch (Throwable error) {
+            TileDiagnostics.recordError(this, getClass().getSimpleName() + " click failed", error);
+            showErrorToast(error);
+        }
+    }
+
     // Called when the user adds your tile.
     @Override
     public void onTileAdded() {
         super.onTileAdded();
+        record("onTileAdded");
         try {
             TileService.requestListeningState(this, new ComponentName(this, this.getClass()));
         } catch (Exception e) {
@@ -31,7 +72,40 @@ public abstract class BaseTileService extends TileService {
     @Override
     public void onStartListening() {
         super.onStartListening();
+        record("onStartListening");
         updateTileState(Tile.STATE_INACTIVE);
+    }
+
+    @Override
+    public void onStopListening() {
+        record("onStopListening");
+        super.onStopListening();
+    }
+
+    /**
+     * Shows a short message when a tap on the tile failed. Without it a failing tile looks
+     * exactly like a tile the system never called, which makes the problem impossible to
+     * report.
+     */
+    private void showErrorToast(Throwable error) {
+        try {
+            String detail = error.getMessage() == null
+                    ? error.getClass().getSimpleName()
+                    : error.getClass().getSimpleName() + ": " + error.getMessage();
+            if (detail.length() > 120) {
+                detail = detail.substring(0, 120);
+            }
+            Toast.makeText(getApplicationContext(), "QuickTiles: " + detail, Toast.LENGTH_LONG).show();
+        } catch (Throwable ignored) {
+            // A toast is a nice to have, never let it break the tile
+        }
+    }
+
+    /**
+     * Adds an entry to the tile diagnostics log shown in the app's settings.
+     */
+    protected final void record(String event) {
+        TileDiagnostics.record(this, getClass().getSimpleName() + " " + event);
     }
 
     /**
@@ -83,6 +157,7 @@ public abstract class BaseTileService extends TileService {
         try {
             showDialog(dialog);
         } catch (Exception e) {
+            record("could not show dialog: " + e.getClass().getSimpleName());
             Log.w(LOG_TAG, "Could not show dialog for " + getClass().getSimpleName(), e);
         }
     }
@@ -109,6 +184,7 @@ public abstract class BaseTileService extends TileService {
             return;
         }
 
+        record("device is locked, waiting for unlock");
         try {
             unlockAndRun(action);
         } catch (Exception e) {

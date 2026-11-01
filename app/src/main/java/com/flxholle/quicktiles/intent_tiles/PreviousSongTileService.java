@@ -9,7 +9,7 @@ import com.flxholle.quicktiles.abstract_tiles.BaseTileService;
 public class PreviousSongTileService extends BaseTileService {
 
     @Override
-    public void onClick() {
+    public void onTileClicked() {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         KeyEvent downEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PREVIOUS);
         am.dispatchMediaKeyEvent(downEvent);

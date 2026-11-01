@@ -14,7 +14,7 @@ public class CounterTileService extends BaseTileService {
     }
 
     @Override
-    public void onClick() {
+    public void onTileClicked() {
         SharedPreferencesUtil.triggerCounter(this);
         updateTileResources();
     }

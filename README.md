@@ -152,6 +152,34 @@ If a tile still shows no reaction:
 * The screenshot / lock screen / split screen / power dialog tiles require the QuickTiles
   accessibility service to be enabled in the system accessibility settings.
 
+### Tile diagnostics
+
+Version 1.9.1 records what actually happens when a tile is tapped. Open the app, go to
+**Settings → Troubleshooting → Tile diagnostics**. The list is ordered newest first and contains
+one line per event, for example:
+
+```
+11-01 14:32:10.123  GrayscaleTileService onClick
+11-01 14:32:09.002  GrayscaleTileService onStartListening
+11-01 14:31:58.400  --- app process started (pid 12345) ---
+```
+
+The same lines are written to logcat with the tag `QuickTiles`
+(`adb logcat -s QuickTiles AndroidRuntime`).
+
+How to read it:
+
+* **Every tap adds an `onClick` line** - the app was reached, so the problem is inside the tile
+  (a missing permission, an unsupported setting, ...). A failed tap also shows a short toast with
+  the exception.
+* **No new lines at all, not even `onBind`/`onStartListening`** - the system never bound the tile
+  service. In that case the app was force-stopped or blocked by the system/battery manager, and
+  only the system side can be changed (see the list above).
+* **Only `onBind` appears, `onStartListening` not** (or the tile appears greyed out in the panel) -
+  the tile component is disabled. Re-enable the tile in the app.
+
+The dialog has a **Share** button - the text can be copied and pasted into a bug report.
+
 <div align="right">(<a href="#top">back to top</a>)</div>
 
 ## Building a debug APK with GitHub Actions

@@ -134,4 +134,12 @@
     <string name="pref_keep_screen_on_mode_any">When connected to any power source</string>
 
     <string name="set_custom_app_name">Set a custom name</string>
+    <string name="troubleshooting">Troubleshooting</string>
+    <string name="tile_diagnostics">Tile diagnostics</string>
+    <string name="tile_diagnostics_summary">Shows whether taps on your tiles reach the app</string>
+    <string name="tile_diagnostics_empty">No tile events recorded yet. Tap one of your tiles and reopen the app.</string>
+    <string name="tile_diagnostics_last">Last event: %1$s</string>
+    <string name="tile_diagnostics_no_recent">No tile event recorded - the system did not reach the app.</string>
+    <string name="share">Share</string>
+    <string name="clear">Clear</string>
 </resources>

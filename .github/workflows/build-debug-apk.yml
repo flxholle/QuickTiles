@@ -1,0 +1,106 @@
+name: Build debug APK
+
+# Builds an installable debug APK on every push and lets you download it from the
+# run summary (Actions ▸ Build debug APK ▸ Artifacts). Pushing a tag (v1.9, ...) or
+# starting the workflow manually with "publish_release" also attaches the APK to a
+# GitHub release, so it can be downloaded straight to a phone.
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']          # pushing a version tag also publishes a release with the APK
+    paths-ignore:
+      - '**.md'
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_release:
+        description: 'Also attach the APK to a GitHub release'
+        type: boolean
+        default: false
+      release_tag:
+        description: 'Release tag to create/update (only with publish_release)'
+        type: string
+        default: 'debug-latest'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-debug-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: assembleDebug
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          # compileSdk is 36 (Android 16). Build-tools are downloaded by AGP itself.
+          packages: 'platforms;android-36 platform-tools'
+          accept-android-sdk-licenses: true
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build debug APK
+        run: ./gradlew --no-daemon assembleDebug --stacktrace
+
+      - name: Collect APK
+        id: apk
+        run: |
+          set -euo pipefail
+          VERSION=$(sed -n 's/.*versionName = "\(.*\)".*/\1/p' app/build.gradle.kts | head -n1)
+          mkdir -p dist
+          APK="dist/quicktiles-${VERSION}-debug.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$APK"
+          echo "path=$APK" >> "$GITHUB_OUTPUT"
+          ls -l dist
+          sha256sum "$APK"
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: quicktiles-debug-apk
+          path: dist/*.apk
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish release (tag push)
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          if ! gh release create "$TAG" dist/*.apk --title "$TAG" --generate-notes; then
+            gh release upload "$TAG" dist/*.apk --clobber
+          fi
+
+      - name: Publish release (manual run)
+        if: github.event_name == 'workflow_dispatch' && inputs.publish_release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${{ inputs.release_tag }}"
+          if ! gh release create "$TAG" dist/*.apk \
+              --title "$TAG" \
+              --target "$GITHUB_SHA" \
+              --prerelease \
+              --notes "Debug build of ${{ github.ref_name }} ($GITHUB_SHA)"; then
+            gh release upload "$TAG" dist/*.apk --clobber
+          fi

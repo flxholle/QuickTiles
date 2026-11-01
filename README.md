@@ -42,6 +42,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#troubleshooting-on-android-16--17-and-aggressive-oem-builds">Troubleshooting on Android 16 / 17</a></li>
     <li><a href="#google-play-protect-warning">Google Play Protect Warning</a></li>
+    <li><a href="#building-a-debug-apk-with-github-actions">Building a debug APK (GitHub Actions)</a></li>
     <li><a href="#building-for-android-17-api-37">Building for Android 17</a></li>
     <li><a href="#contributing">Contributing</a>
       <ul>
@@ -150,6 +151,31 @@ If a tile still shows no reaction:
   dialog with the exact `adb` command instead of doing nothing.
 * The screenshot / lock screen / split screen / power dialog tiles require the QuickTiles
   accessibility service to be enabled in the system accessibility settings.
+
+<div align="right">(<a href="#top">back to top</a>)</div>
+
+## Building a debug APK with GitHub Actions
+
+`.github/workflows/build-debug-apk.yml` builds an installable debug APK for you - no local
+Android Studio or SDK needed.
+
+* **Every push to any branch** builds the APK.
+* **Download:** GitHub ▸ *Actions* ▸ *Build debug APK* ▸ pick the newest run ▸ *Artifacts* ▸
+  `quicktiles-debug-apk` (a zip that contains `quicktiles-<version>-debug.apk`).
+* **Pushing a tag** like `v1.9` builds the APK and attaches it to a GitHub release, so it can be
+  downloaded directly on the phone:
+  `git tag v1.9 && git push origin v1.9`
+* **Manual run:** *Actions* ▸ *Build debug APK* ▸ *Run workflow*, optionally with
+  "Also attach the APK to a GitHub release" enabled. The "Run workflow" button only shows up once
+  this workflow exists on the repository's default branch (the push trigger works right away).
+
+The APK is signed with the standard Android debug key. It therefore cannot be installed over a
+release build from F-Droid/Play - uninstall that first. After installing, re-enable your tiles in
+the app and re-grant the adb permissions:
+
+```bash
+adb shell pm grant com.asdoi.quicktiles android.permission.WRITE_SECURE_SETTINGS
+```
 
 <div align="right">(<a href="#top">back to top</a>)</div>
 

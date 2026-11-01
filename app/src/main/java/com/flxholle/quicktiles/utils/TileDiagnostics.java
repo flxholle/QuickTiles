@@ -142,6 +142,52 @@ public final class TileDiagnostics {
     }
 
     /**
+     * Records a fatal, uncaught exception with its stack trace.
+     * <p>
+     * A crash is the only way a tile can stay bound to nothing: the process dies while SystemUI is
+     * waiting for it, SystemUI gives up on that tile and every later tap on it is silently
+     * dropped. Since the crash happens while the app is in the background nobody sees it - so it
+     * is written here, where it survives the process death and can be read after the next start.
+     * Never throws.
+     */
+    public static void recordFatal(Context context, Thread thread, Throwable error) {
+        try {
+            String trace = "";
+            if (error != null) {
+                StackTraceElement[] frames = error.getStackTrace();
+                StringBuilder builder = new StringBuilder();
+                int count = Math.min(frames.length, 8);
+                for (int i = 0; i < count; i++) {
+                    if (i > 0) {
+                        builder.append(" | ");
+                    }
+                    builder.append(frames[i].toString());
+                }
+                trace = builder.toString();
+            }
+            record(context, "FATAL in thread " + (thread == null ? "?" : thread.getName())
+                    + ": " + (error == null ? "?" : error.getClass().getName()
+                    + (error.getMessage() == null ? "" : ": " + error.getMessage()))
+                    + (trace.isEmpty() ? "" : " at " + trace));
+        } catch (Throwable ignored) {
+            // A crash handler must never crash
+        }
+    }
+
+    /**
+     * @return the most recent fatal error line, or an empty string.
+     */
+    public static String lastFatal(Context context) {
+        String log = read(context);
+        for (String line : log.split("\n")) {
+            if (line.contains("FATAL in thread ")) {
+                return line.trim();
+            }
+        }
+        return "";
+    }
+
+    /**
      * @return the recorded events, newest first (may be empty).
      */
     public static synchronized String read(Context context) {

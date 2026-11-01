@@ -1,7 +1,10 @@
 package com.flxholle.quicktiles;
 
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -18,6 +21,7 @@ import android.util.ArrayMap;
 import android.util.Pair;
 import android.util.TypedValue;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,6 +135,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         if (diagnostics == null) {
             return;
         }
+        String fatal = TileDiagnostics.lastFatal(requireContext());
+        if (!fatal.isEmpty()) {
+            diagnostics.setSummary(R.string.tile_diagnostics_crash_summary);
+            return;
+        }
         String log = TileDiagnostics.read(requireContext()).trim();
         if (log.isEmpty()) {
             diagnostics.setSummary(R.string.tile_diagnostics_empty);
@@ -180,6 +189,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
      * app stopped by the phone before it could be started at all.
      */
     private String verdictFor(String log) {
+        if (log.contains("FATAL in thread ")) {
+            return getString(R.string.tile_verdict_crash);
+        }
         boolean wasStopped = log.contains("USER_REQUESTED")
                 || log.contains("reason=OTHER")
                 || log.contains("EXCESSIVE_RESOURCE_USAGE");
@@ -195,6 +207,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         return getString(R.string.tile_diagnostics_empty);
     }
 
+    private void copyToClipboard(String text) {
+        try {
+            ClipboardManager clipboard = (ClipboardManager)
+                    requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            if (clipboard != null) {
+                clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.tile_diagnostics), text));
+                Toast.makeText(requireContext(), R.string.copied, Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            // Nothing to do, the share button is the fallback
+        }
+    }
+
     private void showDiagnostics() {
         String log = TileDiagnostics.read(requireContext()).trim();
         final String message = log.isEmpty()
@@ -204,16 +229,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.tile_diagnostics)
                 .setMessage(message)
-                .setPositiveButton(R.string.share, (dialog, which) -> {
+                .setPositiveButton(R.string.copy, (dialog, which) -> {
+                    copyToClipboard(message);
+                })
+                .setNeutralButton(R.string.share, (dialog, which) -> {
                     Intent intent = new Intent(Intent.ACTION_SEND)
                             .setType("text/plain")
                             .putExtra(Intent.EXTRA_SUBJECT, getString(R.string.tile_diagnostics))
                             .putExtra(Intent.EXTRA_TEXT, message);
                     startActivity(Intent.createChooser(intent, getString(R.string.share)));
-                })
-                .setNeutralButton(R.string.clear, (dialog, which) -> {
-                    TileDiagnostics.clear(requireContext());
-                    updateDiagnosticsSummary();
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();

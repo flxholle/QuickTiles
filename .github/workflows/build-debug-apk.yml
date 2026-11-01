@@ -97,7 +97,18 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk "$APK"
           echo "path=$APK" >> "$GITHUB_OUTPUT"
           ls -l dist
-          sha256sum "$APK"
+          SHA=$(sha256sum "$APK" | cut -d' ' -f1)
+          SIZE=$(du -h "$APK" | cut -f1)
+          {
+            echo "### QuickTiles debug APK"
+            echo ""
+            echo "| file | size | sha256 |"
+            echo "| --- | --- | --- |"
+            echo "| \`$(basename "$APK")\` | $SIZE | \`$SHA\` |"
+            echo ""
+            echo "Download it from the *Artifacts* section of this run, then:"
+            echo "\`adb install -r $(basename "$APK")\`"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v7

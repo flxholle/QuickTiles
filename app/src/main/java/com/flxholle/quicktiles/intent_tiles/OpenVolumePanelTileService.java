@@ -5,12 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Build;
-import android.provider.Settings;
 import android.util.Log;
 
 import com.flxholle.quicktiles.abstract_tiles.BaseTileService;
 
 public class OpenVolumePanelTileService extends BaseTileService {
+
+    /**
+     * Activity action that opens the system volume panel, see
+     * {@code Settings.Panel.ACTION_VOLUME} (API 29). The value is written out instead of using the
+     * constant so the tile stays loadable on every supported Android version.
+     */
+    private static final String ACTION_VOLUME = "android.settings.panel.action.VOLUME";
 
     /**
      * Opens the volume panel.
@@ -34,10 +40,9 @@ public class OpenVolumePanelTileService extends BaseTileService {
 
     private boolean openVolumePanel() {
         try {
-            // Settings.PANEL_VOLUME is a compile time constant, so it is safe below API 29 as well
-            Intent intent = new Intent(Settings.PANEL_VOLUME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Intent intent = new Intent(ACTION_VOLUME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             if (intent.resolveActivity(getPackageManager()) == null) {
-                record("volume panel: no system activity handles " + Settings.PANEL_VOLUME);
+                record("volume panel: no system activity handles " + ACTION_VOLUME);
                 return false;
             }
 

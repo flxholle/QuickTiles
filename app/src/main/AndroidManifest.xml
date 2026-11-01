@@ -47,6 +47,15 @@
         </activity>
 
         <activity
+            android:name=".VolumePanelActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:showWhenLocked="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
             android:name="com.mikepenz.aboutlibraries.ui.LibsActivity"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 

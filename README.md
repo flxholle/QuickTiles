@@ -152,6 +152,16 @@ If a tile still shows no reaction:
 * The screenshot / lock screen / split screen / power dialog tiles require the QuickTiles
   accessibility service to be enabled in the system accessibility settings.
 
+### Volume panel tile
+
+The volume panel tile shows the short media volume slider - the same one that appears when you
+press a volume key - even when QuickTiles is not running in the background. It needs a transparent
+activity for that, because SystemUI ignores `AudioManager.FLAG_SHOW_UI` requests coming from an app
+that is not in the foreground.
+
+If you prefer the big panel with every stream (media, ring, notification, alarm, call), enable
+**Miscellaneous → Expanded volume panel**.
+
 ### Tile diagnostics
 
 Version 1.9.1 records what actually happens when a tile is tapped. Open the app, go to

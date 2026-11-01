@@ -135,6 +135,8 @@
 
     <string name="set_custom_app_name">Set a custom name</string>
     <string name="troubleshooting">Troubleshooting</string>
+    <string name="volume_panel_expanded_title">Expanded volume panel</string>
+    <string name="volume_panel_expanded_summary">Show every volume stream (ring, notification, alarm, call) instead of the short media slider</string>
     <string name="tile_help">Why do my tiles stop working?</string>
     <string name="tile_help_summary">Fix tiles that only work while the app is open</string>
     <string name="app_info">App info</string>

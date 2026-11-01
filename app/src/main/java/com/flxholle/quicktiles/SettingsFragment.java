@@ -7,8 +7,10 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.service.quicksettings.TileService;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -104,6 +106,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return true;
             });
         }
+
+        Preference tileHelp = findPreference("tile_help");
+        if (tileHelp != null) {
+            tileHelp.setOnPreferenceClickListener(preference -> {
+                showTileHelp();
+                return true;
+            });
+        }
     }
 
     @Override
@@ -129,9 +139,67 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
     }
 
+    /**
+     * Explains why a tile can stop working after the app was swiped out of the recent apps and
+     * links to the two system screens where that can be changed.
+     */
+    private void showTileHelp() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle(R.string.tile_help)
+                .setMessage(R.string.tile_help_message)
+                .setPositiveButton(R.string.app_info, (dialog, which) -> openAppInfo())
+                .setNeutralButton(R.string.battery_settings, (dialog, which) -> openBatterySettings())
+                .setNegativeButton(R.string.ok, null)
+                .show();
+    }
+
+    private void openAppInfo() {
+        try {
+            startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.fromParts("package", requireContext().getPackageName(), null)));
+        } catch (Exception e) {
+            // Nothing sensible to do if even the app info page cannot be opened
+        }
+    }
+
+    private void openBatterySettings() {
+        try {
+            startActivity(new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+                    Uri.fromParts("package", requireContext().getPackageName(), null)));
+        } catch (Exception e) {
+            try {
+                startActivity(new Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS));
+            } catch (Exception ignored) {
+                openAppInfo();
+            }
+        }
+    }
+
+    /**
+     * Turns the raw log into the one sentence that matters: did the taps reach the app, or was the
+     * app stopped by the phone before it could be started at all.
+     */
+    private String verdictFor(String log) {
+        boolean wasStopped = log.contains("USER_REQUESTED")
+                || log.contains("reason=OTHER")
+                || log.contains("EXCESSIVE_RESOURCE_USAGE");
+        if (wasStopped && !log.contains(" onClick")) {
+            return getString(R.string.tile_verdict_stopped);
+        }
+        if (wasStopped) {
+            return getString(R.string.tile_verdict_stopped) + "\n\n" + getString(R.string.tile_verdict_reached);
+        }
+        if (log.contains(" onClick")) {
+            return getString(R.string.tile_verdict_reached);
+        }
+        return getString(R.string.tile_diagnostics_empty);
+    }
+
     private void showDiagnostics() {
         String log = TileDiagnostics.read(requireContext()).trim();
-        final String message = log.isEmpty() ? getString(R.string.tile_diagnostics_empty) : log;
+        final String message = log.isEmpty()
+                ? getString(R.string.tile_diagnostics_empty)
+                : verdictFor(log) + "\n\n" + log;
 
         new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.tile_diagnostics)

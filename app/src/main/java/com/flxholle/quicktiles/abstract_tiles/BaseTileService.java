@@ -32,6 +32,15 @@ public abstract class BaseTileService extends TileService {
     @Override
     public IBinder onBind(Intent intent) {
         record("onBind");
+        // Self-healing: SystemUI can lose the listening state of a tile (after the app process was
+        // killed, after a force stop or after the tile component was re-enabled). Asking for the
+        // listening state again whenever the system binds us makes the panel recover on itself
+        // instead of staying dead until the app is opened manually.
+        try {
+            TileService.requestListeningState(this, new ComponentName(this, this.getClass()));
+        } catch (Exception e) {
+            Log.w(LOG_TAG, "Could not request listening state for " + getClass().getSimpleName(), e);
+        }
         return super.onBind(intent);
     }
 

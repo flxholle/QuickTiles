@@ -253,6 +253,12 @@
     <PreferenceCategory android:title="@string/troubleshooting">
         <Preference
             android:icon="@drawable/ic_perm_device_information"
+            android:key="tile_help"
+            android:summary="@string/tile_help_summary"
+            android:title="@string/tile_help" />
+
+        <Preference
+            android:icon="@drawable/ic_perm_device_information"
             android:key="tile_diagnostics"
             android:summary="@string/tile_diagnostics_summary"
             android:title="@string/tile_diagnostics" />

@@ -135,6 +135,13 @@
 
     <string name="set_custom_app_name">Set a custom name</string>
     <string name="troubleshooting">Troubleshooting</string>
+    <string name="tile_help">Why do my tiles stop working?</string>
+    <string name="tile_help_summary">Fix tiles that only work while the app is open</string>
+    <string name="tile_help_message">Android only starts QuickTiles in the background as long as the phone allows it.\n\nIf the diagnostics log ends with \"previous process ended ... USER_REQUESTED\" or \"... OTHER\" and there are no tile events after it, the phone stopped the app when it was swiped out of the recent apps. Android then refuses to start any component of it, tiles included, until the app is opened again. No app can bypass that - but these settings stop the phone from doing it:\n\n1. Battery\nSet the battery usage of QuickTiles to \"Unrestricted\" / \"No restrictions\".\n\n2. Autostart\nXiaomi/HyperOS, OPPO/realme, vivo, OnePlus and Huawei builds need Autostart and background activity allowed for QuickTiles.\n\n3. Lock the app in the recent apps screen\nOn Xiaomi/HyperOS, OPPO, vivo and OnePlus: open the recent apps, long press the QuickTiles card and tap the lock icon. A locked app is not cleared by the ROM.\n\n4. Never use Force stop\nThe Stop / Force stop button on the app info page disables all tiles until the app is opened again.\n\nAfterwards open Quick Settings once. The tiles work from then on without the app being open, and the diagnostics log shows a new \"app process started\" line without any previous USER_REQUESTED entry.\n\nTap \"App info\" below to reach the battery and autostart settings.\n\nIf the log shows a new onClick line for every tap, the system does reach the app and the problem is a tile permission, not a killed app - in that case send the log.</string>
+    <string name="app_info">App info</string>
+    <string name="battery_settings">Battery</string>
+    <string name="tile_verdict_stopped">Verdict: the phone stopped QuickTiles (see the entry starting with \"previous process ended ... USER_REQUESTED\"). Open \"Why do my tiles stop working?\" and apply the settings listed there.</string>
+    <string name="tile_verdict_reached">Verdict: your taps do reach the app, so the tile itself is failing (permission or unsupported setting). The last onClick line above names the tile.</string>
     <string name="tile_diagnostics">Tile diagnostics</string>
     <string name="tile_diagnostics_summary">Shows whether taps on your tiles reach the app</string>
     <string name="tile_diagnostics_empty">No tile events recorded yet. Tap one of your tiles and reopen the app.</string>

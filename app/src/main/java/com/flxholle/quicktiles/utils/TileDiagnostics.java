@@ -1,11 +1,15 @@
 package com.flxholle.quicktiles.utils;
 
+import android.app.ActivityManager;
+import android.app.ApplicationExitInfo;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -73,6 +77,71 @@ public final class TileDiagnostics {
     }
 
     /**
+     * Records how and when the previous app process ended.
+     * <p>
+     * This is the key piece of information for the "tiles only work while the app is open"
+     * problem: if the system killed the app when it was swiped out of the recent apps, the next
+     * start reports {@code REASON_USER_REQUESTED} (or, on some OEM builds, {@code REASON_OTHER}).
+     * A killed-but-not-stopped app is still startable in the background, so its tiles keep
+     * working; an app that was <em>stopped</em> (force stop) cannot start any component at all
+     * until it is launched again. Never throws.
+     */
+    public static void recordProcessExitHistory(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+            return;
+        }
+        try {
+            ActivityManager activityManager =
+                    (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            if (activityManager == null) {
+                return;
+            }
+            List<ApplicationExitInfo> exits = activityManager.getHistoricalProcessExitReasons(
+                    context.getPackageName(), 0, 3);
+            if (exits == null || exits.isEmpty()) {
+                record(context, "no previous process exit recorded");
+                return;
+            }
+            for (ApplicationExitInfo exit : exits) {
+                record(context, "previous process ended " + stamp(exit.getTimestamp())
+                        + " reason=" + reasonName(exit.getReason())
+                        + " importance=" + exit.getImportance());
+            }
+        } catch (Throwable error) {
+            Log.w(TAG, "Could not read process exit history", error);
+        }
+    }
+
+    private static String reasonName(int reason) {
+        switch (reason) {
+            case ApplicationExitInfo.REASON_EXIT_SELF:
+                return "EXIT_SELF";
+            case ApplicationExitInfo.REASON_SIGNALED:
+                return "SIGNALED (killed, e.g. by the task killer or the low memory killer)";
+            case ApplicationExitInfo.REASON_LOW_MEMORY:
+                return "LOW_MEMORY";
+            case ApplicationExitInfo.REASON_CRASH:
+                return "CRASH (see AndroidRuntime in logcat)";
+            case ApplicationExitInfo.REASON_CRASH_NATIVE:
+                return "CRASH_NATIVE";
+            case ApplicationExitInfo.REASON_ANR:
+                return "ANR";
+            case ApplicationExitInfo.REASON_INITIALIZATION_FAILURE:
+                return "INITIALIZATION_FAILURE";
+            case ApplicationExitInfo.REASON_PERMISSION_CHANGE:
+                return "PERMISSION_CHANGE";
+            case ApplicationExitInfo.REASON_EXCESSIVE_RESOURCE_USAGE:
+                return "EXCESSIVE_RESOURCE_USAGE";
+            case ApplicationExitInfo.REASON_USER_REQUESTED:
+                return "USER_REQUESTED (the phone stopped the app, e.g. when it was swiped out of the recent apps)";
+            case ApplicationExitInfo.REASON_OTHER:
+                return "OTHER (usually a task killer or the OEM battery manager)";
+            default:
+                return "REASON_" + reason;
+        }
+    }
+
+    /**
      * @return the recorded events, newest first (may be empty).
      */
     public static synchronized String read(Context context) {
@@ -99,6 +168,10 @@ public final class TileDiagnostics {
     }
 
     private static String stamp() {
-        return new SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.US).format(new Date());
+        return stamp(System.currentTimeMillis());
+    }
+
+    private static String stamp(long time) {
+        return new SimpleDateFormat("MM-dd HH:mm:ss.SSS", Locale.US).format(new Date(time));
     }
 }

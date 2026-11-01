@@ -201,18 +201,6 @@ public final class TileDiagnostics {
         }
     }
 
-    public static synchronized void clear(Context context) {
-        try {
-            context.getApplicationContext()
-                    .getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-                    .edit()
-                    .remove(KEY_LOG)
-                    .apply();
-        } catch (Exception e) {
-            Log.w(TAG, "Could not clear diagnostics", e);
-        }
-    }
-
     private static String stamp() {
         return stamp(System.currentTimeMillis());
     }

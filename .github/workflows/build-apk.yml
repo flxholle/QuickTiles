@@ -1,0 +1,176 @@
+name: Build APK
+
+# Builds a signed release APK on every push.
+#
+# - push to master        -> a GitHub release "v<versionName>" is created (or its APK replaced),
+#                            so the newest build is always downloadable from Releases
+# - push of a v* tag      -> that tag becomes the release
+# - manual run            -> optional release with a custom tag
+# - any other branch / PR -> APK is only uploaded as an artifact of the run
+#
+# Every build is signed with the same cached keystore, so a new APK installs over the previous
+# version without uninstalling QuickTiles first.
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+    paths-ignore:
+      - '**.md'
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_release:
+        description: 'Also publish a GitHub release'
+        type: boolean
+        default: false
+      release_tag:
+        description: 'Release tag to create/update (only with publish_release)'
+        type: string
+        default: 'snapshot'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-apk-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: assembleRelease
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          # compileSdk is 36 (Android 16). Build-tools are downloaded by AGP itself.
+          packages: 'platforms;android-36 platform-tools'
+          accept-android-sdk-licenses: true
+
+      # A CI runner has no keystore, so AGP would generate a random one on every run and the
+      # resulting APKs could not be installed over each other. This keeps one keystore for all
+      # runs (release and debug), so updating the app never needs an uninstall.
+      - name: Restore signing keystore
+        uses: actions/cache@v6
+        with:
+          path: .ci/debug.keystore
+          key: debug-keystore-v2
+
+      - name: Prepare signing keystore
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.android" .ci
+          if [ -f .ci/debug.keystore ]; then
+            cp .ci/debug.keystore "$HOME/.android/debug.keystore"
+            echo "Re-using the cached keystore"
+          elif [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkeypair -v -storetype JKS \
+              -keystore "$HOME/.android/debug.keystore" \
+              -storepass android -keypass android \
+              -alias androiddebugkey \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+            cp "$HOME/.android/debug.keystore" .ci/debug.keystore
+            echo "Generated a new keystore, it will be cached for the next runs"
+          fi
+          ls -l .ci/debug.keystore
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Read version
+        id: version
+        run: |
+          set -euo pipefail
+          VERSION=$(sed -n 's/.*versionName = "\(.*\)".*/\1/p' app/build.gradle.kts | head -n1)
+          CODE=$(sed -n 's/.*versionCode = \(.*\)/\1/p' app/build.gradle.kts | head -n1)
+          echo "name=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "code=$CODE" >> "$GITHUB_OUTPUT"
+          echo "QuickTiles $VERSION ($CODE)"
+
+      - name: Decide whether to publish a release
+        id: tag
+        run: |
+          set -euo pipefail
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          elif [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ] && [ "${{ inputs.publish_release }}" = "true" ]; then
+            echo "tag=${{ inputs.release_tag }}" >> "$GITHUB_OUTPUT"
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          elif [ "${GITHUB_EVENT_NAME}" = "push" ] && [ "${GITHUB_REF_NAME}" = "master" ]; then
+            echo "tag=v${{ steps.version.outputs.name }}" >> "$GITHUB_OUTPUT"
+            echo "publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build release APK
+        run: ./gradlew --no-daemon assembleRelease --stacktrace
+
+      - name: Collect APK
+        id: apk
+        run: |
+          set -euo pipefail
+          VERSION="${{ steps.version.outputs.name }}"
+          mkdir -p dist
+          APK="dist/quicktiles-${VERSION}.apk"
+          cp app/build/outputs/apk/release/app-release.apk "$APK"
+          echo "path=$APK" >> "$GITHUB_OUTPUT"
+          ls -l dist
+          SHA=$(sha256sum "$APK" | cut -d' ' -f1)
+          SIZE=$(du -h "$APK" | cut -f1)
+          {
+            echo "### QuickTiles $VERSION"
+            echo ""
+            echo "| file | size | sha256 |"
+            echo "| --- | --- | --- |"
+            echo "| \`$(basename "$APK")\` | $SIZE | \`$SHA\` |"
+            echo ""
+            if [ "${{ steps.tag.outputs.publish }}" = "true" ]; then
+              echo "Published as release **${{ steps.tag.outputs.tag }}**."
+            else
+              echo "Download it from the *Artifacts* section of this run, then:"
+              echo "\`adb install -r $(basename "$APK")\`"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: quicktiles-apk
+          path: dist/*.apk
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish GitHub release
+        if: steps.tag.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${{ steps.tag.outputs.tag }}"
+          VERSION="${{ steps.version.outputs.name }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/*.apk --clobber
+            gh release edit "$TAG" --title "QuickTiles $VERSION" --latest
+          elif git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+            gh release create "$TAG" dist/*.apk --title "QuickTiles $VERSION" --generate-notes
+          else
+            gh release create "$TAG" dist/*.apk \
+              --title "QuickTiles $VERSION" \
+              --target "$GITHUB_SHA" \
+              --generate-notes
+          fi

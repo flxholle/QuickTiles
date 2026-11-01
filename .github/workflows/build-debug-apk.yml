@@ -53,6 +53,15 @@ jobs:
           packages: 'platforms;android-36 platform-tools'
           accept-android-sdk-licenses: true
 
+      # A CI runner has no debug keystore, so AGP would generate a random one on every run and
+      # the resulting APKs could not be installed over each other. Caching it keeps the signature
+      # stable, so you can update the app without uninstalling it first.
+      - name: Restore debug keystore
+        uses: actions/cache@v6
+        with:
+          path: ~/.android/debug.keystore
+          key: debug-keystore-v1
+
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 

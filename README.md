@@ -169,8 +169,9 @@ Android Studio or SDK needed.
   "Also attach the APK to a GitHub release" enabled. The "Run workflow" button only shows up once
   this workflow exists on the repository's default branch (the push trigger works right away).
 
-The APK is signed with the standard Android debug key. It therefore cannot be installed over a
-release build from F-Droid/Play - uninstall that first. After installing, re-enable your tiles in
+The workflow caches the debug keystore, so successive CI builds share one signature and can be
+installed over each other. It is still a debug key, so it cannot be installed over a release build
+from F-Droid/Play - uninstall that first (only once). After installing, re-enable your tiles in
 the app and re-grant the adb permissions:
 
 ```bash

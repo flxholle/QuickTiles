@@ -14,6 +14,7 @@ public class QuickTilesApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        TileDiagnostics.recordProcessExitHistory(this);
         TileDiagnostics.record(this, "app started, version " + versionName());
     }
 

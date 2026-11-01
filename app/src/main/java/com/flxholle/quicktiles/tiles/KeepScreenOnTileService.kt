@@ -64,9 +64,9 @@ class KeepScreenOnTileService : WriteSecureSettingsTileService<Int>() {
                 && GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
             return true
         else if (!GrantPermissionDialogs.hasModifySystemSettingsPermission(this))
-            showDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this))
         else
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
         return false
     }
 

@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.provider.Settings;
 import android.service.quicksettings.Tile;
+import android.util.Log;
 
 import com.flxholle.quicktiles.abstract_tiles.BaseTileService;
 import com.flxholle.quicktiles.utils.GrantPermissionDialogs;
@@ -26,27 +27,30 @@ public class GrayscaleTileService extends BaseTileService {
 
     @Override
     public void onClick() {
-        super.onClick();
-
         if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this)) {
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this));
+            showPermissionDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this));
             return;
         }
 
-        int oldState = getQsTile().getState();
-        if (oldState == Tile.STATE_ACTIVE) {
-            setState(Tile.STATE_INACTIVE);
-        } else {
-            setState(Tile.STATE_ACTIVE);
-        }
+        // The state is read from the system instead of from the tile, because the tile is not
+        // necessarily attached when a click arrives (the service may just have been re-created).
+        boolean enable = !isGreyscaleEnable(this);
+        toggleGreyscale(this, enable);
 
-        toggleGreyscale(this, oldState == Tile.STATE_INACTIVE);
+        setState(enable ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
     }
 
     private void setState(int state) {
-        Tile tile = getQsTile();
-        tile.setState(state);
-        tile.updateTile();
+        Tile tile = getTileOrNull();
+        if (tile == null) {
+            return;
+        }
+        try {
+            tile.setState(state);
+            tile.updateTile();
+        } catch (Exception e) {
+            Log.w(LOG_TAG, "Could not update grayscale tile", e);
+        }
     }
 
     @Override

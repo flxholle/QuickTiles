@@ -8,7 +8,7 @@ abstract class NotificationPolicyTileService<T : Any> : SelectionTileService<T>(
         return if (GrantPermissionDialogs.hasNotificationPolicyPermission(this)) {
             true
         } else {
-            showDialog(GrantPermissionDialogs.getNotificationPolicyDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getNotificationPolicyDialog(this))
             false
         }
     }

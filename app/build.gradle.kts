@@ -6,14 +6,14 @@ plugins {
 
 android {
     namespace = "com.flxholle.quicktiles"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.asdoi.quicktiles"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 18
-        versionName = "1.8"
+        targetSdk = 36
+        versionCode = 19
+        versionName = "1.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

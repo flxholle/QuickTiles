@@ -4,7 +4,7 @@ import com.flxholle.quicktiles.utils.GrantPermissionDialogs
 
 abstract class RootTileService<T : Any> : SelectionTileService<T>() {
     final override fun onClick() {
-        unlockAndRun {
+        runWhenUnlocked {
             super.onClick()
         }
     }
@@ -13,7 +13,7 @@ abstract class RootTileService<T : Any> : SelectionTileService<T>() {
         return if (GrantPermissionDialogs.hasRootPermission()) {
             true
         } else {
-            showDialog(GrantPermissionDialogs.getRootPermissionDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getRootPermissionDialog(this))
             false
         }
     }

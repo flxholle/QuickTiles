@@ -40,7 +40,9 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#troubleshooting-on-android-16--17-and-aggressive-oem-builds">Troubleshooting on Android 16 / 17</a></li>
     <li><a href="#google-play-protect-warning">Google Play Protect Warning</a></li>
+    <li><a href="#building-for-android-17-api-37">Building for Android 17</a></li>
     <li><a href="#contributing">Contributing</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
@@ -124,6 +126,46 @@ height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
 
 After installing, open QuickTiles and enable the tiles you want to use. You can then access them
 from the quick settings panel on your Android device.
+
+<div align="right">(<a href="#top">back to top</a>)</div>
+
+## Troubleshooting on Android 16 / 17 (and aggressive OEM builds)
+
+Tiles have to be able to run **without the app being open**. A `TileService` is created by the
+system on demand and destroyed again as soon as the Quick Settings panel is closed, so the app is
+*not* supposed to stay running in the background. Version 1.9 reworked the tile services so that
+they no longer depend on any in-memory state, which is what previously made all tiles stop working
+after the app was closed (swiped away from the recent apps).
+
+If a tile still shows no reaction:
+
+* Make sure the tile is enabled in the app (that is what enables the tile service component).
+* Do **not** "force stop" the app. A force-stopped app may not start any of its components until it
+  is launched again - that is a documented Android behaviour and no app can work around it.
+* Remove the battery optimization / "deep sleep" restriction for QuickTiles. On Xiaomi/HyperOS,
+  OPPO/realme, vivo, OnePlus and Samsung builds the app also has to be allowed to autostart.
+* Tiles that write secure settings (USB debugging, animations, show taps, ...) need the
+  `WRITE_SECURE_SETTINGS` permission, tiles that change screen timeout or brightness need
+  "Modify system settings". If one of those permissions is missing, tapping the tile opens a
+  dialog with the exact `adb` command instead of doing nothing.
+* The screenshot / lock screen / split screen / power dialog tiles require the QuickTiles
+  accessibility service to be enabled in the system accessibility settings.
+
+<div align="right">(<a href="#top">back to top</a>)</div>
+
+## Building for Android 17 (API 37)
+
+The app currently compiles and targets **API 36 (Android 16)** with AGP 8.13 / Gradle 8.13, which
+is the newest combination that the project's toolchain supports out of the box. Apps built against
+API 36 run on Android 17 without restrictions, and none of the Android 17 behaviour changes affect
+QuickTiles.
+
+Compiling against API 37 requires a newer toolchain (API 37 has a hard floor of AGP 9.1.1), i.e.:
+
+* Android Gradle Plugin `9.1.1` (or newer) in `gradle/libs.versions.toml`
+* Gradle `9.3.1` (or newer) in `gradle/wrapper/gradle-wrapper.properties`
+* `compileSdk = 37`, `targetSdk = 37` in `app/build.gradle.kts`
+* `android.builtInKotlin=false` in `gradle.properties` while the classic Kotlin plugin is used
 
 <div align="right">(<a href="#top">back to top</a>)</div>
 

@@ -159,8 +159,14 @@ press a volume key - even when QuickTiles is not running in the background. It n
 activity for that, because SystemUI ignores `AudioManager.FLAG_SHOW_UI` requests coming from an app
 that is not in the foreground.
 
-If you prefer the big panel with every stream (media, ring, notification, alarm, call), enable
-**Miscellaneous → Expanded volume panel**.
+Two switches in **Miscellaneous** change that behaviour:
+
+* **Keep Quick Settings open** - ask the system for the slider directly from the tile instead of
+  starting the activity first. If the ROM honours it the slider appears on top of the still open
+  Quick Settings panel, exactly like a volume key press. Android 17 ignores such requests from apps
+  that are not in the foreground, in which case nothing happens - leave the switch off then.
+* **Expanded volume panel** - the big panel with every stream (media, ring, notification, alarm,
+  call) instead of the short media slider.
 
 ### Tile diagnostics
 

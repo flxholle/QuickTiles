@@ -135,6 +135,8 @@
 
     <string name="set_custom_app_name">Set a custom name</string>
     <string name="troubleshooting">Troubleshooting</string>
+    <string name="volume_panel_instant_title">Keep Quick Settings open</string>
+    <string name="volume_panel_instant_summary">Show the volume slider on top of the Quick Settings panel instead of closing it first (may be ignored by the system on Android 17)</string>
     <string name="volume_panel_expanded_title">Expanded volume panel</string>
     <string name="volume_panel_expanded_summary">Show every volume stream (ring, notification, alarm, call) instead of the short media slider</string>
     <string name="tile_help">Why do my tiles stop working?</string>

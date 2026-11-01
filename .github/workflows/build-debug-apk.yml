@@ -54,13 +54,32 @@ jobs:
           accept-android-sdk-licenses: true
 
       # A CI runner has no debug keystore, so AGP would generate a random one on every run and
-      # the resulting APKs could not be installed over each other. Caching it keeps the signature
-      # stable, so you can update the app without uninstalling it first.
+      # the resulting APKs could not be installed over each other. This keeps one keystore for
+      # all runs, so you can update the app without uninstalling it first.
       - name: Restore debug keystore
         uses: actions/cache@v6
         with:
-          path: ~/.android/debug.keystore
-          key: debug-keystore-v1
+          path: .ci/debug.keystore
+          key: debug-keystore-v2
+
+      - name: Prepare debug keystore
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.android" .ci
+          if [ -f .ci/debug.keystore ]; then
+            cp .ci/debug.keystore "$HOME/.android/debug.keystore"
+            echo "Re-using the cached debug keystore"
+          elif [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkeypair -v -storetype JKS \
+              -keystore "$HOME/.android/debug.keystore" \
+              -storepass android -keypass android \
+              -alias androiddebugkey \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+            cp "$HOME/.android/debug.keystore" .ci/debug.keystore
+            echo "Generated a new debug keystore, it will be cached for the next runs"
+          fi
+          ls -l "$HOME/.android/debug.keystore"
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew

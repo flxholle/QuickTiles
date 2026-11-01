@@ -21,6 +21,9 @@ out/
 .gradle/
 build/
 
+# Keystore used by the CI workflow (.github/workflows/build-debug-apk.yml)
+.ci/
+
 # Local configuration file (sdk path, etc)
 local.properties
 

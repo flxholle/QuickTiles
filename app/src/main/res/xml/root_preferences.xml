@@ -212,6 +212,11 @@
         <Preference
             android:key="reset_counter"
             android:title="@string/reset_counter" />
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_volume_up"
+            android:key="volume_panel_expanded"
+            android:summary="@string/volume_panel_expanded_summary"
+            android:title="@string/volume_panel_expanded_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/development">

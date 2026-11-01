@@ -7,65 +7,112 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.preference.PreferenceManager;
+
+import com.flxholle.quicktiles.VolumePanelActivity;
 import com.flxholle.quicktiles.abstract_tiles.BaseTileService;
 
 public class OpenVolumePanelTileService extends BaseTileService {
 
     /**
-     * Activity action that opens the system volume panel, see
-     * {@code Settings.Panel.ACTION_VOLUME} (API 29). The value is written out instead of using the
-     * constant so the tile stays loadable on every supported Android version.
+     * Shows the big volume panel (media, ring, notification, alarm, call) instead of the short
+     * media slider. Off by default.
+     */
+    public static final String PREF_EXPANDED = "volume_panel_expanded";
+
+    /**
+     * Activity action that opens that big panel, see {@code Settings.Panel.ACTION_VOLUME} (API 29).
+     * The value is written out instead of using the constant so the tile stays loadable on every
+     * supported Android version.
      */
     private static final String ACTION_VOLUME = "android.settings.panel.action.VOLUME";
 
-    /**
-     * Opens the volume panel.
-     * <p>
-     * The previous implementation only called
-     * {@code adjustStreamVolume(STREAM_MUSIC, ADJUST_SAME, FLAG_SHOW_UI)}. Since Android 13 the
-     * platform silently strips {@link AudioManager#FLAG_SHOW_UI} from every call made by an app
-     * that is not in the foreground (AudioService only shows the UI for the platform uid and for
-     * foreground apps). The tile therefore reported a normal click - no exception, nothing to log -
-     * but no panel ever appeared unless the app happened to be open. The volume panel has to be
-     * started as an activity instead, which is what the system's own volume tile does.
-     */
     @Override
     protected void onTileClicked() {
-        if (openVolumePanel()) {
+        boolean expanded = false;
+        try {
+            expanded = PreferenceManager.getDefaultSharedPreferences(this)
+                    .getBoolean(PREF_EXPANDED, false);
+        } catch (Exception ignored) {
+            // Default to the compact panel
+        }
+
+        if (expanded) {
+            record("volume panel: showing all streams");
+            if (openAllStreamsPanel()) {
+                return;
+            }
+        } else {
+            record("volume panel: showing the compact media slider");
+            if (openCompactPanel()) {
+                return;
+            }
+        }
+
+        // Whatever the setting asked for failed - try the other variant before giving up
+        if (expanded ? openCompactPanel() : openAllStreamsPanel()) {
             return;
         }
         record("volume panel: falling back to the volume key simulation");
         showVolumeUi();
     }
 
-    private boolean openVolumePanel() {
+    /**
+     * Opens the short media volume slider through {@link VolumePanelActivity}. The activity is
+     * transparent and finishes immediately; it only exists because SystemUI ignores the
+     * {@link AudioManager#FLAG_SHOW_UI} request of an app that is not in the foreground.
+     */
+    private boolean openCompactPanel() {
         try {
-            Intent intent = new Intent(ACTION_VOLUME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (intent.resolveActivity(getPackageManager()) == null) {
-                record("volume panel: no system activity handles " + ACTION_VOLUME);
-                return false;
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-                startActivityAndCollapse(pendingIntent);
-            } else {
-                startActivityAndCollapse(intent);
-            }
-            record("volume panel: settings panel opened");
+            Intent intent = new Intent(this, VolumePanelActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivityFromTile(intent);
             return true;
         } catch (Exception e) {
-            Log.w(LOG_TAG, "Could not open the volume panel", e);
-            record("volume panel: could not open the settings panel ("
+            Log.w(LOG_TAG, "Could not open the compact volume panel", e);
+            record("volume panel: could not open the compact panel ("
                     + e.getClass().getSimpleName() + ")");
             return false;
         }
     }
 
     /**
-     * Last resort for builds without the settings volume panel: ask the audio service to show its
-     * own UI. This only works while the app is in the foreground, but it is better than nothing.
+     * Opens the big volume panel of the settings app.
+     */
+    private boolean openAllStreamsPanel() {
+        try {
+            Intent intent = new Intent(ACTION_VOLUME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            if (intent.resolveActivity(getPackageManager()) == null) {
+                record("volume panel: no system activity handles " + ACTION_VOLUME);
+                return false;
+            }
+            startActivityFromTile(intent);
+            return true;
+        } catch (Exception e) {
+            Log.w(LOG_TAG, "Could not open the volume panel", e);
+            record("volume panel: could not open the all streams panel ("
+                    + e.getClass().getSimpleName() + ")");
+            return false;
+        }
+    }
+
+    /**
+     * Android 14 dropped {@code startActivityAndCollapse(Intent)} and restricts background
+     * activity starts, so the {@link PendingIntent} variant is used wherever it exists.
+     */
+    private void startActivityFromTile(Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+            startActivityAndCollapse(pendingIntent);
+        } else {
+            startActivityAndCollapse(intent);
+        }
+    }
+
+    /**
+     * Last resort: ask the audio service to show its own UI. This only works while the app is in
+     * the foreground, but it is better than nothing.
      */
     private void showVolumeUi() {
         try {

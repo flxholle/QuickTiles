@@ -1,0 +1,145 @@
+name: Build debug APK
+
+# Builds an installable debug APK on every push and lets you download it from the
+# run summary (Actions ▸ Build debug APK ▸ Artifacts). Pushing a tag (v1.9, ...) or
+# starting the workflow manually with "publish_release" also attaches the APK to a
+# GitHub release, so it can be downloaded straight to a phone.
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']          # pushing a version tag also publishes a release with the APK
+    paths-ignore:
+      - '**.md'
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_release:
+        description: 'Also attach the APK to a GitHub release'
+        type: boolean
+        default: false
+      release_tag:
+        description: 'Release tag to create/update (only with publish_release)'
+        type: string
+        default: 'debug-latest'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-debug-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: assembleDebug
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          # compileSdk is 36 (Android 16). Build-tools are downloaded by AGP itself.
+          packages: 'platforms;android-36 platform-tools'
+          accept-android-sdk-licenses: true
+
+      # A CI runner has no debug keystore, so AGP would generate a random one on every run and
+      # the resulting APKs could not be installed over each other. This keeps one keystore for
+      # all runs, so you can update the app without uninstalling it first.
+      - name: Restore debug keystore
+        uses: actions/cache@v6
+        with:
+          path: .ci/debug.keystore
+          key: debug-keystore-v2
+
+      - name: Prepare debug keystore
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.android" .ci
+          if [ -f .ci/debug.keystore ]; then
+            cp .ci/debug.keystore "$HOME/.android/debug.keystore"
+            echo "Re-using the cached debug keystore"
+          elif [ ! -f "$HOME/.android/debug.keystore" ]; then
+            keytool -genkeypair -v -storetype JKS \
+              -keystore "$HOME/.android/debug.keystore" \
+              -storepass android -keypass android \
+              -alias androiddebugkey \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+            cp "$HOME/.android/debug.keystore" .ci/debug.keystore
+            echo "Generated a new debug keystore, it will be cached for the next runs"
+          fi
+          ls -l "$HOME/.android/debug.keystore"
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build debug APK
+        run: ./gradlew --no-daemon assembleDebug --stacktrace
+
+      - name: Collect APK
+        id: apk
+        run: |
+          set -euo pipefail
+          VERSION=$(sed -n 's/.*versionName = "\(.*\)".*/\1/p' app/build.gradle.kts | head -n1)
+          mkdir -p dist
+          APK="dist/quicktiles-${VERSION}-debug.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$APK"
+          echo "path=$APK" >> "$GITHUB_OUTPUT"
+          ls -l dist
+          SHA=$(sha256sum "$APK" | cut -d' ' -f1)
+          SIZE=$(du -h "$APK" | cut -f1)
+          {
+            echo "### QuickTiles debug APK"
+            echo ""
+            echo "| file | size | sha256 |"
+            echo "| --- | --- | --- |"
+            echo "| \`$(basename "$APK")\` | $SIZE | \`$SHA\` |"
+            echo ""
+            echo "Download it from the *Artifacts* section of this run, then:"
+            echo "\`adb install -r $(basename "$APK")\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: quicktiles-debug-apk
+          path: dist/*.apk
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish release (tag push)
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          if ! gh release create "$TAG" dist/*.apk --title "$TAG" --generate-notes; then
+            gh release upload "$TAG" dist/*.apk --clobber
+          fi
+
+      - name: Publish release (manual run)
+        if: github.event_name == 'workflow_dispatch' && inputs.publish_release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${{ inputs.release_tag }}"
+          if ! gh release create "$TAG" dist/*.apk \
+              --title "$TAG" \
+              --target "$GITHUB_SHA" \
+              --prerelease \
+              --notes "Debug build of ${{ github.ref_name }} ($GITHUB_SHA)"; then
+            gh release upload "$TAG" dist/*.apk --clobber
+          fi

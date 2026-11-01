@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.service.quicksettings.TileService;
 import android.util.ArrayMap;
+import android.util.Log;
 
 import androidx.preference.PreferenceManager;
 
@@ -14,10 +15,18 @@ import java.util.Map;
 import java.util.Objects;
 
 public class BootReceiver extends BroadcastReceiver {
+    private static final String TAG = "QuickTiles";
+
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (Objects.equals(intent.getAction(), Intent.ACTION_BOOT_COMPLETED)) {
-            // Need update tile after boot
+        String action = intent.getAction();
+        if (!Objects.equals(action, Intent.ACTION_BOOT_COMPLETED)
+                && !Objects.equals(action, Intent.ACTION_MY_PACKAGE_REPLACED)) {
+            return;
+        }
+
+        try {
+            // Need update tile after boot (and after the app was updated)
             ArrayMap<String, Class<?>> preferencesServices = SettingsActivity.getPreferenceService();
             Map<String, ?> preferences = PreferenceManager.getDefaultSharedPreferences(context).getAll();
             PackageManager pm = context.getPackageManager();
@@ -30,7 +39,8 @@ public class BootReceiver extends BroadcastReceiver {
                     TileService.requestListeningState(context, serviceClass);
                 }
             }
+        } catch (Exception e) {
+            Log.e(TAG, "Could not restore tiles after " + action, e);
         }
     }
 }
-

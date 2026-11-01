@@ -54,11 +54,11 @@ class DemoModeTileService : WriteSecureSettingsTileService<Int>() {
                 && GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
             return true
         else if (!GrantPermissionDialogs.hasDumpPermission(this))
-            showDialog(GrantPermissionDialogs.getDumpDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getDumpDialog(this))
         else if (!GrantPermissionDialogs.hasWriteSecureSettingsPermission(this))
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
         else
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getWriteSecureSettingsAndDumpDialog(this))
         return false
     }
 

@@ -5,7 +5,7 @@ import com.flxholle.quicktiles.utils.GrantPermissionDialogs
 abstract class WriteSecureSettingsTileService<T : Any> : SelectionTileService<T>() {
 
     final override fun onClick() {
-        unlockAndRun {
+        runWhenUnlocked {
             super.onClick()
         }
     }
@@ -14,7 +14,7 @@ abstract class WriteSecureSettingsTileService<T : Any> : SelectionTileService<T>
         return if (GrantPermissionDialogs.hasWriteSecureSettingsPermission(this)) {
             true
         } else {
-            showDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getWriteSecureSettingsDialog(this))
             false
         }
     }

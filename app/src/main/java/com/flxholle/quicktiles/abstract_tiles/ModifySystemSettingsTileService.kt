@@ -8,7 +8,7 @@ abstract class ModifySystemSettingsTileService<T : Any> : SelectionTileService<T
         return if (GrantPermissionDialogs.hasModifySystemSettingsPermission(this)) {
             true
         } else {
-            showDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this))
+            showPermissionDialog(GrantPermissionDialogs.getModifySystemSettingsDialog(this))
             false
         }
     }

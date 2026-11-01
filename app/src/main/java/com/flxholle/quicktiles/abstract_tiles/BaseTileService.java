@@ -7,6 +7,7 @@ import android.os.IBinder;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -50,6 +51,7 @@ public abstract class BaseTileService extends TileService {
             onTileClicked();
         } catch (Throwable error) {
             TileDiagnostics.recordError(this, getClass().getSimpleName() + " click failed", error);
+            showErrorToast(error);
         }
     }
 
@@ -78,6 +80,25 @@ public abstract class BaseTileService extends TileService {
     public void onStopListening() {
         record("onStopListening");
         super.onStopListening();
+    }
+
+    /**
+     * Shows a short message when a tap on the tile failed. Without it a failing tile looks
+     * exactly like a tile the system never called, which makes the problem impossible to
+     * report.
+     */
+    private void showErrorToast(Throwable error) {
+        try {
+            String detail = error.getMessage() == null
+                    ? error.getClass().getSimpleName()
+                    : error.getClass().getSimpleName() + ": " + error.getMessage();
+            if (detail.length() > 120) {
+                detail = detail.substring(0, 120);
+            }
+            Toast.makeText(getApplicationContext(), "QuickTiles: " + detail, Toast.LENGTH_LONG).show();
+        } catch (Throwable ignored) {
+            // A toast is a nice to have, never let it break the tile
+        }
     }
 
     /**

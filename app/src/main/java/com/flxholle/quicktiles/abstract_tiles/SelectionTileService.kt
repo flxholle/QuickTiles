@@ -20,6 +20,7 @@ import android.graphics.drawable.Icon
 import android.service.quicksettings.Tile
 import android.util.Log
 import androidx.annotation.CallSuper
+import com.flxholle.quicktiles.utils.TileDiagnostics
 
 abstract class SelectionTileService<T : Any> : BaseTileService() {
 
@@ -38,7 +39,10 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
         // Quick Settings panel is closed, so no in-memory state survives between two clicks.
         // Relying on a cached value made every tile throw (and therefore do nothing) once the
         // app was no longer running in the background.
-        val currentValue = queryCurrentValue() ?: return
+        val currentValue = queryCurrentValue() ?: run {
+            TileDiagnostics.record(this, "could not read current value of ${javaClass.simpleName}")
+            return
+        }
         val valueList = getValueList()
 
         if (valueList.isEmpty()) {
@@ -54,6 +58,7 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
                 saveValue(newValue)
             } catch (e: Exception) {
                 Log.e(BaseTileService.LOG_TAG, "Could not save new value for ${javaClass.simpleName}", e)
+                TileDiagnostics.recordError(this, "could not save value of ${javaClass.simpleName}", e)
             }
         }
 
@@ -91,6 +96,7 @@ abstract class SelectionTileService<T : Any> : BaseTileService() {
             tile.updateTile()
         } catch (e: Exception) {
             Log.e(BaseTileService.LOG_TAG, "Could not update tile of ${javaClass.simpleName}", e)
+            TileDiagnostics.recordError(this, "could not update tile of ${javaClass.simpleName}", e)
         }
     }
 

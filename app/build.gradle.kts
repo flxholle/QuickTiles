@@ -12,10 +12,26 @@ android {
         applicationId = "com.asdoi.quicktiles"
         minSdk = 24
         targetSdk = 36
-        versionCode = 25
-        versionName = "1.9.6"
+        versionCode = 26
+        versionName = "2.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        // The CI generates this keystore once and caches it between runs, so every QuickTiles
+        // build - debug and release - carries the same signature and installs over the previous
+        // version without uninstalling it first. It is a throw-away keystore for personal builds,
+        // not something to publish to an app store with.
+        create("ci") {
+            val ciKeystore = rootProject.file(".ci/debug.keystore")
+            if (ciKeystore.exists()) {
+                storeFile = ciKeystore
+                storePassword = "android"
+                keyAlias = "androiddebugkey"
+                keyPassword = "android"
+            }
+        }
     }
 
     buildTypes {
@@ -25,6 +41,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            // Falls back to the local debug keystore when the CI keystore is not present, so a
+            // release build always produces an installable APK.
+            signingConfig = if (rootProject.file(".ci/debug.keystore").exists()) {
+                signingConfigs.getByName("ci")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
     compileOptions {

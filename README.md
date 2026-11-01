@@ -42,8 +42,9 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#troubleshooting-on-android-16--17-and-aggressive-oem-builds">Troubleshooting on Android 16 / 17</a></li>
     <li><a href="#google-play-protect-warning">Google Play Protect Warning</a></li>
-    <li><a href="#building-a-debug-apk-with-github-actions">Building a debug APK (GitHub Actions)</a></li>
+    <li><a href="#downloads--releases-github-actions">Downloads &amp; releases (GitHub Actions)</a></li>
     <li><a href="#building-for-android-17-api-37">Building for Android 17</a></li>
+    <li><a href="#changelog">Changelog</a></li>
     <li><a href="#contributing">Contributing</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
@@ -73,7 +74,12 @@ alt="Get it on F-Droid"
 height="80">](https://f-droid.org/packages/com.asdoi.quicktiles/)
 [<img src="https://raw.githubusercontent.com/LibreShift/red-moon/master/art/direct-apk-download.png"
       alt="Direct apk download"
-      height="80">](https://gitlab.com/flxholle/quick-tiles/-/releases)
+      height="80">](https://github.com/aanneion/QuickTiles/releases/latest)
+
+The F-Droid badge installs the upstream release. The **direct download** always points at the newest
+APK of this repository, which is built and published automatically by GitHub Actions (see
+[Downloads & releases](#downloads--releases-github-actions)). Both are signed with the CI keystore,
+so they install over each other without uninstalling first.
 
 
 <div align="right">(<a href="#top">back to top</a>)</div>
@@ -134,9 +140,10 @@ from the quick settings panel on your Android device.
 
 Tiles have to be able to run **without the app being open**. A `TileService` is created by the
 system on demand and destroyed again as soon as the Quick Settings panel is closed, so the app is
-*not* supposed to stay running in the background. Version 1.9 reworked the tile services so that
-they no longer depend on any in-memory state, which is what previously made all tiles stop working
-after the app was closed (swiped away from the recent apps).
+*not* supposed to stay running in the background. Version 2.0 reworked the tile services so that
+they no longer depend on any in-memory state and replaced the calls that newer Android versions
+silently drop, which is what previously made tiles stop working after the app was closed. If a tile
+still does nothing, the in-app diagnostics below say whether the system reached the app at all.
 
 If a tile still shows no reaction:
 
@@ -170,7 +177,8 @@ Two switches in **Miscellaneous** change that behaviour:
 
 ### Tile diagnostics
 
-Version 1.9.1 records what actually happens when a tile is tapped. Open the app, go to
+Version 2.0 records what actually happens when a tile is tapped, including crashes of the app
+process. Open the app, go to
 **Settings → Troubleshooting → Tile diagnostics**. The list is ordered newest first and contains
 one line per event, for example:
 
@@ -198,20 +206,22 @@ The dialog has a **Share** button - the text can be copied and pasted into a bug
 
 <div align="right">(<a href="#top">back to top</a>)</div>
 
-## Building a debug APK with GitHub Actions
+## Downloads & releases (GitHub Actions)
 
-`.github/workflows/build-debug-apk.yml` builds an installable debug APK for you - no local
-Android Studio or SDK needed.
+`.github/workflows/build-apk.yml` builds a signed **release** APK - no local Android Studio or SDK
+needed.
 
-* **Every push to any branch** builds the APK.
-* **Download:** GitHub ▸ *Actions* ▸ *Build debug APK* ▸ pick the newest run ▸ *Artifacts* ▸
-  `quicktiles-debug-apk` (a zip that contains `quicktiles-<version>-debug.apk`).
-* **Pushing a tag** like `v1.9` builds the APK and attaches it to a GitHub release, so it can be
-  downloaded directly on the phone:
-  `git tag v1.9 && git push origin v1.9`
-* **Manual run:** *Actions* ▸ *Build debug APK* ▸ *Run workflow*, optionally with
-  "Also attach the APK to a GitHub release" enabled. The "Run workflow" button only shows up once
-  this workflow exists on the repository's default branch (the push trigger works right away).
+* **Every push to `master`** builds the APK and publishes it as the GitHub release
+  **`v<versionName>`** (for example `v2.0.0`), replacing the APK if that release already exists.
+  That release is the one behind the download button at the top of this file.
+* **Every other branch and every pull request** only uploads the APK as an artifact of the run:
+  *Actions* ▸ *Build APK* ▸ newest run ▸ *Artifacts* ▸ `quicktiles-apk`.
+* **Pushing a `v*` tag** publishes that tag as a release:
+  `git tag v2.0.0 && git push origin v2.0.0`
+* **Manual run:** *Actions* ▸ *Build APK* ▸ *Run workflow*, optionally with a release tag of your
+  choice.
+* All builds are signed with one keystore that the workflow caches between runs, so any APK
+  installs over the previously installed QuickTiles version.
 
 The workflow caches the debug keystore, so successive CI builds share one signature and can be
 installed over each other. It is still a debug key, so it cannot be installed over a release build
@@ -252,6 +262,14 @@ Android stores previously detected warnings and repeats them, even after Play Pr
 
 <div align="right">(<a href="#top">back to top</a>)</div>
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md). Version 2.0.0 is the release that makes every tile work with
+QuickTiles closed on Android 16 and 17, switches the CI to signed release builds and adds the
+in-app diagnostics.
+
+<div align="right">(<a href="#top">back to top</a>)</div>
+
 ## Contributing
 
 Contributions make open source amazing. If you have an idea or fix, please:
@@ -266,7 +284,7 @@ Contributions make open source amazing. If you have an idea or fix, please:
 1. Clone the repo
 
 ```sh
-   git clone https://gitlab.com/flxholle/quick-tiles.git
+   git clone https://github.com/aanneion/QuickTiles.git
 ```
 
 2. Open the project in Android Studio.
